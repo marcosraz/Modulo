@@ -1,26 +1,290 @@
 @import "tailwindcss";
 
+/* ===== DARK MODE (Default) ===== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Base Colors */
+  --modulo-black: #0A0A0A;
+  --modulo-charcoal: #1A1A1A;
+  --modulo-steel: #3D4550;
+  --modulo-silver: #B0B8C4;
+  --modulo-light: #FFFFFF;
+  --modulo-white: #FFFFFF;
+
+  /* Accent - MODULO Blue */
+  --modulo-accent: #2563eb;
+  --modulo-accent-light: #3b82f6;
+  --modulo-accent-dark: #1d4ed8;
+
+  /* Semantic (Dark Mode) */
+  --background: var(--modulo-black);
+  --background-secondary: var(--modulo-charcoal);
+  --foreground: var(--modulo-light);
+  --foreground-muted: var(--modulo-silver);
+  --border: var(--modulo-steel);
+}
+
+/* ===== LIGHT MODE ===== */
+[data-theme="light"] {
+  --modulo-black: #FFFFFF;
+  --modulo-charcoal: #F3F4F6;
+  --modulo-steel: #D1D5DB;
+  --modulo-silver: #6B7280;
+  --modulo-light: #111827;
+  --modulo-white: #FFFFFF;
+
+  --background: #FFFFFF;
+  --background-secondary: #F3F4F6;
+  --foreground: #111827;
+  --foreground-muted: #6B7280;
+  --border: #D1D5DB;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent: var(--modulo-accent);
+  --color-accent-light: var(--modulo-accent-light);
+  --color-muted: var(--foreground-muted);
+  --color-border: var(--border);
+  --color-steel: var(--modulo-steel);
+  --color-charcoal: var(--modulo-charcoal);
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Selection styling */
+::selection {
+  background: var(--modulo-accent);
+  color: white;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--modulo-accent);
+}
+
+/* Grid background pattern */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(37, 99, 235, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Gradient overlays */
+.gradient-radial {
+  background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+}
+
+.gradient-fade-down {
+  background: linear-gradient(to bottom, transparent 0%, var(--background) 100%);
+}
+
+/* Text utilities */
+.text-gradient {
+  background: linear-gradient(135deg, var(--modulo-accent) 0%, var(--modulo-accent-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Button base */
+.btn-primary {
+  background: var(--modulo-accent);
+  color: #FFFFFF;
+  font-weight: 600;
+  padding: 0.875rem 2rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.875rem;
+}
+
+.btn-primary:hover {
+  background: var(--modulo-accent-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  font-weight: 500;
+  padding: 0.875rem 2rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.875rem;
+}
+
+.btn-outline:hover {
+  border-color: var(--modulo-accent);
+  color: var(--modulo-accent);
+}
+
+/* Card styling */
+.card {
+  background: var(--background-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--modulo-accent);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .card:hover {
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
+}
+
+/* Animated border */
+@keyframes border-pulse {
+  0%, 100% { border-color: var(--border); }
+  50% { border-color: var(--modulo-accent); }
+}
+
+.border-animate {
+  animation: border-pulse 3s ease-in-out infinite;
+}
+
+/* Staggered fade-in animations */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+
+/* Section divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+/* Technical label styling */
+.tech-label {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--modulo-accent);
+}
+
+/* Number highlight */
+.stat-number {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-weight: 700;
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--modulo-accent);
+}
+
+/* Image container with technical corners */
+.tech-frame {
+  position: relative;
+}
+
+.tech-frame::before,
+.tech-frame::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--modulo-accent);
+}
+
+.tech-frame::before {
+  top: -4px;
+  left: -4px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.tech-frame::after {
+  bottom: -4px;
+  right: -4px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Logo theming */
+.logo-themed {
+  filter: brightness(0) invert(1);
+}
+
+[data-theme="light"] .logo-themed {
+  filter: brightness(0);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--background-secondary);
+  color: var(--foreground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--modulo-accent);
+  color: var(--modulo-accent);
 }

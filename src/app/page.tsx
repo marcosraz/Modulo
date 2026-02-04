@@ -1,65 +1,66 @@
-import Image from "next/image";
+import { Metadata } from "next";
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import ProductsOverview from "@/components/ProductsOverview";
+import Benefits from "@/components/Benefits";
+import TargetGroups from "@/components/TargetGroups";
+import Downloads from "@/components/Downloads";
+import CTA from "@/components/CTA";
+import Footer from "@/components/Footer";
+import { FAQSchema } from "@/components/SEO";
+
+export const metadata: Metadata = {
+  title: "Automatische Parksysteme & Parklifte für Österreich",
+  description:
+    "MODULO Parkplattformen verdoppeln Ihre Parkkapazität. Parklifte, Doppelparker und Stapelparker für Tiefgaragen, Mehrfamilienhäuser und Gewerbe. Beratung & Montage in ganz Österreich.",
+  alternates: {
+    canonical: "https://modullo-parking.at",
+  },
+  openGraph: {
+    title: "Modullo Parking Austria | Automatische Parksysteme",
+    description:
+      "Verdoppeln Sie Ihre Parkkapazität mit MODULO Parkplattformen. Parklifte und Doppelparker für Österreich.",
+    url: "https://modullo-parking.at",
+  },
+};
+
+const homepageFAQs = [
+  {
+    question: "Was sind Parkplattformen?",
+    answer:
+      "Parkplattformen sind mechanische Systeme, die es ermöglichen, mehrere Fahrzeuge übereinander zu parken. Dadurch kann die Parkkapazität auf gleichem Raum verdoppelt oder sogar verdreifacht werden. MODULO bietet verschiedene Systeme wie Parklifte, Doppelparker und Stapelparker an.",
+  },
+  {
+    question: "Für wen eignen sich MODULO Parksysteme?",
+    answer:
+      "MODULO Parksysteme eignen sich für Privatpersonen mit Doppelgaragen, Mehrfamilienhäuser, Hotels, Gewerbebetriebe und öffentliche Parkeinrichtungen. Die Systeme sind skalierbar von 2 bis über 100 Stellplätzen.",
+  },
+  {
+    question: "Wie viel Platz benötigt ein Parksystem?",
+    answer:
+      "Die MODULO Systeme sind für unterschiedliche Platzverhältnisse konzipiert. Der STACKER-P10 benötigt nur 2,5m Breite. Die PARKER-S Serie ist speziell für niedrige Deckenhöhen ab 295cm optimiert.",
+  },
+  {
+    question: "Sind die Parksysteme sicher?",
+    answer:
+      "Ja, alle MODULO Systeme sind nach europäischen Sicherheitsnormen zertifiziert und verfügen über Not-Aus-Schalter, Überlastungssicherung und Sensoren. Die Bedienung erfolgt über gesicherte Bedienfelder mit Schlüssel oder Chip.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <FAQSchema faqs={homepageFAQs} />
+      <Header />
+      <main>
+        <Hero />
+        <ProductsOverview />
+        <Benefits />
+        <TargetGroups />
+        <Downloads />
+        <CTA />
       </main>
-    </div>
+      <Footer />
+    </>
   );
 }

@@ -1,0 +1,27 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/update-architecture.sh",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Eine neue Datei wurde im Projekt erstellt. Falls es sich um eine signifikante strukturelle Änderung handelt (neue Komponente in components/, neue Route in app/, neue Daten in data/), aktualisiere die entsprechenden Abschnitte in ARCHITECTURE.md:\n\n1. Bei neuen Komponenten: Füge sie zur Komponenten-Hierarchie hinzu\n2. Bei neuen Routen: Ergänze die Routing-Architektur\n3. Bei neuen Daten-Dateien: Aktualisiere den Data Layer Abschnitt\n\nHalte die Änderungen minimal und im bestehenden ASCII-Diagramm-Stil. Falls die Änderung nicht signifikant ist (z.B. nur eine kleine Hilfsdatei), mache nichts.",
+            "model": "haiku",
+            "timeout": 60
+          }
+        ]
+      }
+    ]
+  }
+}

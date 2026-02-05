@@ -16,13 +16,13 @@ export const metadata: Metadata = {
     "Realisierte Parksysteme",
   ],
   alternates: {
-    canonical: "https://modullo-parking.at/referenzen",
+    canonical: "https://moduloparking.at/referenzen",
   },
   openGraph: {
     title: "Referenzen | Modullo Parking Austria",
     description:
       "Erfolgreich umgesetzte Parksystem-Projekte in ganz Österreich.",
-    url: "https://modullo-parking.at/referenzen",
+    url: "https://moduloparking.at/referenzen",
   },
 };
 
@@ -71,10 +71,6 @@ export default function ReferenzenPage() {
   const featuredRefs = references.filter((r) => r.featured);
   const otherRefs = references.filter((r) => !r.featured);
 
-  // Statistics
-  const totalSpaces = references.reduce((sum, r) => sum + r.parkingSpaces, 0);
-  const totalProjects = references.length;
-
   return (
     <>
       <BreadcrumbSchema items={breadcrumbs} />
@@ -98,41 +94,6 @@ export default function ReferenzenPage() {
               </p>
             </div>
 
-            {/* Stats */}
-            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
-              <div className="text-center p-4 border border-[var(--border)]">
-                <div className="text-3xl font-mono font-bold text-[var(--modulo-accent)]">
-                  {totalProjects}+
-                </div>
-                <div className="text-sm text-[var(--foreground-muted)]">
-                  Projekte
-                </div>
-              </div>
-              <div className="text-center p-4 border border-[var(--border)]">
-                <div className="text-3xl font-mono font-bold text-[var(--modulo-accent)]">
-                  {totalSpaces}+
-                </div>
-                <div className="text-sm text-[var(--foreground-muted)]">
-                  Stellplätze
-                </div>
-              </div>
-              <div className="text-center p-4 border border-[var(--border)]">
-                <div className="text-3xl font-mono font-bold text-[var(--modulo-accent)]">
-                  9
-                </div>
-                <div className="text-sm text-[var(--foreground-muted)]">
-                  Bundesländer
-                </div>
-              </div>
-              <div className="text-center p-4 border border-[var(--border)]">
-                <div className="text-3xl font-mono font-bold text-[var(--modulo-accent)]">
-                  100%
-                </div>
-                <div className="text-sm text-[var(--foreground-muted)]">
-                  Zufriedenheit
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 

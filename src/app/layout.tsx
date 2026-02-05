@@ -3,6 +3,8 @@ import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
 import { OrganizationSchema, LocalBusinessSchema } from "@/components/SEO";
+import { Analytics } from "@vercel/analytics/react";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -17,7 +19,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://modullo-parking.at"),
+  metadataBase: new URL("https://moduloparking.at"),
   title: {
     default: "Modullo Parking Austria | Automatische Parksysteme & Parklifte",
     template: "%s | Modullo Parking Austria",
@@ -49,7 +51,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "de_AT",
-    url: "https://modullo-parking.at",
+    url: "https://moduloparking.at",
     siteName: "Modullo Parking Austria",
     title: "Modullo Parking Austria | Automatische Parksysteme",
     description:
@@ -81,7 +83,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://modullo-parking.at",
+    canonical: "https://moduloparking.at",
   },
   verification: {
     // google: "YOUR_GOOGLE_VERIFICATION_CODE",
@@ -103,6 +105,8 @@ export default function RootLayout({
         className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`}
       >
         <Providers>{children}</Providers>
+        <Analytics />
+        <GoogleAnalytics />
       </body>
     </html>
   );

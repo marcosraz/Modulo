@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import type { Reference } from "@/data/references";
 
 interface CategoryButton {
@@ -88,23 +89,49 @@ export default function ReferenceGrid({ references, categoryButtons, categoryLab
             <h2 className="text-2xl font-bold text-[var(--foreground)] mb-8">
               {dict.references.highlightProjects}
             </h2>
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 gap-6">
               {featured.map((ref) => (
-                <div key={ref.id} className="card overflow-hidden">
-                  <div className="p-6 bg-[var(--background)] border-b border-[var(--border)]">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 flex items-center justify-center bg-[var(--modulo-accent)]/10 rounded-[var(--radius-base)] text-[var(--modulo-accent)]">
-                        {getCategoryIcon(ref.category)}
+                <div key={ref.id} className="card card--interactive overflow-hidden group">
+                  {/* Project photo */}
+                  {ref.image && (
+                    <div className="relative aspect-[3/2] overflow-hidden">
+                      <Image
+                        src={ref.image}
+                        alt={ref.name}
+                        fill
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+                      <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
+                        <div>
+                          <h3 className="text-xl font-semibold text-white drop-shadow">{ref.name}</h3>
+                          <p className="mt-0.5 text-sm text-white/85">
+                            {ref.location.city}, {ref.location.country}
+                          </p>
+                        </div>
+                        <span className="badge badge--solid flex-shrink-0">
+                          {categoryLabels[ref.category] || ref.category}
+                        </span>
                       </div>
-                      <span className="text-xs font-medium text-[var(--modulo-accent)] uppercase tracking-wide">
-                        {categoryLabels[ref.category] || ref.category}
-                      </span>
                     </div>
-                    <h3 className="text-xl font-semibold text-[var(--foreground)]">{ref.name}</h3>
-                    <p className="mt-1 text-sm text-[var(--foreground-muted)]">
-                      {ref.location.city}, {ref.location.country}
-                    </p>
-                  </div>
+                  )}
+                  {!ref.image && (
+                    <div className="p-6 bg-[var(--background)] border-b border-[var(--border)]">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 flex items-center justify-center bg-[var(--modulo-accent)]/10 rounded-[var(--radius-base)] text-[var(--modulo-accent)]">
+                          {getCategoryIcon(ref.category)}
+                        </div>
+                        <span className="text-xs font-medium text-[var(--modulo-accent)] uppercase tracking-wide">
+                          {categoryLabels[ref.category] || ref.category}
+                        </span>
+                      </div>
+                      <h3 className="text-xl font-semibold text-[var(--foreground)]">{ref.name}</h3>
+                      <p className="mt-1 text-sm text-[var(--foreground-muted)]">
+                        {ref.location.city}, {ref.location.country}
+                      </p>
+                    </div>
+                  )}
                   <div className="p-6">
                     <p className="text-sm text-[var(--foreground-muted)]">{ref.description}</p>
                     <div className="mt-4 flex flex-wrap gap-2">
@@ -149,10 +176,22 @@ export default function ReferenceGrid({ references, categoryButtons, categoryLab
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               {others.map((ref) => (
-                <div key={ref.id} className="flex gap-6 p-6 card card--flat">
-                  <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-[var(--background)] border border-[var(--border)] rounded-[var(--radius-base)] text-[var(--modulo-accent)]">
-                    {getCategoryIcon(ref.category)}
-                  </div>
+                <div key={ref.id} className="flex gap-5 p-5 card card--flat">
+                  {ref.image ? (
+                    <div className="relative flex-shrink-0 w-24 h-20 sm:w-28 sm:h-[5.5rem] rounded-[var(--radius-base)] overflow-hidden border border-[var(--border)]">
+                      <Image
+                        src={ref.image}
+                        alt={ref.name}
+                        fill
+                        sizes="112px"
+                        className="object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-[var(--background)] border border-[var(--border)] rounded-[var(--radius-base)] text-[var(--modulo-accent)]">
+                      {getCategoryIcon(ref.category)}
+                    </div>
+                  )}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
                       <h3 className="font-semibold text-[var(--foreground)]">{ref.name}</h3>

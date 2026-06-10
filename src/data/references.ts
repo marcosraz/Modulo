@@ -12,6 +12,8 @@ export interface Reference {
   year?: number;
   featured: boolean;
   sourceUrl?: string;
+  /** Project photo (sourced from the manufacturer moduloparking.com, used with permission as official representation) */
+  image?: string;
   /** true = project realized by manufacturer MODULO/PROMStahl, not by Modulo Parking Austria */
   isManufacturerReference: boolean;
 }
@@ -19,6 +21,7 @@ export interface Reference {
 export const references: Reference[] = [
   {
     id: "ref-001",
+    image: "/images/references/warszawa-wilanow.webp",
     name: "Wohnanlage Warszawa-Wilanów",
     location: {
       city: "Warschau",
@@ -35,6 +38,7 @@ export const references: Reference[] = [
   },
   {
     id: "ref-002",
+    image: "/images/references/krakow-bank.webp",
     name: "Bankzentrale Kraków",
     location: {
       city: "Krakau",
@@ -51,6 +55,7 @@ export const references: Reference[] = [
   },
   {
     id: "ref-003",
+    image: "/images/references/hotel-focus-sopot.webp",
     name: "Hotel Focus Premium Sopot",
     location: {
       city: "Sopot",
@@ -67,6 +72,7 @@ export const references: Reference[] = [
   },
   {
     id: "ref-004",
+    image: "/images/references/gdansk.webp",
     name: "Mehrfamilienhaus Gdańsk",
     location: {
       city: "Danzig",
@@ -83,6 +89,7 @@ export const references: Reference[] = [
   },
   {
     id: "ref-005",
+    image: "/images/references/poznan-marcelinska.webp",
     name: "Wohnanlage Poznań Marcelińska",
     location: {
       city: "Posen",
@@ -100,6 +107,7 @@ export const references: Reference[] = [
   },
   {
     id: "ref-006",
+    image: "/images/references/bydgoszcz.webp",
     name: "Mehrfamilienhaus Bydgoszcz",
     location: {
       city: "Bydgoszcz",

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 interface ContactFormProps {
   locale: string;
@@ -10,6 +11,11 @@ interface ContactFormProps {
 type Status = "idle" | "sending" | "success" | "error";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function localePath(path: string, locale: string): string {
+  if (locale === "de") return path;
+  return `/${locale}${path}`;
+}
 
 export default function ContactForm({ locale, dict }: ContactFormProps) {
   const [formData, setFormData] = useState({
@@ -21,8 +27,9 @@ export default function ContactForm({ locale, dict }: ContactFormProps) {
     message: "",
     website: "", // honeypot
   });
+  const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
-  const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
+  const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string; consent?: string }>({});
 
   const v = dict.contact.form.validation;
 
@@ -31,6 +38,7 @@ export default function ContactForm({ locale, dict }: ContactFormProps) {
     if (!formData.name.trim()) next.name = v.name;
     if (!EMAIL_RE.test(formData.email.trim())) next.email = v.email;
     if (formData.message.trim().length < 10) next.message = v.message;
+    if (!consent) next.consent = v.consent;
     setErrors(next);
     return Object.keys(next).length === 0;
   }
@@ -60,11 +68,15 @@ export default function ContactForm({ locale, dict }: ContactFormProps) {
         message: "",
         website: "",
       });
+      setConsent(false);
       setErrors({});
     } catch {
       setStatus("error");
     }
   };
+
+  // consentText contains a {privacy} placeholder that becomes the policy link.
+  const [consentBefore, consentAfter] = String(dict.contact.form.consentText).split("{privacy}");
 
   const fieldClass =
     "w-full px-4 py-3 bg-[var(--background)] border border-[var(--border-strong)] rounded-[var(--radius-base)] focus:border-[var(--modulo-accent)] text-[var(--foreground)] transition-colors";
@@ -212,6 +224,40 @@ export default function ContactForm({ locale, dict }: ContactFormProps) {
                   value={formData.website}
                   onChange={(e) => setFormData({ ...formData, website: e.target.value })}
                 />
+              </div>
+
+              {/* GDPR consent */}
+              <div>
+                <label htmlFor="contact-consent" className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    id="contact-consent"
+                    name="consent"
+                    type="checkbox"
+                    required
+                    aria-required="true"
+                    aria-invalid={errors.consent ? "true" : undefined}
+                    aria-describedby={errors.consent ? "contact-consent-error" : undefined}
+                    checked={consent}
+                    onChange={(e) => setConsent(e.target.checked)}
+                    className="mt-1 w-4 h-4 flex-shrink-0 accent-[var(--modulo-accent)]"
+                  />
+                  <span className="text-sm text-[var(--foreground-muted)]">
+                    {consentBefore}
+                    <Link
+                      href={localePath("/datenschutz", locale)}
+                      className="text-[var(--modulo-accent)] hover:underline underline-offset-2"
+                      target="_blank"
+                    >
+                      {dict.contact.form.consentLinkText}
+                    </Link>
+                    {consentAfter} <span aria-hidden="true">{dict.contact.form.required}</span>
+                  </span>
+                </label>
+                {errors.consent && (
+                  <p id="contact-consent-error" className="mt-1.5 text-sm text-red-400">
+                    {errors.consent}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col sm:flex-row sm:items-center gap-4">

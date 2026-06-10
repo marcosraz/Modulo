@@ -337,6 +337,14 @@ const de = {
         },
       ],
     },
+    faqSection: {
+      label: "FAQ",
+      title: "Häufige",
+      titleHighlight: "Fragen",
+      description:
+        "Die wichtigsten Antworten rund um Parkplattformen – kompakt erklärt.",
+      moreQuestions: "Ihre Frage ist nicht dabei?",
+    },
     faq: [
       {
         question: "Was sind Parkplattformen?",
@@ -486,10 +494,14 @@ const de = {
       errorMessage:
         "Senden fehlgeschlagen. Bitte versuchen Sie es erneut oder kontaktieren Sie uns telefonisch.",
       required: "*",
+      consentText:
+        "Ich habe die {privacy} gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage zu.",
+      consentLinkText: "Datenschutzerklärung",
       validation: {
         name: "Bitte geben Sie Ihren Namen ein.",
         email: "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
         message: "Bitte beschreiben Sie Ihre Anfrage (mind. 10 Zeichen).",
+        consent: "Bitte stimmen Sie der Datenverarbeitung zu.",
       },
     },
     info: {

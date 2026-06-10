@@ -337,6 +337,14 @@ const en = {
         },
       ],
     },
+    faqSection: {
+      label: "FAQ",
+      title: "Frequently Asked",
+      titleHighlight: "Questions",
+      description:
+        "The most important answers about parking platforms – explained concisely.",
+      moreQuestions: "Can't find your question?",
+    },
     faq: [
       {
         question: "What are parking platforms?",
@@ -486,10 +494,14 @@ const en = {
       errorMessage:
         "Sending failed. Please try again or contact us by phone.",
       required: "*",
+      consentText:
+        "I have read the {privacy} and consent to the processing of my data for handling this enquiry.",
+      consentLinkText: "privacy policy",
       validation: {
         name: "Please enter your name.",
         email: "Please enter a valid email address.",
         message: "Please describe your enquiry (at least 10 characters).",
+        consent: "Please consent to the data processing.",
       },
     },
     info: {

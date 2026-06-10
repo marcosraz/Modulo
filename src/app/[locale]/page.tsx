@@ -6,6 +6,7 @@ import Benefits from "@/components/Benefits";
 import TargetGroups from "@/components/TargetGroups";
 import Process from "@/components/Process";
 import Downloads from "@/components/Downloads";
+import FAQ from "@/components/FAQ";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
@@ -62,6 +63,7 @@ export default async function Home({
         <Reveal><TargetGroups locale={locale} dict={dict} /></Reveal>
         <Reveal><Process locale={locale} dict={dict} /></Reveal>
         <Reveal><Downloads locale={locale} dict={dict} /></Reveal>
+        <Reveal><FAQ locale={locale} dict={dict} /></Reveal>
         <Reveal><CTA locale={locale} dict={dict} /></Reveal>
       </main>
       <Footer locale={locale} dict={dict} />

@@ -337,6 +337,14 @@ const cs = {
         },
       ],
     },
+    faqSection: {
+      label: "FAQ",
+      title: "Časté",
+      titleHighlight: "dotazy",
+      description:
+        "Nejdůležitější odpovědi ohledně parkovacích platforem – stručně vysvětleno.",
+      moreQuestions: "Nenašli jste svou otázku?",
+    },
     faq: [
       {
         question: "Co jsou parkovací platformy?",
@@ -486,10 +494,14 @@ const cs = {
       errorMessage:
         "Odeslání se nezdařilo. Zkuste to prosím znovu nebo nás kontaktujte telefonicky.",
       required: "*",
+      consentText:
+        "Přečetl/a jsem si {privacy} a souhlasím se zpracováním svých údajů za účelem vyřízení dotazu.",
+      consentLinkText: "zásady ochrany osobních údajů",
       validation: {
         name: "Zadejte prosím své jméno.",
         email: "Zadejte prosím platnou e-mailovou adresu.",
         message: "Popište prosím svůj dotaz (alespoň 10 znaků).",
+        consent: "Potvrďte prosím souhlas se zpracováním údajů.",
       },
     },
     info: {

@@ -455,6 +455,17 @@ textarea:focus-visible {
   transform: none;
 }
 
+/* FAQ accordion (native details/summary) */
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.faq-item[open] .faq-chevron {
+  transform: rotate(180deg);
+}
+.faq-item[open] {
+  border-color: var(--modulo-accent);
+}
+
 /* Section divider */
 .section-divider {
   height: 1px;

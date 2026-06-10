@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import ProductsOverview from "@/components/ProductsOverview";
 import Benefits from "@/components/Benefits";
 import TargetGroups from "@/components/TargetGroups";
+import Process from "@/components/Process";
 import Downloads from "@/components/Downloads";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
@@ -59,6 +60,7 @@ export default async function Home({
         <Reveal><ProductsOverview locale={locale} dict={dict} /></Reveal>
         <Reveal><Benefits locale={locale} dict={dict} /></Reveal>
         <Reveal><TargetGroups locale={locale} dict={dict} /></Reveal>
+        <Reveal><Process locale={locale} dict={dict} /></Reveal>
         <Reveal><Downloads locale={locale} dict={dict} /></Reveal>
         <Reveal><CTA locale={locale} dict={dict} /></Reveal>
       </main>

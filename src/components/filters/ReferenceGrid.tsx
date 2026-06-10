@@ -121,14 +121,16 @@ export default function ReferenceGrid({ references, categoryButtons, categoryLab
                           {dict.common.products.parkingSpaces}
                         </div>
                       </div>
-                      <div>
-                        <div className="text-xl font-mono font-bold text-[var(--modulo-accent)] tabular-nums">
-                          {ref.year}
+                      {ref.year && (
+                        <div>
+                          <div className="text-xl font-mono font-bold text-[var(--modulo-accent)] tabular-nums">
+                            {ref.year}
+                          </div>
+                          <div className="text-xs text-[var(--foreground-muted)]">
+                            {dict.common.products.completion}
+                          </div>
                         </div>
-                        <div className="text-xs text-[var(--foreground-muted)]">
-                          {dict.common.products.completion}
-                        </div>
-                      </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -154,7 +156,9 @@ export default function ReferenceGrid({ references, categoryButtons, categoryLab
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
                       <h3 className="font-semibold text-[var(--foreground)]">{ref.name}</h3>
-                      <span className="text-xs text-[var(--foreground-muted)]">({ref.year})</span>
+                      {ref.year && (
+                        <span className="text-xs text-[var(--foreground-muted)]">({ref.year})</span>
+                      )}
                     </div>
                     <p className="text-sm text-[var(--foreground-muted)]">
                       {ref.location.city} · {ref.parkingSpaces} {dict.common.products.parkingSpaces}

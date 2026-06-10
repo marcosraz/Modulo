@@ -31,7 +31,7 @@ export default function Footer({ locale, dict }: { locale: string; dict: any }) 
             </p>
             <div className="flex gap-4">
               <a
-                href="https://www.linkedin.com"
+                href="https://www.linkedin.com/company/modulo-parking/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 flex items-center justify-center border border-[var(--border-strong)] text-[var(--foreground)] hover:border-[var(--modulo-accent)] hover:text-[var(--modulo-accent)] transition-colors rounded-[var(--radius-base)]"

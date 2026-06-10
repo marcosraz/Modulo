@@ -13,7 +13,7 @@
     ],
     "specs": {
       "vehicles": "2-6",
-      "levels": "2-3 úrovně",
+      "levels": "2-3",
       "capacity": "2,0-2,6t"
     },
     "variants": [
@@ -49,7 +49,7 @@
     ],
     "specs": {
       "vehicles": "2-4",
-      "levels": "2 úrovně",
+      "levels": "2",
       "capacity": "2,0-2,6t"
     },
     "variants": [
@@ -84,7 +84,7 @@
     ],
     "specs": {
       "vehicles": "2",
-      "levels": "2 úrovně",
+      "levels": "2",
       "capacity": "2,0t"
     }
   },
@@ -102,7 +102,7 @@
     ],
     "specs": {
       "vehicles": "2",
-      "levels": "2 úrovně",
+      "levels": "2",
       "capacity": "2,0t"
     },
     "variants": [
@@ -130,7 +130,7 @@
     ],
     "specs": {
       "vehicles": "2",
-      "levels": "2 úrovně",
+      "levels": "2",
       "capacity": "2,0t"
     }
   },
@@ -148,7 +148,7 @@
     ],
     "specs": {
       "vehicles": "6+",
-      "levels": "2-3 úrovně",
+      "levels": "2-3",
       "capacity": "2,0t"
     },
     "variants": [
@@ -184,7 +184,7 @@
     ],
     "specs": {
       "vehicles": "variabilní",
-      "levels": "1 úroveň",
+      "levels": "1",
       "capacity": "2,0t"
     },
     "variants": [
@@ -197,5 +197,23 @@
         "description": "Rozšířená verze"
       }
     ]
+  },
+  "lsm-system": {
+    "tagline": "Rozšiřitelný až do úrovně +4",
+    "description": "Kotvený, poloautomatický systém pro hustou městskou zástavbu. Rozšiřitelný vertikálně až do úrovně +4 i horizontálně.",
+    "longDescription": "MODULO LSM je kotvený poloautomatický parkovací systém, který nezávisle násobí parkovací místa. Kombinuje nosnou konstrukci, hydraulický systém s agregátem a elektrické komponenty do flexibilně škálovatelného řešení.\n\nSystém je ideální odpovědí pro hustou městskou zástavbu, kde není možné postavit konvenční nebo podzemní železobetonový parkovací dům. Lze jej rozšiřovat vertikálně – od úrovně 0 až po úroveň +4 – i horizontálně a zaparkuje až šest vozidel na jediném konvenčním stání.\n\nDíky velmi tichému provozu se LSM hodí i pro použití uvnitř obytných budov. Každá jednotka má vlastní ovládací panel zabezpečený klíčem proti neoprávněnému použití. Počet a uspořádání stání se přizpůsobí konkrétnímu projektu.",
+    "features": [
+      "Rozšiřitelný od úrovně 0 až po úroveň +4",
+      "Škálovatelný vertikálně i horizontálně",
+      "Až 6 vozidel na jednom stání",
+      "Velmi tichý provoz – i uvnitř obytných budov",
+      "Ideální pro hustou městskou zástavbu",
+      "Individuální ovládací panel zabezpečený klíčem"
+    ],
+    "specs": {
+      "vehicles": "až 6",
+      "levels": "až +4",
+      "capacity": "2,0t"
+    }
   }
 }

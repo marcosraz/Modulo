@@ -56,7 +56,7 @@ Jede Einheit verfügt über ein separates Bedienfeld, das durch einen speziellen
       { name: "PARKER-C105", capacity: "2-4 Fahrzeuge", loadCapacity: "2,2t", description: "Premium-Deck mit rutschhemmender Oberfläche" },
       { name: "PARKER-C120 Basic", capacity: "4-6 Fahrzeuge", loadCapacity: "2,0t", description: "3-Ebenen-System" },
     ],
-    specs: { vehicles: "2-6", levels: "2-3 Ebenen", capacity: "2,0-2,6t" },
+    specs: { vehicles: "2-6", levels: "2-3", capacity: "2,0-2,6t" },
     images: ["/images/products/parker-c-header.webp", "/images/products/parker-c-1.webp", "/images/products/parker-c-2.webp", "/images/products/parker-c-3.webp"],
     pdfs: [
       { name: "Parker C100 Datenblatt (DE)", file: "/docs/parker-c100-de.pdf", size: "2.0 MB" },
@@ -90,7 +90,7 @@ MODULO PARKER-S ist dediziert für Tiefgaragen und Garagen. Es ist jedoch haupts
       { name: "PARKER-S120", capacity: "2-4 Fahrzeuge", loadCapacity: "2,2t / 2,6t", pitDepth: "170-235 cm", ceilingHeight: "290-435 cm" },
       { name: "PARKER-S120 Basic", capacity: "2-4 Fahrzeuge", loadCapacity: "2,0t", pitDepth: "170-235 cm", ceilingHeight: "290-435 cm", deckType: "Basic-Deck" },
     ],
-    specs: { vehicles: "2-4", levels: "2 Ebenen", capacity: "2,0-2,6t" },
+    specs: { vehicles: "2-4", levels: "2", capacity: "2,0-2,6t" },
     images: ["/images/products/parker-s-header.webp", "/images/products/parker-s100.webp", "/images/products/parker-s100-basic.webp", "/images/products/parker-s105.webp"],
     pdfs: [
       { name: "Parker S100 Datenblatt (DE)", file: "/docs/parker-s100-de.pdf", size: "1.1 MB" },
@@ -119,7 +119,7 @@ Die Plattform kann als Teil einer Zufahrtsstraße oder Hofeinfahrt integriert we
       "Integration in bestehende Umgebung",
       "Ideal für private Stellplätze",
     ],
-    specs: { vehicles: "2", levels: "2 Ebenen", capacity: "2,0t" },
+    specs: { vehicles: "2", levels: "2", capacity: "2,0t" },
     images: ["/images/products/parker-o-header.webp", "/images/products/parker-o-1.webp", "/images/products/parker-o-2.webp", "/images/products/parker-o-3.webp"],
     pdfs: [
       { name: "Parker O100 Datenblatt (DE)", file: "/docs/parker-o100-de.pdf", size: "932 KB" },
@@ -150,7 +150,7 @@ Das System besticht durch benutzerfreundliche Bedienung und unkomplizierte Insta
       { name: "STACKER-P10", description: "Standard-Version" },
       { name: "STACKER-P10 Basic", description: "Kostengünstige Basisversion" },
     ],
-    specs: { vehicles: "2", levels: "2 Ebenen", capacity: "2,0t" },
+    specs: { vehicles: "2", levels: "2", capacity: "2,0t" },
     images: ["/images/products/stacker-p-header.webp", "/images/products/stacker-p10.webp", "/images/products/stacker-p10-slide.webp"],
     pdfs: [
       { name: "Stacker P10 Datenblatt (DE)", file: "/docs/stacker-p10-de.pdf", size: "1.1 MB" },
@@ -178,7 +178,7 @@ Es ist die leichteste aller MODULO-Parkplattformen und vereint Flexibilität, Si
       "Hohe Flexibilität und Sicherheit",
       "Einfache Installation",
     ],
-    specs: { vehicles: "2", levels: "2 Ebenen", capacity: "2,0t" },
+    specs: { vehicles: "2", levels: "2", capacity: "2,0t" },
     images: ["/images/products/stacker-v-header.webp", "/images/products/stacker-v-1.webp", "/images/products/stacker-v-2.webp", "/images/products/stacker-v-3.webp"],
     pdfs: [
       { name: "Stacker V10 Datenblatt (DE)", file: "/docs/stacker-v10-de.pdf", size: "1.2 MB" },
@@ -211,8 +211,8 @@ Das System ermöglicht optionale Schiebetorsysteme und vollständige Automatisie
       { name: "LS1110", description: "3 Ebenen (-1, 0, +1)" },
       { name: "LS1200", description: "Erweiterte Version" },
     ],
-    specs: { vehicles: "6+", levels: "2-3 Ebenen", capacity: "2,0t" },
-    images: ["/images/products/ls-header.webp", "/images/products/lsm-header.webp"],
+    specs: { vehicles: "6+", levels: "2-3", capacity: "2,0t" },
+    images: ["/images/products/ls-header.webp"],
     pdfs: [
       { name: "LS1000 Datenblatt (DE)", file: "/docs/ls1000-de.pdf", size: "2.5 MB" },
       { name: "LS1100 Datenblatt (DE)", file: "/docs/ls1100-de.pdf", size: "2.9 MB" },
@@ -220,6 +220,33 @@ Das System ermöglicht optionale Schiebetorsysteme und vollständige Automatisie
       { name: "LS1200 Datenblatt (DE)", file: "/docs/ls1200-de.pdf", size: "1.3 MB" },
     ],
     featured: true,
+  },
+
+  // LSM-System
+  {
+    slug: "lsm-system",
+    name: "LSM-System",
+    series: "LSM",
+    category: "Mehrstöckige Systeme",
+    tagline: "Bis Ebene +4 erweiterbar",
+    description: "Bodenverankertes, halbautomatisches System für dichte städtische Bebauung. Vertikal bis Ebene +4 und horizontal erweiterbar.",
+    longDescription: `Das MODULO LSM ist ein bodenverankertes, halbautomatisches Parksystem, das Stellplätze unabhängig vervielfacht. Es kombiniert Tragkonstruktion, Hydrauliksystem mit Aggregat und Elektrokomponenten zu einer flexibel skalierbaren Lösung.
+
+Das System ist die ideale Antwort für dichte städtische Bebauung, in der die Errichtung eines konventionellen oder unterirdischen Stahlbeton-Parkhauses nicht möglich ist. Es lässt sich sowohl vertikal – von Ebene 0 bis Ebene +4 – als auch horizontal erweitern und parkt bis zu sechs Fahrzeuge auf einem einzigen konventionellen Stellplatz.
+
+Dank seines besonders leisen Betriebs eignet sich das LSM auch für den Einsatz innerhalb von Wohngebäuden. Jede Einheit verfügt über ein eigenes, per Schlüssel gegen unbefugte Nutzung gesichertes Bedienfeld. Anzahl und Anordnung der Stellplätze werden individuell an das Projekt angepasst.`,
+    features: [
+      "Erweiterbar von Ebene 0 bis Ebene +4",
+      "Vertikal und horizontal skalierbar",
+      "Bis zu 6 Fahrzeuge auf einem Stellplatz",
+      "Besonders leiser Betrieb – auch in Wohngebäuden",
+      "Ideal für dichte städtische Bebauung",
+      "Individuelles, schlüsselgesichertes Bedienfeld",
+    ],
+    specs: { vehicles: "bis 6", levels: "bis +4", capacity: "2,0t" },
+    images: ["/images/products/lsm-header.webp"],
+    pdfs: [],
+    featured: false,
   },
 
   // PALLET-System
@@ -245,7 +272,7 @@ Das System verhindert falsch abgestellte Fahrzeuge und Kollisionen zuverlässig.
       { name: "PALLET-T10", description: "Standard-Version" },
       { name: "PALLET-L10", description: "Erweiterte Version" },
     ],
-    specs: { vehicles: "variabel", levels: "1 Ebene", capacity: "2,0t" },
+    specs: { vehicles: "variabel", levels: "1", capacity: "2,0t" },
     images: ["/images/products/pallet-header.webp", "/images/products/pallet-system.webp", "/images/products/pallet-slide.webp"],
     pdfs: [
       { name: "Pallet T10 Datenblatt (DE)", file: "/docs/pallet-t10-de.pdf", size: "827 KB" },

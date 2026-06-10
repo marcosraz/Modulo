@@ -9,9 +9,11 @@ function localePath(path: string, locale: string): string {
 const productImages: Record<string, { image: string; featured: boolean }> = {
   "parker-c": { image: "/images/products/parker-c100-basic.png", featured: true },
   "parker-s": { image: "/images/products/parker-s100.jpg", featured: false },
+  "parker-o": { image: "/images/products/parker-o-header.webp", featured: false },
   "stacker-p": { image: "/images/products/stacker-p10.webp", featured: false },
   "stacker-v": { image: "/images/products/stacker-v-header.webp", featured: false },
   "ls-system": { image: "/images/products/ls-header.webp", featured: true },
+  "lsm-system": { image: "/images/products/lsm-header.webp", featured: false },
   pallet: { image: "/images/products/pallet-system.webp", featured: false },
 };
 
@@ -34,13 +36,13 @@ export default function ProductsOverview({ locale, dict }: { locale: string; dic
         </div>
 
         {/* Products Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
           {items.map((product: any) => {
             const imageData = productImages[product.id] || productImages["parker-c"];
             return (
               <Link
                 key={product.id}
-                href={localePath("/produkte", locale)}
+                href={localePath(`/produkte/${product.id}`, locale)}
                 className="card card--interactive group flex flex-col"
               >
                 {/* Image Container */}

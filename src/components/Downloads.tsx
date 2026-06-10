@@ -17,7 +17,7 @@ export default function Downloads({ locale, dict }: { locale: string; dict: any 
   const items = dict.home.downloads.items;
 
   return (
-    <section className="py-24 bg-[var(--background)]">
+    <section className="py-24 bg-[var(--background-secondary)]">
       <div className="max-w-7xl 2xl:max-w-[88rem] mx-auto px-6 lg:px-8 2xl:px-12">
         {/* Section Header */}
         <div className="text-center mb-16">

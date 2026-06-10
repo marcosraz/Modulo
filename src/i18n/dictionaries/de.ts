@@ -131,6 +131,15 @@ const de = {
           levels: "2 Ebenen",
         },
         {
+          id: "parker-o",
+          name: "PARKER-O",
+          tagline: "Unterflur für Privatnutzer",
+          description:
+            "Eigenständige Plattform, deren Konstruktion vollständig unter der Erde verschwindet. Diskret und elegant.",
+          capacity: "2 Fahrzeuge",
+          levels: "2 Ebenen",
+        },
+        {
           id: "ls-system",
           name: "LS-System",
           tagline: "Mehrstöckig & flexibel",
@@ -138,6 +147,15 @@ const de = {
             "Bis zu 3 Ebenen mit vollautomatischem Betrieb möglich. Unterirdisch, Erdgeschoss und oberirdisch kombinierbar.",
           capacity: "bis 6 Fahrzeuge",
           levels: "2-3 Ebenen",
+        },
+        {
+          id: "lsm-system",
+          name: "LSM-System",
+          tagline: "Bis Ebene +4 erweiterbar",
+          description:
+            "Halbautomatisches System für dichte städtische Bebauung. Besonders leise – auch in Wohngebäuden einsetzbar.",
+          capacity: "bis 6 Fahrzeuge",
+          levels: "bis +4 Ebenen",
         },
         {
           id: "pallet",
@@ -251,6 +269,36 @@ const de = {
           ],
         },
       ],
+    },
+    process: {
+      label: "Der Ablauf",
+      title: "Von der Anfrage zur",
+      titleHighlight: "fertigen Anlage",
+      description:
+        "Ein eingespielter Prozess – persönlich betreut, vom ersten Gespräch bis zum laufenden Betrieb.",
+      steps: [
+        {
+          title: "Beratung",
+          description:
+            "Unverbindliche Analyse Ihrer Parksituation – vor Ort oder remote. Wir klären Platz, Deckenhöhe und Budget.",
+        },
+        {
+          title: "Planung",
+          description:
+            "Maßgeschneiderte Systemauswahl und technische Projektierung durch die MODULO-Ingenieure im Werk.",
+        },
+        {
+          title: "Montage",
+          description:
+            "Professionelle Installation durch zertifizierte Techniker – sauber, termingerecht und mit Abnahmeprotokoll.",
+        },
+        {
+          title: "Service",
+          description:
+            "Wartung und technischer Support rund um die Uhr über das europaweite MODULO-Servicenetzwerk.",
+        },
+      ],
+      factory: "Entwickelt & gefertigt im MODULO-Werk Koronowo (PL) – PJP Makrum Gruppe, über 100 Jahre Industrieerfahrung.",
     },
     downloads: {
       label: "Downloads",

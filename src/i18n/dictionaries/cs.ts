@@ -131,6 +131,15 @@ const cs = {
           levels: "2 úrovně",
         },
         {
+          id: "parker-o",
+          name: "PARKER-O",
+          tagline: "Podpovrchový pro soukromé uživatele",
+          description:
+            "Samostatná platforma, jejíž konstrukce zcela mizí pod zemí. Diskrétní a elegantní.",
+          capacity: "2 vozidla",
+          levels: "2 úrovně",
+        },
+        {
           id: "ls-system",
           name: "LS-System",
           tagline: "Vícepodlažní a flexibilní",
@@ -138,6 +147,15 @@ const cs = {
             "Až 3 úrovně s plně automatickým provozem. Možnost kombinace podzemního, přízemního a nadzemního podlaží.",
           capacity: "až 6 vozidel",
           levels: "2–3 úrovně",
+        },
+        {
+          id: "lsm-system",
+          name: "LSM-System",
+          tagline: "Rozšiřitelný až do úrovně +4",
+          description:
+            "Poloautomatický systém pro hustou městskou zástavbu. Velmi tichý – vhodný i uvnitř obytných budov.",
+          capacity: "až 6 vozidel",
+          levels: "až +4 úrovně",
         },
         {
           id: "pallet",
@@ -251,6 +269,36 @@ const cs = {
           ],
         },
       ],
+    },
+    process: {
+      label: "Jak to probíhá",
+      title: "Od poptávky k",
+      titleHighlight: "hotové instalaci",
+      description:
+        "Osvědčený proces – s osobní péčí od prvního rozhovoru až po běžný provoz.",
+      steps: [
+        {
+          title: "Konzultace",
+          description:
+            "Nezávazná analýza vaší parkovací situace – na místě nebo na dálku. Vyjasníme prostor, výšku stropu a rozpočet.",
+        },
+        {
+          title: "Plánování",
+          description:
+            "Výběr systému na míru a technická projekce inženýry MODULO přímo ve výrobním závodě.",
+        },
+        {
+          title: "Montáž",
+          description:
+            "Profesionální instalace certifikovanými techniky – čistě, v termínu a s předávacím protokolem.",
+        },
+        {
+          title: "Servis",
+          description:
+            "Údržba a nepřetržitá technická podpora prostřednictvím celoevropské servisní sítě MODULO.",
+        },
+      ],
+      factory: "Vyvinuto a vyrobeno v závodě MODULO v Koronowu (PL) – skupina PJP Makrum, více než 100 let průmyslových zkušeností.",
     },
     downloads: {
       label: "Ke stažení",

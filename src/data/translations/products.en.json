@@ -31,7 +31,7 @@
     ],
     "specs": {
       "vehicles": "2-6",
-      "levels": "2-3 levels",
+      "levels": "2-3",
       "capacity": "2.0-2.6t"
     }
   },
@@ -71,7 +71,7 @@
     ],
     "specs": {
       "vehicles": "2-4",
-      "levels": "2 levels",
+      "levels": "2",
       "capacity": "2.0-2.6t"
     }
   },
@@ -89,7 +89,7 @@
     ],
     "specs": {
       "vehicles": "2",
-      "levels": "2 levels",
+      "levels": "2",
       "capacity": "2.0t"
     }
   },
@@ -117,7 +117,7 @@
     ],
     "specs": {
       "vehicles": "2",
-      "levels": "2 levels",
+      "levels": "2",
       "capacity": "2.0t"
     }
   },
@@ -135,7 +135,7 @@
     ],
     "specs": {
       "vehicles": "2",
-      "levels": "2 levels",
+      "levels": "2",
       "capacity": "2.0t"
     }
   },
@@ -171,7 +171,7 @@
     ],
     "specs": {
       "vehicles": "6+",
-      "levels": "2-3 levels",
+      "levels": "2-3",
       "capacity": "2.0t"
     }
   },
@@ -199,7 +199,25 @@
     ],
     "specs": {
       "vehicles": "variable",
-      "levels": "1 level",
+      "levels": "1",
+      "capacity": "2.0t"
+    }
+  },
+  "lsm-system": {
+    "tagline": "Expandable up to level +4",
+    "description": "Floor-anchored, semi-automatic system for dense urban developments. Expandable vertically up to level +4 and horizontally.",
+    "longDescription": "The MODULO LSM is a floor-anchored, semi-automatic parking system that independently multiplies parking spaces. It combines a support structure, a hydraulic system with power unit and electrical components into a flexibly scalable solution.\n\nThe system is the ideal answer for dense urban developments where building a conventional or underground reinforced-concrete car park is not feasible. It can be expanded both vertically – from level 0 up to level +4 – and horizontally, parking up to six vehicles on a single conventional space.\n\nThanks to its very quiet operation, the LSM is also suitable for use inside residential buildings. Each unit has its own control panel, secured against unauthorised use with a dedicated key. The number and arrangement of spaces are tailored to the individual project.",
+    "features": [
+      "Expandable from level 0 up to level +4",
+      "Scales vertically and horizontally",
+      "Up to 6 vehicles on a single space",
+      "Very quiet operation – even inside residential buildings",
+      "Ideal for dense urban developments",
+      "Individual key-secured control panel"
+    ],
+    "specs": {
+      "vehicles": "up to 6",
+      "levels": "up to +4",
       "capacity": "2.0t"
     }
   }

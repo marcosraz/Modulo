@@ -27,7 +27,7 @@ export const articles: Article[] = [
     tags: ["Vergleich", "Kaufberatung", "Parkplattform"],
     publishedAt: "2024-01-15",
     updatedAt: "2024-01-15",
-    author: "Modullo Parking Austria",
+    author: "Modulo Parking Austria",
     readingTime: 8,
     featured: true,
     content: `
@@ -82,7 +82,7 @@ Für gewerbliche Anwendungen mit hohem Durchsatz empfehlen wir das **LS-System**
     tags: ["Tiefgarage", "Niedrige Decke", "PARKER-S"],
     publishedAt: "2024-02-10",
     updatedAt: "2024-02-10",
-    author: "Modullo Parking Austria",
+    author: "Modulo Parking Austria",
     readingTime: 6,
     featured: true,
     content: `
@@ -132,7 +132,7 @@ Wir bieten Ihnen eine kostenlose Vor-Ort-Begehung, bei der wir alle relevanten M
     tags: ["Doppelparker", "Vorteile", "Garage"],
     publishedAt: "2024-03-05",
     updatedAt: "2024-03-05",
-    author: "Modullo Parking Austria",
+    author: "Modulo Parking Austria",
     readingTime: 5,
     featured: false,
     content: `
@@ -180,7 +180,7 @@ Doppelparker sind eine lohnende Investition für jeden, der mehr Parkraum benöt
     tags: ["Anleitung", "Installation", "Planung"],
     publishedAt: "2024-03-20",
     updatedAt: "2024-03-20",
-    author: "Modullo Parking Austria",
+    author: "Modulo Parking Austria",
     readingTime: 7,
     featured: true,
     content: `
@@ -249,7 +249,7 @@ Bereit für mehr Parkplätze? Kontaktieren Sie uns für eine kostenlose Erstbera
     tags: ["Preise", "Kosten", "Investition"],
     publishedAt: "2024-04-10",
     updatedAt: "2024-04-10",
-    author: "Modullo Parking Austria",
+    author: "Modulo Parking Austria",
     readingTime: 6,
     featured: false,
     content: `
@@ -316,7 +316,7 @@ Für eine genaue Preiskalkulation kontaktieren Sie uns. Nach Besichtigung Ihrer 
     tags: ["Wartung", "Service", "Instandhaltung"],
     publishedAt: "2024-05-15",
     updatedAt: "2024-05-15",
-    author: "Modullo Parking Austria",
+    author: "Modulo Parking Austria",
     readingTime: 5,
     featured: false,
     content: `
@@ -385,7 +385,7 @@ Investieren Sie in regelmäßige Wartung – sie ist deutlich günstiger als Rep
     tags: ["Mehrfamilienhaus", "Wohnanlage", "Bauträger"],
     publishedAt: "2024-06-20",
     updatedAt: "2024-06-20",
-    author: "Modullo Parking Austria",
+    author: "Modulo Parking Austria",
     readingTime: 7,
     featured: false,
     content: `
@@ -452,20 +452,8 @@ Wir beraten Bauträger und Architekten bereits in frühen Planungsphasen. Kontak
   },
 ];
 
-export function getArticleBySlug(slug: string): Article | undefined {
-  return articles.find((a) => a.slug === slug);
-}
-
 export function getAllArticleSlugs(): string[] {
   return articles.map((a) => a.slug);
-}
-
-export function getFeaturedArticles(): Article[] {
-  return articles.filter((a) => a.featured);
-}
-
-export function getArticlesByCategory(category: string): Article[] {
-  return articles.filter((a) => a.category === category);
 }
 
 export const articleCategories = [
@@ -477,3 +465,46 @@ export const articleCategories = [
   "Kosten",
   "Service",
 ];
+
+// --- i18n ---------------------------------------------------------------
+import type { Locale } from "@/i18n/config";
+import articlesEn from "./translations/articles.en.json";
+import articlesCs from "./translations/articles.cs.json";
+
+type ArticleOverlay = Partial<
+  Pick<Article, "title" | "excerpt" | "content" | "metaTitle" | "metaDescription" | "tags">
+>;
+
+const articleOverlays: Record<string, Record<string, ArticleOverlay>> = {
+  en: articlesEn as Record<string, ArticleOverlay>,
+  cs: articlesCs as Record<string, ArticleOverlay>,
+};
+
+export function getArticles(locale: Locale): Article[] {
+  if (locale === "de") return articles;
+  const overlay = articleOverlays[locale] ?? {};
+  return articles.map((a) => ({ ...a, ...(overlay[a.slug] ?? {}) }));
+}
+
+export function getArticleBySlug(slug: string, locale: Locale = "de"): Article | undefined {
+  return getArticles(locale).find((a) => a.slug === slug);
+}
+
+const articleCategoryLabels: Record<Locale, Record<string, string>> = {
+  de: {
+    Alle: "Alle", Kaufberatung: "Kaufberatung", Anwendungen: "Anwendungen",
+    Vorteile: "Vorteile", Ratgeber: "Ratgeber", Kosten: "Kosten", Service: "Service",
+  },
+  en: {
+    Alle: "All", Kaufberatung: "Buying Advice", Anwendungen: "Applications",
+    Vorteile: "Benefits", Ratgeber: "Guide", Kosten: "Costs", Service: "Service",
+  },
+  cs: {
+    Alle: "Vše", Kaufberatung: "Poradenství", Anwendungen: "Použití",
+    Vorteile: "Výhody", Ratgeber: "Rádce", Kosten: "Náklady", Service: "Servis",
+  },
+};
+
+export function getArticleCategoryLabels(locale: Locale): Record<string, string> {
+  return articleCategoryLabels[locale] ?? articleCategoryLabels.de;
+}

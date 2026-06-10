@@ -26,7 +26,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = getProductBySlug(slug, locale as Locale);
 
   if (!product) {
     const dict = await getDictionary(locale as Locale);
@@ -77,7 +77,7 @@ export default async function ProductPage({
 }) {
   const { locale, slug } = await params;
   const dict = await getDictionary(locale as Locale);
-  const product = getProductBySlug(slug);
+  const product = getProductBySlug(slug, locale as Locale);
 
   if (!product) {
     notFound();
@@ -94,7 +94,7 @@ export default async function ProductPage({
       <ProductSchema product={product} />
       <BreadcrumbSchema items={breadcrumbs} />
       <Header locale={locale} dict={dict} />
-      <main className="pt-20">
+      <main id="main" className="pt-20">
         {/* Hero Section */}
         <section className="py-16 bg-[var(--background)] relative overflow-hidden">
           <div className="absolute inset-0 grid-pattern" />
@@ -127,27 +127,29 @@ export default async function ProductPage({
               {/* Image */}
               <div className="relative">
                 <div className="tech-frame">
-                  <div className="relative aspect-[4/3] bg-[var(--background-secondary)] rounded-lg overflow-hidden">
+                  <div className="relative aspect-[4/3] image-well rounded-[var(--radius-lg)] overflow-hidden border border-[var(--border)]">
                     <Image
                       src={product.images[0]}
-                      alt={product.name}
+                      alt={`${product.name} – ${product.tagline}`}
                       fill
+                      sizes="(min-width: 1024px) 50vw, 100vw"
                       className="object-contain p-8"
                       priority
                     />
                   </div>
                 </div>
                 {product.images.length > 1 && (
-                  <div className="mt-4 grid grid-cols-3 gap-4">
+                  <div className="mt-4 grid grid-cols-3 gap-2 sm:gap-4">
                     {product.images.slice(1).map((img, idx) => (
                       <div
                         key={idx}
-                        className="relative aspect-[4/3] bg-[var(--background-secondary)] rounded-lg overflow-hidden border border-[var(--border)]"
+                        className="relative aspect-[4/3] image-well rounded-[var(--radius-base)] overflow-hidden border border-[var(--border)]"
                       >
                         <Image
                           src={img}
-                          alt={`${product.name} ${idx + 2}`}
+                          alt={`${product.name} – ${dict.productDetailPage.description} ${idx + 2}`}
                           fill
+                          sizes="(min-width: 1024px) 17vw, 33vw"
                           className="object-contain p-2"
                         />
                       </div>
@@ -170,25 +172,25 @@ export default async function ProductPage({
                 </p>
 
                 {/* Specs */}
-                <div className="mt-8 grid grid-cols-3 gap-4">
-                  <div className="p-4 bg-[var(--background-secondary)] rounded-lg border border-[var(--border)] text-center">
-                    <div className="text-2xl font-mono font-bold text-[var(--modulo-accent)]">
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div className="p-4 card card--flat text-center">
+                    <div className="text-2xl font-mono font-bold text-[var(--modulo-accent)] tabular-nums">
                       {product.specs.vehicles}
                     </div>
                     <div className="text-sm text-[var(--foreground-muted)]">
                       {dict.common.products.vehicles}
                     </div>
                   </div>
-                  <div className="p-4 bg-[var(--background-secondary)] rounded-lg border border-[var(--border)] text-center">
-                    <div className="text-2xl font-mono font-bold text-[var(--modulo-accent)]">
+                  <div className="p-4 card card--flat text-center">
+                    <div className="text-2xl font-mono font-bold text-[var(--modulo-accent)] tabular-nums">
                       {product.specs.levels}
                     </div>
                     <div className="text-sm text-[var(--foreground-muted)]">
                       {dict.common.products.levels}
                     </div>
                   </div>
-                  <div className="p-4 bg-[var(--background-secondary)] rounded-lg border border-[var(--border)] text-center">
-                    <div className="text-lg font-mono font-bold text-[var(--modulo-accent)]">
+                  <div className="p-4 card card--flat text-center">
+                    <div className="text-base sm:text-lg font-mono font-bold text-[var(--modulo-accent)]">
                       {product.specs.capacity}
                     </div>
                     <div className="text-sm text-[var(--foreground-muted)]">
@@ -201,7 +203,7 @@ export default async function ProductPage({
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
                   <Link
                     href={localePath("/kontakt", locale)}
-                    className="btn-primary inline-flex items-center justify-center gap-2"
+                    className="btn-primary inline-flex items-center justify-center gap-2 w-full sm:w-auto"
                   >
                     {dict.productDetailPage.requestQuote}
                     <svg
@@ -220,7 +222,7 @@ export default async function ProductPage({
                   </Link>
                   <a
                     href="tel:+436767263487"
-                    className="btn-outline inline-flex items-center justify-center gap-2"
+                    className="btn-outline inline-flex items-center justify-center gap-2 w-full sm:w-auto"
                   >
                     <svg
                       className="w-4 h-4"
@@ -252,11 +254,9 @@ export default async function ProductPage({
                 <h2 className="text-2xl font-bold text-[var(--foreground)] mb-6">
                   {dict.productDetailPage.description}
                 </h2>
-                <div className="prose prose-invert max-w-none">
+                <div className="article-body">
                   {product.longDescription.split("\n\n").map((paragraph, idx) => (
-                    <p key={idx} className="text-[var(--foreground-muted)] mb-4">
-                      {paragraph}
-                    </p>
+                    <p key={idx}>{paragraph}</p>
                   ))}
                 </div>
               </div>
@@ -302,7 +302,7 @@ export default async function ProductPage({
                 {product.variants.map((variant, idx) => (
                   <div
                     key={idx}
-                    className="p-6 bg-[var(--background-secondary)] rounded-lg border border-[var(--border)] hover:border-[var(--modulo-accent)] transition-colors"
+                    className="p-6 card card--flat"
                   >
                     <h3 className="text-lg font-semibold text-[var(--modulo-accent)]">
                       {variant.name}
@@ -385,9 +385,9 @@ export default async function ProductPage({
                     href={pdf.file}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 p-4 bg-[var(--background)] rounded-lg border border-[var(--border)] hover:border-[var(--modulo-accent)] transition-colors group"
+                    className="flex items-center gap-4 p-4 card card--flat group"
                   >
-                    <div className="w-12 h-12 flex items-center justify-center bg-[var(--modulo-accent)]/10 text-[var(--modulo-accent)] rounded-lg">
+                    <div className="w-12 h-12 flex items-center justify-center bg-[var(--modulo-accent)]/10 text-[var(--modulo-accent)] rounded-[var(--radius-base)]">
                       <svg
                         className="w-6 h-6"
                         fill="none"

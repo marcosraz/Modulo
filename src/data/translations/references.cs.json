@@ -1,0 +1,50 @@
+{
+  "ref-001": {
+    "description": "Velký rezidenční projekt v městské části Wilanów s 204 parkovacími místy. Nezávislé plošiny PARKER-C100 umožňují každému obyvateli flexibilní přístup k jeho vozidlu.",
+    "location": {
+      "country": "Polsko"
+    }
+  },
+  "ref-002": {
+    "description": "Sídlo banky s 16 parkovacími místy na omezeném prostoru. Systémy PARKER-S100 byly vybrány speciálně s ohledem na nízkou výšku stropu podzemní garáže.",
+    "location": {
+      "country": "Polsko"
+    }
+  },
+  "ref-003": {
+    "description": "Luxusní hotel na polském pobřeží Baltského moře. Podzemní systémy PARKER-O100 zcela mizí pod povrchem a zachovávají tak estetický vzhled hotelu.",
+    "location": {
+      "country": "Polsko"
+    }
+  },
+  "ref-004": {
+    "description": "Moderní bytový dům s 68 parkovacími místy. Plošiny PARKER-C100 zdvojnásobují parkovací kapacitu v podzemní garáži.",
+    "location": {
+      "country": "Polsko"
+    }
+  },
+  "ref-005": {
+    "description": "Kombinace 8 plošin PARKER-C100 Basic a 5 plošin PARKER-S120 Basic. Toto flexibilní řešení vyhoví různým potřebám obyvatel.",
+    "location": {
+      "country": "Polsko"
+    }
+  },
+  "ref-006": {
+    "description": "Automatický parkovací systém se 17 posuvnými plošinami PALLET-T10. Systém zabraňuje chybnému zaparkování a umožňuje efektivní využití prostoru.",
+    "location": {
+      "country": "Polsko"
+    }
+  },
+  "ref-007": {
+    "description": "Parkovací areál v oblíbeném baltském lázeňském městě. Systémy MODULO nabízejí dovolenkářům i obyvatelům spolehlivé možnosti parkování.",
+    "location": {
+      "country": "Polsko"
+    }
+  },
+  "ref-008": {
+    "description": "Prázdninový resort na ostrově Wolin. Prostorově úsporné parkovací systémy maximalizují počet parkovacích míst pro hosty areálu.",
+    "location": {
+      "country": "Polsko"
+    }
+  }
+}

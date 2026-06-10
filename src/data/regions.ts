@@ -492,10 +492,33 @@ export const regions: Region[] = [
   },
 ];
 
-export function getRegionBySlug(slug: string): Region | undefined {
-  return regions.find((r) => r.slug === slug);
-}
-
 export function getAllRegionSlugs(): string[] {
   return regions.map((r) => r.slug);
+}
+
+// --- i18n ---------------------------------------------------------------
+import type { Locale } from "@/i18n/config";
+import regionsEn from "./translations/regions.en.json";
+import regionsCs from "./translations/regions.cs.json";
+
+type RegionOverlay = Partial<
+  Pick<
+    Region,
+    "shortName" | "heroText" | "description" | "challenges" | "solutions" | "metaTitle" | "metaDescription" | "keywords" | "faqs"
+  >
+>;
+
+const regionOverlays: Record<string, Record<string, RegionOverlay>> = {
+  en: regionsEn as Record<string, RegionOverlay>,
+  cs: regionsCs as Record<string, RegionOverlay>,
+};
+
+export function getRegions(locale: Locale): Region[] {
+  if (locale === "de") return regions;
+  const overlay = regionOverlays[locale] ?? {};
+  return regions.map((r) => ({ ...r, ...(overlay[r.slug] ?? {}) }));
+}
+
+export function getRegionBySlug(slug: string, locale: Locale = "de"): Region | undefined {
+  return getRegions(locale).find((r) => r.slug === slug);
 }

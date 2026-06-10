@@ -11,15 +11,16 @@ export default function Footer({ locale, dict }: { locale: string; dict: any }) 
 
   return (
     <footer className="bg-[var(--background-secondary)] border-t border-[var(--border)]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+      <div className="max-w-7xl 2xl:max-w-[88rem] mx-auto px-6 lg:px-8 2xl:px-12 py-16">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10 lg:gap-12">
           {/* Brand Column */}
-          <div className="lg:col-span-1">
+          <div className="col-span-2 lg:col-span-2">
             <Image
               src="/images/logos/MODULO.svg"
               alt="Modulo"
               width={120}
               height={28}
+              style={{ height: "auto" }}
               className="mb-6 logo-themed"
             />
             <p className="text-sm text-[var(--foreground-muted)] mb-4">
@@ -30,7 +31,7 @@ export default function Footer({ locale, dict }: { locale: string; dict: any }) 
                 href="https://www.linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 flex items-center justify-center border border-[var(--border)] text-[var(--foreground)] hover:border-[var(--modulo-accent)] hover:text-[var(--modulo-accent)] transition-colors rounded-lg"
+                className="w-10 h-10 flex items-center justify-center border border-[var(--border-strong)] text-[var(--foreground)] hover:border-[var(--modulo-accent)] hover:text-[var(--modulo-accent)] transition-colors rounded-[var(--radius-base)]"
                 aria-label="LinkedIn"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -39,7 +40,7 @@ export default function Footer({ locale, dict }: { locale: string; dict: any }) 
               </a>
               <a
                 href="tel:+436767263487"
-                className="w-10 h-10 flex items-center justify-center border border-[var(--border)] text-[var(--foreground)] hover:border-[var(--modulo-accent)] hover:text-[var(--modulo-accent)] transition-colors rounded-lg"
+                className="w-10 h-10 flex items-center justify-center border border-[var(--border-strong)] text-[var(--foreground)] hover:border-[var(--modulo-accent)] hover:text-[var(--modulo-accent)] transition-colors rounded-[var(--radius-base)]"
                 aria-label={dict.common.footer.phone}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -143,10 +144,10 @@ export default function Footer({ locale, dict }: { locale: string; dict: any }) 
               <li>
                 <span className="tech-label block mb-1">{dict.common.footer.email}</span>
                 <a
-                  href="mailto:info@modullo-parking.at"
+                  href="mailto:info@moduloparking.at"
                   className="text-[var(--foreground)] hover:text-[var(--modulo-accent)] transition-colors"
                 >
-                  info@modullo-parking.at
+                  info@moduloparking.at
                 </a>
               </li>
               <li>
@@ -159,9 +160,17 @@ export default function Footer({ locale, dict }: { locale: string; dict: any }) 
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-[var(--border)] flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-[var(--foreground-muted)]">
-            &copy; {currentYear} {dict.common.footer.copyright}
-          </p>
+          <div className="flex flex-col sm:flex-row items-center gap-x-6 gap-y-2 text-xs text-[var(--foreground-muted)]">
+            <p>&copy; {currentYear} {dict.common.footer.copyright}</p>
+            <div className="flex items-center gap-4">
+              <Link href={localePath("/impressum", locale)} className="hover:text-[var(--modulo-accent)] transition-colors">
+                {dict.common.footer.imprint}
+              </Link>
+              <Link href={localePath("/datenschutz", locale)} className="hover:text-[var(--modulo-accent)] transition-colors">
+                {dict.common.footer.privacy}
+              </Link>
+            </div>
+          </div>
           <div className="flex items-center gap-6 text-xs text-[var(--foreground-muted)]">
             <span className="font-mono">{dict.common.footer.partnerOf}</span>
             <a

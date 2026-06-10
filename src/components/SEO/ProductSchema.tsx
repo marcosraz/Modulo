@@ -11,7 +11,7 @@ export default function ProductSchema({ product }: ProductSchemaProps) {
     name: product.name,
     description: product.description,
     image: product.images.map(
-      (img) => `https://modullo-parking.at${img}`
+      (img) => `https://moduloparking.at${img}`
     ),
     brand: {
       "@type": "Brand",
@@ -29,8 +29,8 @@ export default function ProductSchema({ product }: ProductSchemaProps) {
       priceCurrency: "EUR",
       seller: {
         "@type": "Organization",
-        name: "Modullo Parking Austria",
-        url: "https://modullo-parking.at",
+        name: "Modulo Parking Austria",
+        url: "https://moduloparking.at",
       },
     },
     additionalProperty: [

@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Image from "next/image";
 import Link from "next/link";
-import { products, categories } from "@/data/products";
+import { products, categories, getProducts, getCategoryLabels } from "@/data/products";
+import ProductGrid from "@/components/filters/ProductGrid";
 import { BreadcrumbSchema } from "@/components/SEO";
 import { getDictionary } from "@/i18n/getDictionary";
 import { type Locale, hreflangAlternates } from "@/i18n/config";
@@ -63,7 +63,7 @@ export default async function ProduktePage({
     <>
       <BreadcrumbSchema items={breadcrumbs} />
       <Header locale={locale} dict={dict} />
-      <main className="pt-20">
+      <main id="main" className="pt-20">
         {/* Hero Section */}
         <section className="py-24 bg-[var(--background)] relative overflow-hidden">
           <div className="absolute inset-0 grid-pattern" />
@@ -102,110 +102,16 @@ export default async function ProduktePage({
           </div>
         </section>
 
-        {/* Products Grid */}
+        {/* Products Grid (client-side category filtering, SSR-rendered) */}
         <section className="py-24 bg-[var(--background-secondary)]">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            {/* Category Filter (static for now) */}
-            <div className="flex flex-wrap gap-2 mb-12">
-              {categories.map((category, index) => (
-                <button
-                  key={category}
-                  className={`px-4 py-2 text-sm font-medium transition-colors ${
-                    index === 0
-                      ? "bg-[var(--modulo-accent)] text-white"
-                      : "border border-[var(--border)] text-[var(--foreground-muted)] hover:border-[var(--modulo-accent)] hover:text-[var(--modulo-accent)]"
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-
-            {/* Products */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {products.map((product) => (
-                <Link
-                  key={product.slug}
-                  href={localePath(`/produkte/${product.slug}`, locale)}
-                  className="card group block"
-                >
-                  {/* Image */}
-                  <div className="relative aspect-[4/3] bg-[var(--background)] overflow-hidden">
-                    <Image
-                      src={product.images[0]}
-                      alt={product.name}
-                      fill
-                      className="object-contain p-6 group-hover:scale-105 transition-transform duration-500"
-                    />
-                    {product.featured && (
-                      <div className="absolute top-4 right-4 bg-[var(--modulo-accent)] text-white px-3 py-1 text-xs font-semibold uppercase">
-                        {dict.common.products.popular}
-                      </div>
-                    )}
-                    <div className="absolute top-4 left-4 text-xs font-mono text-[var(--modulo-accent)]">
-                      {product.category}
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6">
-                    <span className="tech-label">{product.tagline}</span>
-                    <h2 className="mt-2 text-xl font-semibold text-[var(--foreground)] group-hover:text-[var(--modulo-accent)] transition-colors">
-                      {product.name}
-                    </h2>
-                    <p className="mt-2 text-sm text-[var(--foreground-muted)] line-clamp-2">
-                      {product.description}
-                    </p>
-
-                    {/* Specs */}
-                    <div className="mt-4 grid grid-cols-3 gap-2 text-xs">
-                      <div className="p-2 bg-[var(--background)] text-center">
-                        <div className="text-[var(--modulo-accent)] font-mono">
-                          {product.specs.vehicles}
-                        </div>
-                        <div className="text-[var(--foreground-muted)]">
-                          {dict.common.products.vehicles}
-                        </div>
-                      </div>
-                      <div className="p-2 bg-[var(--background)] text-center">
-                        <div className="text-[var(--modulo-accent)] font-mono">
-                          {product.specs.levels}
-                        </div>
-                        <div className="text-[var(--foreground-muted)]">
-                          {dict.common.products.levels}
-                        </div>
-                      </div>
-                      <div className="p-2 bg-[var(--background)] text-center">
-                        <div className="text-[var(--modulo-accent)] font-mono text-[10px]">
-                          {product.specs.capacity}
-                        </div>
-                        <div className="text-[var(--foreground-muted)]">
-                          {dict.common.products.loadCapacity}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Action */}
-                    <div className="mt-6 btn-outline w-full inline-flex items-center justify-center gap-2 text-sm">
-                      {dict.common.products.viewDetails}
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
+          <div className="max-w-7xl 2xl:max-w-[88rem] mx-auto px-6 lg:px-8 2xl:px-12">
+            <ProductGrid
+              products={getProducts(locale as Locale)}
+              categories={categories}
+              categoryLabels={getCategoryLabels(locale as Locale)}
+              locale={locale}
+              dict={dict}
+            />
           </div>
         </section>
 

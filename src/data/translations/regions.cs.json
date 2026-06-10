@@ -1,0 +1,349 @@
+{
+  "wien": {
+    "shortName": "Vídeň",
+    "heroText": "Zdvojnásobte parkovací kapacitu ve Vídni – i při omezeném prostoru a přísných stavebních předpisech.",
+    "description": "Vídeň jako hlavní a největší město Rakouska čelí mimořádným výzvám v oblasti parkování. Vysoké ceny pozemků, památkově chráněné budovy a přísné stavební předpisy vyžadují inovativní řešení pro optimalizaci parkovacích ploch.",
+    "challenges": [
+      "Extrémně vysoké ceny pozemků činí každý metr čtvereční cenným",
+      "Památková ochrana komplikuje stavební rozšíření",
+      "Přísná vyhláška o parkovacích stáních pro novostavby",
+      "Omezené světlé výšky ve starší zástavbě",
+      "Nedostatek parkovacích míst v centrálních městských obvodech"
+    ],
+    "solutions": [
+      "Zdvojnásobení parkovacích stání bez rozšíření plochy",
+      "Řada PARKER-S speciálně pro nízké světlé výšky",
+      "Podzemní systémy PARKER-O pro památkově chráněné oblasti",
+      "Splnění vyhlášky o parkovacích stáních na minimálním prostoru",
+      "Vícepatrové LS-System pro maximální kapacitu"
+    ],
+    "faqs": [
+      {
+        "question": "Který parkovací systém je vhodný pro vídeňskou starší zástavbu?",
+        "answer": "Pro vídeňskou starší zástavbu s typicky nízkými světlými výškami doporučujeme řadu PARKER-S. Tyto systémy lze nasadit již od světlé výšky pouhých 295cm a využívají skloněné plošiny pro minimální hloubku jámy."
+      },
+      {
+        "question": "Jak splním vídeňskou vyhlášku o parkovacích stáních?",
+        "answer": "Se systémy MODULO můžete předepsaný počet parkovacích stání realizovat na polovině plochy. U novostaveb to výrazně snižuje potřebnou plochu podzemní garáže."
+      },
+      {
+        "question": "Existují možnosti dotací na parkovací systémy ve Vídni?",
+        "answer": "Pro parkovací systémy podporující elektromobilitu lze za určitých podmínek požádat o dotace. Rádi vám poradíme ohledně aktuálních možností podpory."
+      }
+    ],
+    "metaTitle": "Parkovací systémy Vídeň | Parkovací plošiny a zakladače pro hlavní město",
+    "metaDescription": "Parkovací systémy MODULO pro Vídeň: parkovací plošiny, zakladače a zdvojené parkovací systémy pro podzemní garáže, bytové domy a komerční objekty. Poradenství a montáž ve Vídni a okolí.",
+    "keywords": [
+      "parkovací systémy Vídeň",
+      "parkovací plošiny Vídeň",
+      "parkovací zakladač Vídeň",
+      "zdvojený parkovací systém Vídeň",
+      "podzemní garáž Vídeň",
+      "parkovací plochy Vídeň"
+    ]
+  },
+  "niederoesterreich": {
+    "shortName": "NÖ",
+    "heroText": "Prostorově úsporná parkovací řešení pro Dolní Rakousko – od St. Pölten až po vídeňskou aglomeraci.",
+    "description": "Dolní Rakousko jako největší spolková země spojuje městská centra jako St. Pölten s venkovskými regiony. Zejména v okolí Vídně roste poptávka po prostorově úsporných parkovacích řešeních pro rodinné domy a bytové komplexy.",
+    "challenges": [
+      "Rostoucí obytné oblasti v okolí Vídně",
+      "Stoupající počet vozidel na domácnost",
+      "Omezené plochy pozemků u novostaveb",
+      "Dodatečná potřeba parkovacích stání u stávajících budov",
+      "Nedostatek prostoru v historických jádrech obcí"
+    ],
+    "solutions": [
+      "PARKER-C pro soukromé dvojgaráže",
+      "STACKER-P10 jako kompaktní řešení pro malé pozemky",
+      "Podzemní systémy PARKER-O pro předzahrádky",
+      "Vícepatrové systémy pro bytové komplexy",
+      "Flexibilní řešení pro stávající budovy"
+    ],
+    "faqs": [
+      {
+        "question": "Který systém je vhodný pro můj rodinný dům v Dolním Rakousku?",
+        "answer": "Pro rodinné domy doporučujeme PARKER-C100 Basic jako nákladově efektivní řešení nebo PARKER-O100 pro podzemní instalaci, která ponechá vaši zahradu nedotčenou."
+      },
+      {
+        "question": "Lze parkovací systémy instalovat dodatečně?",
+        "answer": "Ano, mnoho našich systémů je vhodných pro dodatečnou montáž. STACKER-P10 vyžaduje šířku pouhých 2,5m a často jej lze nainstalovat bez větších stavebních úprav."
+      }
+    ],
+    "metaTitle": "Parkovací systémy Dolní Rakousko | Parkovací plošiny pro NÖ",
+    "metaDescription": "Parkovací systémy MODULO pro Dolní Rakousko: parkovací zakladače a zdvojené parkovací systémy pro rodinné domy, bytové komplexy a komerční objekty v St. Pölten, Baden, Mödling a celém Dolním Rakousku.",
+    "keywords": [
+      "parkovací systémy Dolní Rakousko",
+      "parkovací plošiny NÖ",
+      "parkovací zakladač St. Pölten",
+      "zdvojený parkovací systém okolí Vídně",
+      "parkovací plošina Mödling"
+    ]
+  },
+  "oberoesterreich": {
+    "shortName": "OÖ",
+    "heroText": "Efektivní parkovací řešení pro průmysl a domácnosti Horního Rakouska.",
+    "description": "Horní Rakousko jako průmyslová země s centry jako Linz, Wels a Steyr má vysokou poptávku po efektivních parkovacích řešeních pro komerční a průmyslové objekty. Z prostorově úsporných systémů těží i soukromé domácnosti.",
+    "challenges": [
+      "Vysoká potřeba parkovacích míst v průmyslových zónách",
+      "Parkovací místa pro zaměstnance u rostoucích firem",
+      "Omezené plochy v městských centrech",
+      "Bytové domy s příliš malým počtem parkovacích stání",
+      "Historická městská jádra s nedostatkem prostoru"
+    ],
+    "solutions": [
+      "Škálovatelné LS-System pro komerční provozy",
+      "PALLET-System pro automatizovaná velkokapacitní parkoviště",
+      "PARKER-C pro bytové domy",
+      "Kompaktní STACKER pro stísněné podmínky",
+      "Řešení na míru pro průmyslové zákazníky"
+    ],
+    "faqs": [
+      {
+        "question": "Který systém je vhodný pro komerční provozy v Horním Rakousku?",
+        "answer": "Pro komerční provozy doporučujeme podle potřeby LS-System až se 3 úrovněmi nebo plně automatický PALLET-System pro maximální efektivitu s minimálními nároky na personál."
+      },
+      {
+        "question": "Nabízíte servis v celém Horním Rakousku?",
+        "answer": "Ano, nabízíme poradenství, instalaci a servis v celém Horním Rakousku – od Linze až po Mühlviertel, od Innviertelu až po Salzkammergut."
+      }
+    ],
+    "metaTitle": "Parkovací systémy Horní Rakousko | Parkovací plošiny Linz a OÖ",
+    "metaDescription": "Parkovací systémy MODULO pro Horní Rakousko: průmyslová i soukromá parkovací řešení v Linzi, Welsu, Steyru a celém Horním Rakousku. Parkovací zakladače, zdvojené parkovací systémy a automatické systémy.",
+    "keywords": [
+      "parkovací systémy Horní Rakousko",
+      "parkovací plošiny Linz",
+      "parkovací zakladač Wels",
+      "zdvojený parkovací systém Steyr",
+      "komerční parkovací systémy OÖ"
+    ]
+  },
+  "salzburg": {
+    "shortName": "Salzburg",
+    "heroText": "Diskrétní parkovací řešení pro Salzburg – od historického starého města až po moderní obytné projekty.",
+    "description": "Festivalové město Salzburg spojuje historické dědictví s moderním bydlením. Omezený prostor ve starém městě a přísné stavební předpisy vyžadují promyšlená parkovací řešení, která se harmonicky začlení.",
+    "challenges": [
+      "Staré město zapsané na seznamu UNESCO s přísnými podmínkami",
+      "Vysoká turistika se sezónním tlakem na parkování",
+      "Omezené možnosti rozšíření pro hotely",
+      "Strmá svahová poloha ztěžuje stavbu podzemních garáží",
+      "Prémiové nemovitosti s vysokými nároky"
+    ],
+    "solutions": [
+      "Podzemní PARKER-O pro památkově chráněné oblasti",
+      "Automatické PALLET-System pro hotely",
+      "Kompaktní STACKER pro svahové polohy",
+      "Vícepatrové LS-System pro nové obytné projekty",
+      "Prémiová provedení pro náročné zákazníky"
+    ],
+    "faqs": [
+      {
+        "question": "Jaká řešení existují pro hotely v Salzburgu?",
+        "answer": "Pro hotely doporučujeme PALLET-System s plně automatickým provozem. Hosté odstaví své vozidlo a systém převezme řízení automaticky – ideální pro concierge službu."
+      },
+      {
+        "question": "Jsou parkovací systémy v salzburském starém městě možné?",
+        "answer": "Ano, s podzemním PARKER-O100 můžete vytvořit parkovací místa i v citlivé oblasti starého města. Povrch zůstane nedotčený a harmonicky se začlení."
+      }
+    ],
+    "metaTitle": "Parkovací systémy Salzburg | Parkovací plošiny pro město i venkov",
+    "metaDescription": "Parkovací systémy MODULO pro Salzburg: diskrétní parkovací plošiny pro festivalové město, parkovací zakladače pro obytné projekty a automatické systémy pro hotely.",
+    "keywords": [
+      "parkovací systémy Salzburg",
+      "parkovací plošiny město Salzburg",
+      "parkovací zakladač Salzburg",
+      "hotelový parkovací systém",
+      "podzemní garáž Salzburg"
+    ]
+  },
+  "tirol": {
+    "shortName": "Tirol",
+    "heroText": "Robustní parkovací řešení pro náročné alpské podmínky Tyrolska.",
+    "description": "V tyrolských Alpách je stavební pozemek mimořádně cenný. Strmé svahy, zatížení sněhem a turistické nároky kladou zvláštní požadavky na parkovací systémy. MODULO nabízí robustní řešení pro alpské podmínky.",
+    "challenges": [
+      "Omezený stavební pozemek v údolních polohách",
+      "Strmá svahová poloha ztěžuje stavbu garáží",
+      "Vysoké zatížení sněhem a alpské počasí",
+      "Sezónní tlak na parkování způsobený turistikou",
+      "Prémiové chalupy s omezeným pozemkem"
+    ],
+    "solutions": [
+      "Plně pozinkovaná konstrukce pro sníh a vlhkost",
+      "PARKER-S pro svahové polohy s výškovým omezením",
+      "STACKER-V10 jako nejlehčí varianta pro střešní garáže",
+      "Podzemní systémy pro chalupy",
+      "Robustní systémy pro komerční parkovací areály u sjezdovek"
+    ],
+    "faqs": [
+      {
+        "question": "Jsou systémy MODULO vhodné pro alpské zimy?",
+        "answer": "Ano, všechny systémy MODULO jsou plně pozinkované a tím optimálně chráněné proti korozi způsobené sněhem, posypovou solí a vlhkostí. Robustní ocelová konstrukce odolá alpským podmínkám."
+      },
+      {
+        "question": "Který systém je vhodný pro chalupy v Tyrolsku?",
+        "answer": "Pro chalupy doporučujeme podle situace PARKER-O100 (podzemní) pro diskrétní začlenění nebo STACKER-V10 pro stávající garáže s omezenou výškou."
+      }
+    ],
+    "metaTitle": "Parkovací systémy Tyrolsko | Parkovací plošiny Innsbruck a alpský region",
+    "metaDescription": "Parkovací systémy MODULO pro Tyrolsko: robustní parkovací plošiny pro alpské podmínky v Innsbrucku, Kitzbühelu, Kufsteinu a tyrolských lyžařských střediscích.",
+    "keywords": [
+      "parkovací systémy Tyrolsko",
+      "parkovací plošiny Innsbruck",
+      "parkovací zakladač Kitzbühel",
+      "parkoviště lyžařské středisko",
+      "alpské parkovací systémy"
+    ]
+  },
+  "steiermark": {
+    "shortName": "Štýrsko",
+    "heroText": "Flexibilní parkovací řešení pro Štýrsko – od Grazu až po Horní Štýrsko.",
+    "description": "Štýrsko spojuje zemské hlavní město Graz s venkovskými regiony a průmyslovými lokalitami. Rozmanitost požadavků – od městských podzemních garáží až po komerční parkovací řešení – vyžaduje flexibilní systémy.",
+    "challenges": [
+      "Tlak na zhušťování zástavby v Grazu",
+      "Průmyslové lokality s potřebou parkovacích míst pro zaměstnance",
+      "Rostoucí obytné oblasti na okraji města",
+      "Historické staré město Grazu",
+      "Rozmanité požadavky podle regionu"
+    ],
+    "solutions": [
+      "LS-System pro městské bytové domy",
+      "PALLET-System pro průmyslové provozy",
+      "PARKER-C pro bytové komplexy na okraji města",
+      "Diskrétní řešení pro staré město",
+      "Škálovatelné systémy pro různé velikosti"
+    ],
+    "faqs": [
+      {
+        "question": "Jaké systémy pro novostavby v Grazu?",
+        "answer": "Pro novostavby v Grazu doporučujeme zapojit nás do plánování již v rané fázi. Se systémy LS-System můžete na minimální zastavěné ploše realizovat maximum parkovacích stání."
+      },
+      {
+        "question": "Nabízíte servis pro průmyslové provozy?",
+        "answer": "Ano, pečujeme o řadu průmyslových zákazníků ve Štýrsku. Od analýzy potřeb přes instalaci až po servis 24/7 – vše z jedné ruky."
+      }
+    ],
+    "metaTitle": "Parkovací systémy Štýrsko | Parkovací plošiny Graz a okolí",
+    "metaDescription": "Parkovací systémy MODULO pro Štýrsko: parkovací plošiny pro Graz, Leoben a štýrský průmysl. Parkovací zakladače, zdvojené parkovací systémy a komerční řešení.",
+    "keywords": [
+      "parkovací systémy Štýrsko",
+      "parkovací plošiny Graz",
+      "parkovací zakladač Leoben",
+      "komerční parkovací systémy Štýrsko",
+      "zdvojený parkovací systém Graz"
+    ]
+  },
+  "kaernten": {
+    "shortName": "Korutany",
+    "heroText": "Parkovací řešení pro korutanská jezera a města – diskrétní a prostorově úsporná.",
+    "description": "Jezera a hory Korutan činí z této spolkové země turistický hotspot. Hotely, rekreační apartmány a bytové komplexy ve vyhledávaných lokalitách těží z prostorově úsporných parkovacích řešení.",
+    "challenges": [
+      "Prémiové lokality u jezera s omezeným stavebním pozemkem",
+      "Sezónní turistika s parkovacími špičkami",
+      "Hotely s příliš malým počtem parkovacích míst pro hosty",
+      "Rostoucí bytová výstavba v Klagenfurtu",
+      "Nedostatek prostoru v turistických centrech obcí"
+    ],
+    "solutions": [
+      "Podzemní systémy pro pozemky u jezera",
+      "Automatické PALLET-System pro hotely",
+      "Kompaktní STACKER pro malé pozemky",
+      "Vícepatrové systémy pro městské projekty",
+      "Sezónní rozšíření kapacity"
+    ],
+    "faqs": [
+      {
+        "question": "Jaká řešení pro hotely u Wörthersee?",
+        "answer": "Pro hotely u jezera nabízíme podzemní systémy PARKER-O, které neomezí cenný výhled na jezero, a také automatické PALLET-System pro komfortní valet parking."
+      },
+      {
+        "question": "Lze parkovací systémy sezónně rozšiřovat?",
+        "answer": "Ano, s modulárními systémy můžete kapacity flexibilně přizpůsobovat. Pro hlavní sezónu lze aktivovat další úrovně parkovacích stání."
+      }
+    ],
+    "metaTitle": "Parkovací systémy Korutany | Parkovací plošiny Klagenfurt a region jezer",
+    "metaDescription": "Parkovací systémy MODULO pro Korutany: parkovací plošiny pro hotely u Wörthersee, bytové komplexy v Klagenfurtu a turistická zařízení v celých Korutanech.",
+    "keywords": [
+      "parkovací systémy Korutany",
+      "parkovací plošiny Klagenfurt",
+      "parkovací zakladač Wörthersee",
+      "hotelové parkoviště Korutany",
+      "zdvojený parkovací systém Villach"
+    ]
+  },
+  "burgenland": {
+    "shortName": "Burgenland",
+    "heroText": "Moderní parkovací řešení pro rostoucí Burgenland – od Eisenstadtu až k Neziderskému jezeru.",
+    "description": "Burgenland spojuje vinařství, turistiku a rostoucí obytné oblasti poblíž Vídně. Zejména v severním Burgenlandu roste díky blízkosti hlavního města poptávka po moderních parkovacích řešeních.",
+    "challenges": [
+      "Silný populační růst v severním Burgenlandu",
+      "Dojíždění do Vídně",
+      "Turistika u Neziderského jezera",
+      "Vinařství s potřebou parkovacích míst pro hosty",
+      "Nové bytové komplexy s potřebou parkovacích stání"
+    ],
+    "solutions": [
+      "PARKER-C pro rodinné domy a dvojgaráže",
+      "Kompaktní systémy pro vinařství",
+      "Vícepatrová řešení pro obytné projekty",
+      "Flexibilní systémy pro sezónní turistiku",
+      "Řešení dodatečné montáže pro stávající budovy"
+    ],
+    "faqs": [
+      {
+        "question": "Který systém pro vinařství v Burgenlandu?",
+        "answer": "Pro vinařství s návštěvnickým provozem doporučujeme PARKER-C100 nebo kompaktní STACKER-System. Tak můžete zdvojnásobit parkovací stání pro degustace vín bez dodatečného zabrání plochy."
+      },
+      {
+        "question": "Nabízíte servis i v jižním Burgenlandu?",
+        "answer": "Ano, pečujeme o celý Burgenland od Neusiedlu až po Jennersdorf. Příjezd na poradenství a servis je možný v celé spolkové zemi."
+      }
+    ],
+    "metaTitle": "Parkovací systémy Burgenland | Parkovací plošiny Eisenstadt a okolí",
+    "metaDescription": "Parkovací systémy MODULO pro Burgenland: parkovací plošiny pro vinařství, bytové komplexy v Eisenstadtu a rostoucí obytný prostor poblíž Vídně.",
+    "keywords": [
+      "parkovací systémy Burgenland",
+      "parkovací plošiny Eisenstadt",
+      "parkovací zakladač severní Burgenland",
+      "parkoviště vinařství",
+      "zdvojený parkovací systém Neusiedl"
+    ]
+  },
+  "vorarlberg": {
+    "shortName": "Vorarlberg",
+    "heroText": "Prostorově úsporná parkovací řešení pro omezené údolní plochy Vorarlberska.",
+    "description": "Vorarlbersko jako nejzápadnější spolková země spojuje alpskou topografii s hospodářskou silou. Omezené údolní plochy, vysoké ceny stavebních pozemků a zatížení sněhem vyžadují inteligentní parkovací řešení.",
+    "challenges": [
+      "Extrémně omezené údolní plochy",
+      "Vysoké ceny pozemků v údolí Rýna",
+      "Alpské počasí s vysokým zatížením sněhem",
+      "Hospodářsky silný region s tlakem na parkování",
+      "Příhraniční poloha s dojíždějícími"
+    ],
+    "solutions": [
+      "Plně pozinkované systémy pro alpské podmínky",
+      "Vícepatrové LS-System pro maximální využití",
+      "PARKER-S pro svahové polohy a úzká údolí",
+      "Komerční řešení pro průmyslové provozy",
+      "Robustní konstrukce pro zatížení sněhem"
+    ],
+    "faqs": [
+      {
+        "question": "Jsou systémy vhodné pro vorarlberské zimy?",
+        "answer": "Ano, všechny systémy MODULO jsou plně pozinkované a dimenzované na alpské zatížení sněhem. Hydraulické systémy spolehlivě fungují i při nízkých teplotách."
+      },
+      {
+        "question": "Jaká řešení pro komerční provozy v údolí Rýna?",
+        "answer": "Pro hospodářsky silné provozy v údolí Rýna nabízíme škálovatelné LS-System a automatická řešení PALLET-System pro efektivní parkovací místa pro zaměstnance i návštěvníky."
+      }
+    ],
+    "metaTitle": "Parkovací systémy Vorarlbersko | Parkovací plošiny Bregenz a údolí Rýna",
+    "metaDescription": "Parkovací systémy MODULO pro Vorarlbersko: robustní parkovací plošiny pro údolí Rýna, Bregenz, Dornbirn a vorarlberský alpský region.",
+    "keywords": [
+      "parkovací systémy Vorarlbersko",
+      "parkovací plošiny Bregenz",
+      "parkovací zakladač Dornbirn",
+      "parkovací systém údolí Rýna",
+      "alpské parkovací plošiny"
+    ]
+  }
+}

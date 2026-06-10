@@ -2,14 +2,14 @@ export default function LocalBusinessSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://modullo-parking.at/#organization",
-    name: "Modullo Parking Austria",
-    image: "https://modullo-parking.at/images/logos/MODULO.svg",
+    "@id": "https://moduloparking.at/#organization",
+    name: "Modulo Parking Austria",
+    image: "https://moduloparking.at/images/logos/MODULO.svg",
     description:
       "Offizieller Vertrieb von MODULO Parkplattformen in Österreich. Parksysteme, Parklifte, Doppelparker und automatische Parkplattformen für Garagen und Tiefgaragen.",
-    url: "https://modullo-parking.at",
+    url: "https://moduloparking.at",
     telephone: "+43-676-726-34-87",
-    email: "info@modullo-parking.at",
+    email: "info@moduloparking.at",
     address: {
       "@type": "PostalAddress",
       addressCountry: "AT",

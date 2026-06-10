@@ -104,7 +104,7 @@ export default async function UeberUnsPage({
     <>
       <BreadcrumbSchema items={breadcrumbs} />
       <Header locale={locale} dict={dict} />
-      <main className="pt-20">
+      <main id="main" className="pt-20">
         {/* Hero Section */}
         <section className="py-24 bg-[var(--background)] relative overflow-hidden">
           <div className="absolute inset-0 grid-pattern" />
@@ -126,13 +126,13 @@ export default async function UeberUnsPage({
               </div>
               <div className="relative">
                 <div className="tech-frame">
-                  <div className="aspect-square bg-[var(--background-secondary)] flex items-center justify-center">
+                  <div className="aspect-square image-well rounded-[var(--radius-lg)] border border-[var(--border)] flex items-center justify-center">
                     <Image
                       src="/images/logos/MODULO.svg"
-                      alt="Modulo Logo"
-                      width={200}
-                      height={60}
-                      className="brightness-0 invert"
+                      alt={dict.common.meta.siteName}
+                      width={220}
+                      height={66}
+                      className="logo-themed"
                     />
                   </div>
                 </div>
@@ -160,7 +160,7 @@ export default async function UeberUnsPage({
                 </p>
 
                 <div className="mt-8 grid grid-cols-2 gap-6">
-                  <div className="p-4 border border-[var(--border)]">
+                  <div className="p-4 card card--flat">
                     <div className="text-3xl font-mono font-bold text-[var(--modulo-accent)]">
                       2016
                     </div>
@@ -168,7 +168,7 @@ export default async function UeberUnsPage({
                       {dict.about.manufacturer.foundedYear}
                     </div>
                   </div>
-                  <div className="p-4 border border-[var(--border)]">
+                  <div className="p-4 card card--flat">
                     <div className="text-3xl font-mono font-bold text-[var(--modulo-accent)]">
                       100+
                     </div>
@@ -176,7 +176,7 @@ export default async function UeberUnsPage({
                       {dict.about.manufacturer.yearsExperience}
                     </div>
                   </div>
-                  <div className="p-4 border border-[var(--border)]">
+                  <div className="p-4 card card--flat">
                     <div className="text-3xl font-mono font-bold text-[var(--modulo-accent)]">
                       10+
                     </div>
@@ -184,7 +184,7 @@ export default async function UeberUnsPage({
                       {dict.about.manufacturer.productVariants}
                     </div>
                   </div>
-                  <div className="p-4 border border-[var(--border)]">
+                  <div className="p-4 card card--flat">
                     <div className="text-3xl font-mono font-bold text-[var(--modulo-accent)]">
                       24/7
                     </div>
@@ -215,9 +215,9 @@ export default async function UeberUnsPage({
                     }) => (
                       <div
                         key={location.country}
-                        className="flex items-center gap-4 p-4 bg-[var(--background)] border border-[var(--border)]"
+                        className="flex items-center gap-4 p-4 card card--flat"
                       >
-                        <div className="w-3 h-3 bg-[var(--modulo-accent)]" />
+                        <div className="w-3 h-3 bg-[var(--modulo-accent)] rotate-45" />
                         <div className="flex-1">
                           <div className="font-semibold text-[var(--foreground)]">
                             {location.country}
@@ -253,9 +253,9 @@ export default async function UeberUnsPage({
                 ) => (
                   <div
                     key={index}
-                    className="p-8 border border-[var(--border)] hover:border-[var(--modulo-accent)] transition-colors"
+                    className="p-8 card card--flat group"
                   >
-                    <div className="w-14 h-14 flex items-center justify-center border border-[var(--modulo-accent)]/30 text-[var(--modulo-accent)] mb-6">
+                    <div className="w-14 h-14 flex items-center justify-center rounded-[var(--radius-base)] border border-[var(--modulo-accent)]/30 text-[var(--modulo-accent)] group-hover:bg-[var(--modulo-accent)] group-hover:text-white transition-all duration-300 mb-6">
                       {whyUsIcons[index]}
                     </div>
                     <h3 className="text-xl font-semibold text-[var(--foreground)] mb-3">
@@ -286,7 +286,7 @@ export default async function UeberUnsPage({
                   alt="Modulo"
                   width={120}
                   height={30}
-                  className="brightness-0 invert"
+                  className="logo-themed"
                 />
               </a>
               <a
@@ -300,7 +300,7 @@ export default async function UeberUnsPage({
                   alt="SDIL"
                   width={100}
                   height={40}
-                  className="brightness-0 invert"
+                  className="logo-themed"
                 />
               </a>
             </div>

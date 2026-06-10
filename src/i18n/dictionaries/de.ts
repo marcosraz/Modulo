@@ -12,6 +12,9 @@ const de = {
       menu: "Menü",
       theme: "Theme",
       austria: "AUSTRIA",
+      skipToContent: "Zum Inhalt springen",
+      selectLanguage: "Sprache wählen",
+      language: "Sprache",
     },
     footer: {
       description:
@@ -24,8 +27,11 @@ const de = {
       email: "E-Mail",
       location: "Standort",
       locationValue: "Österreich",
-      copyright: "Modullo Parking Austria. Alle Rechte vorbehalten.",
+      copyright: "Modulo Parking Austria. Alle Rechte vorbehalten.",
       partnerOf: "Partner von",
+      imprint: "Impressum",
+      privacy: "Datenschutz",
+      legalTitle: "Rechtliches",
     },
     cta: {
       badge: "Kostenlose Beratung",
@@ -52,9 +58,9 @@ const de = {
       contactUs: "Kontakt aufnehmen",
     },
     meta: {
-      siteName: "Modullo Parking Austria",
+      siteName: "Modulo Parking Austria",
       siteTitle:
-        "Modullo Parking Austria | Automatische Parksysteme & Parklifte",
+        "Modulo Parking Austria | Automatische Parksysteme & Parklifte",
       siteDescription:
         "Offizieller MODULO Vertriebspartner in Österreich. Parkplattformen, Parklifte, Doppelparker und Stapelparker für Tiefgaragen, Mehrfamilienhäuser und Gewerbe. Beratung & Montage bundesweit.",
     },
@@ -74,6 +80,7 @@ const de = {
       stat3Label: "Support",
       ctaPrimary: "Produkte entdecken",
       ctaSecondary: "Beratung anfordern",
+      badgeSpec: "4 Fahrzeuge · 2 Ebenen",
     },
     products: {
       label: "Produktportfolio",
@@ -420,9 +427,17 @@ const de = {
       messagePlaceholder:
         "Beschreiben Sie Ihr Projekt oder Ihre Anfrage...",
       submit: "Nachricht senden",
+      sending: "Wird gesendet …",
       successMessage:
         "Vielen Dank für Ihre Nachricht! Wir melden uns in Kürze bei Ihnen.",
+      errorMessage:
+        "Senden fehlgeschlagen. Bitte versuchen Sie es erneut oder kontaktieren Sie uns telefonisch.",
       required: "*",
+      validation: {
+        name: "Bitte geben Sie Ihren Namen ein.",
+        email: "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+        message: "Bitte beschreiben Sie Ihre Anfrage (mind. 10 Zeichen).",
+      },
     },
     info: {
       title: "Kontaktdaten",
@@ -505,7 +520,7 @@ const de = {
     meta: {
       title: "Ratgeber Parksysteme | Wissen & Tipps",
       description: "Ratgeber rund um Parksysteme: Kaufberatung, Vergleiche, Kosten und Wartung. Alles was Sie über Parkplattformen, Parklifte und Doppelparker wissen müssen.",
-      ogTitle: "Ratgeber Parksysteme | Modullo Parking Austria",
+      ogTitle: "Ratgeber Parksysteme | Modulo Parking Austria",
       ogDescription: "Wissen und Tipps rund um Parksysteme. Kaufberatung, Vergleiche und Pflegetipps.",
     },
   },

@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 
 function localePath(path: string, locale: string): string {
@@ -20,13 +18,13 @@ export default function Downloads({ locale, dict }: { locale: string; dict: any 
 
   return (
     <section className="py-24 bg-[var(--background)]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="max-w-7xl 2xl:max-w-[88rem] mx-auto px-6 lg:px-8 2xl:px-12">
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="tech-label">{dict.home.downloads.label}</span>
-          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-[var(--foreground)]">
+          <h2 className="mt-4 h-section text-[var(--foreground)]">
             {dict.home.downloads.title}{" "}
-            <span className="text-gradient">{dict.home.downloads.titleHighlight}</span>
+            <span className="accent-text">{dict.home.downloads.titleHighlight}</span>
           </h2>
           <p className="mt-4 text-lg text-[var(--foreground-muted)] max-w-2xl mx-auto">
             {dict.home.downloads.description}
@@ -43,13 +41,13 @@ export default function Downloads({ locale, dict }: { locale: string; dict: any 
                 href={fileData.file}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`card p-6 flex flex-col group ${
-                  fileData.featured ? "md:col-span-2 lg:col-span-1 border-[var(--modulo-accent)]/50" : ""
+                className={`card card--interactive p-6 flex flex-col group ${
+                  fileData.featured ? "border-[var(--modulo-accent)]/50" : ""
                 }`}
               >
                 {/* Icon */}
-                <div className="w-12 h-12 flex items-center justify-center bg-[var(--modulo-accent)]/10 text-[var(--modulo-accent)] rounded-lg mb-4">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-12 h-12 flex items-center justify-center bg-[var(--modulo-accent)]/10 text-[var(--modulo-accent)] rounded-[var(--radius-base)] mb-4">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                 </div>
@@ -57,7 +55,7 @@ export default function Downloads({ locale, dict }: { locale: string; dict: any 
                 {/* Content */}
                 <div className="flex-1">
                   {fileData.featured && (
-                    <span className="inline-block px-2 py-1 text-xs font-semibold bg-[var(--modulo-accent)] text-white rounded mb-2">
+                    <span className="badge badge--solid mb-2">
                       {dict.common.products.recommended}
                     </span>
                   )}
@@ -86,7 +84,7 @@ export default function Downloads({ locale, dict }: { locale: string; dict: any 
           </p>
           <Link href={localePath("/kontakt", locale)} className="btn-primary inline-flex items-center gap-2">
             {dict.common.products.contactUs}
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </Link>

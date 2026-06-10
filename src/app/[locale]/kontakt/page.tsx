@@ -20,7 +20,7 @@ export default async function KontaktPage({
   return (
     <>
       <Header locale={locale} dict={dict} />
-      <main className="pt-20">
+      <main id="main" className="pt-20">
         {/* Hero Section */}
         <section className="py-24 bg-[var(--background)] relative overflow-hidden">
           <div className="absolute inset-0 grid-pattern" />

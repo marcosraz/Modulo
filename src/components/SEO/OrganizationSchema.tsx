@@ -2,10 +2,10 @@ export default function OrganizationSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Modullo Parking Austria",
+    name: "Modulo Parking Austria",
     alternateName: "MODULO Österreich",
-    url: "https://modullo-parking.at",
-    logo: "https://modullo-parking.at/images/logos/MODULO.svg",
+    url: "https://moduloparking.at",
+    logo: "https://moduloparking.at/images/logos/MODULO.svg",
     description:
       "Offizieller Vertrieb von MODULO Parkplattformen in Österreich. Automatische Parksysteme, Parklifte und Stapelparker für maximale Flächeneffizienz.",
     contactPoint: {

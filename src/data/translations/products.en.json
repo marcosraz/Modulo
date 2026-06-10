@@ -1,0 +1,206 @@
+{
+  "parker-c": {
+    "tagline": "Compact solution for up to 4 vehicles",
+    "description": "Allows up to four vehicles to be parked at the same time, with independent access for each vehicle.",
+    "longDescription": "The MODULO PARKER-C parking platform lets you park up to four vehicles simultaneously, with each vehicle entering and exiting independently of the others.\n\nThe solution doubles the available parking spaces without any structural extensions and is suitable for both private garages and larger investments.\n\nEach unit has its own control panel, protected against unauthorised use by a special key or chips/tokens. In addition, every control panel is fitted with an emergency stop switch.",
+    "features": [
+      "Independent access to every parking space",
+      "Sturdy supporting structure with hydraulic system",
+      "Separate control panels for each unit",
+      "Protection via key, chips or tokens",
+      "Emergency stop switch on every control panel",
+      "Doubles parking capacity without building work"
+    ],
+    "variants": [
+      {
+        "name": "PARKER-C100",
+        "description": "The most versatile variant"
+      },
+      {
+        "name": "PARKER-C100 Basic",
+        "description": "Cost-effective entry-level solution"
+      },
+      {
+        "name": "PARKER-C105",
+        "description": "Premium deck with an anti-slip surface"
+      },
+      {
+        "name": "PARKER-C120 Basic",
+        "description": "3-level system"
+      }
+    ],
+    "specs": {
+      "vehicles": "2-6",
+      "levels": "2-3 levels",
+      "capacity": "2.0-2.6t"
+    }
+  },
+  "parker-s": {
+    "tagline": "Space-saving for low ceiling heights",
+    "description": "System with inclined platforms for garages with limited ceiling height or restricted pit depth.",
+    "longDescription": "The PARKER-S system is designed specifically for projects with limited ceiling height or restricted pit depth. The lower platform has a slight incline, allowing you to double the parking space in garages.\n\nMODULO PARKER-S is dedicated to underground car parks and garages. However, it is primarily intended for investments where there are constraints on ceiling height or pit depth.",
+    "features": [
+      "Optimised for low ceiling heights",
+      "Inclined platforms for minimal pit depth",
+      "Doubles the number of parking spaces",
+      "Hydraulic system with the highest level of safety",
+      "Flexible application options",
+      "Manual or automatic operation"
+    ],
+    "variants": [
+      {
+        "name": "PARKER-S100",
+        "description": ""
+      },
+      {
+        "name": "PARKER-S100 Basic",
+        "description": ""
+      },
+      {
+        "name": "PARKER-S105",
+        "description": ""
+      },
+      {
+        "name": "PARKER-S120",
+        "description": ""
+      },
+      {
+        "name": "PARKER-S120 Basic",
+        "description": ""
+      }
+    ],
+    "specs": {
+      "vehicles": "2-4",
+      "levels": "2 levels",
+      "capacity": "2.0-2.6t"
+    }
+  },
+  "parker-o": {
+    "tagline": "Underfloor system for private users",
+    "description": "Standalone platform for private parking spaces. The structure disappears completely below ground.",
+    "longDescription": "The MODULO PARKER-O100 is an independent parking platform designed specifically for private users. The structure runs entirely underground, allowing the surface to be finished seamlessly.\n\nThe platform can be integrated as part of a driveway or courtyard entrance. Perfect for two-car households that want to make the most of their available space.",
+    "features": [
+      "Fully underground structure",
+      "Seamless surface finishing",
+      "Discreet expansion of parking space",
+      "Designed for 2 vehicles",
+      "Integration into existing surroundings",
+      "Ideal for private parking spaces"
+    ],
+    "specs": {
+      "vehicles": "2",
+      "levels": "2 levels",
+      "capacity": "2.0t"
+    }
+  },
+  "stacker-p": {
+    "tagline": "Compact & affordable",
+    "description": "Space-saving parking system for small businesses, hotels and apartment buildings. Requires a width of just 2.5m.",
+    "longDescription": "The MODULO STACKER-P10 is designed for facilities with modest parking needs, such as small commercial premises, small apartment buildings and hotels.\n\nThe system stands out for its user-friendly operation and straightforward installation. At a width of just 2.5 metres, it fits into a standard parking space. The platform fully encloses the lower parking space, protecting the parked vehicle.",
+    "features": [
+      "Requires a width of just 2.5m",
+      "Full protection for the lower vehicle",
+      "Simple, straightforward installation",
+      "User-friendly operation",
+      "Variable height adjustment",
+      "Cost-effective solution"
+    ],
+    "variants": [
+      {
+        "name": "STACKER-P10",
+        "description": "Standard version"
+      },
+      {
+        "name": "STACKER-P10 Basic",
+        "description": "Cost-effective basic version"
+      }
+    ],
+    "specs": {
+      "vehicles": "2",
+      "levels": "2 levels",
+      "capacity": "2.0t"
+    }
+  },
+  "stacker-v": {
+    "tagline": "Lightest variant",
+    "description": "Innovative parking system for garages with limited ceiling height. The lightest of all MODULO parking platforms.",
+    "longDescription": "The MODULO STACKER-V10 is an innovative parking system for garages with limited ceiling height. The upper platform is angled and lowers itself to make optimal use of the available space.\n\nIt is the lightest of all MODULO parking platforms and combines flexibility, safety and maximum use of space. Ideal for apartment buildings and public facilities.",
+    "features": [
+      "Lightest MODULO parking platform",
+      "Optimised for low ceiling heights",
+      "Angled upper platform",
+      "Requires a width of just 2.5m",
+      "High flexibility and safety",
+      "Easy installation"
+    ],
+    "specs": {
+      "vehicles": "2",
+      "levels": "2 levels",
+      "capacity": "2.0t"
+    }
+  },
+  "ls-system": {
+    "tagline": "Up to 3 levels & automation",
+    "description": "Multi-level system with up to three levels. Optionally available with sliding gates and full automation.",
+    "longDescription": "The MODULO LS is a system of independent parking platforms with up to three levels: underground (-1), ground level (0) and above ground (+1).\n\nThe system supports optional sliding-gate setups and full automation, eliminating the need to get out when calling a platform. Platforms on level 0 move horizontally, while platforms on levels -1 and +1 move vertically.",
+    "features": [
+      "Up to 3 levels (-1, 0, +1)",
+      "Independent parking spaces on every level",
+      "Optional sliding-gate systems",
+      "Full automation possible",
+      "Remote-control operation",
+      "Flexible configurations"
+    ],
+    "variants": [
+      {
+        "name": "LS1000",
+        "description": "2 levels (0, +1)"
+      },
+      {
+        "name": "LS1100",
+        "description": "2 levels (-1, 0)"
+      },
+      {
+        "name": "LS1110",
+        "description": "3 levels (-1, 0, +1)"
+      },
+      {
+        "name": "LS1200",
+        "description": "Extended version"
+      }
+    ],
+    "specs": {
+      "vehicles": "6+",
+      "levels": "2-3 levels",
+      "capacity": "2.0t"
+    }
+  },
+  "pallet": {
+    "tagline": "Automatic sliding pallets",
+    "description": "Automated parking system with movable pallets. Reliably prevents misparking and collisions.",
+    "longDescription": "The MODULO PALLET is an automated parking system based on automatic sliding pallets. Unlike other MODULO platforms, it enables fully automatic parking within a defined area rather than stacked parking.\n\nThe system reliably prevents incorrectly parked vehicles and collisions. It significantly reduces the manoeuvring area through predefined pallet routes and is ideal for sites with height restrictions.",
+    "features": [
+      "Automatic sliding pallets",
+      "Prevents misparking",
+      "Reduces the manoeuvring area",
+      "Flexible configurations",
+      "Ideal where there are height restrictions",
+      "Fully automatic operation"
+    ],
+    "variants": [
+      {
+        "name": "PALLET-T10",
+        "description": "Standard version"
+      },
+      {
+        "name": "PALLET-L10",
+        "description": "Extended version"
+      }
+    ],
+    "specs": {
+      "vehicles": "variable",
+      "levels": "1 level",
+      "capacity": "2.0t"
+    }
+  }
+}

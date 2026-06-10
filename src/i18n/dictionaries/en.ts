@@ -12,6 +12,9 @@ const en = {
       menu: "Menu",
       theme: "Theme",
       austria: "AUSTRIA",
+      skipToContent: "Skip to content",
+      selectLanguage: "Select language",
+      language: "Language",
     },
     footer: {
       description:
@@ -24,8 +27,11 @@ const en = {
       email: "Email",
       location: "Location",
       locationValue: "Austria",
-      copyright: "Modullo Parking Austria. All rights reserved.",
+      copyright: "Modulo Parking Austria. All rights reserved.",
       partnerOf: "Partner of",
+      imprint: "Imprint",
+      privacy: "Privacy Policy",
+      legalTitle: "Legal",
     },
     cta: {
       badge: "Free Consultation",
@@ -52,9 +58,9 @@ const en = {
       contactUs: "Contact Us",
     },
     meta: {
-      siteName: "Modullo Parking Austria",
+      siteName: "Modulo Parking Austria",
       siteTitle:
-        "Modullo Parking Austria | Automated Parking Systems & Car Lifts",
+        "Modulo Parking Austria | Automated Parking Systems & Car Lifts",
       siteDescription:
         "Official MODULO distribution partner in Austria. Parking platforms, car lifts, double stackers and multi-level parking systems for underground garages, residential buildings and commercial properties. Consultation & installation nationwide.",
     },
@@ -74,6 +80,7 @@ const en = {
       stat3Label: "support",
       ctaPrimary: "Discover Products",
       ctaSecondary: "Request Consultation",
+      badgeSpec: "4 vehicles · 2 levels",
     },
     products: {
       label: "Product Portfolio",
@@ -420,9 +427,17 @@ const en = {
       messagePlaceholder:
         "Describe your project or inquiry...",
       submit: "Send Message",
+      sending: "Sending …",
       successMessage:
         "Thank you for your message! We will get back to you shortly.",
+      errorMessage:
+        "Sending failed. Please try again or contact us by phone.",
       required: "*",
+      validation: {
+        name: "Please enter your name.",
+        email: "Please enter a valid email address.",
+        message: "Please describe your enquiry (at least 10 characters).",
+      },
     },
     info: {
       title: "Contact Details",
@@ -505,7 +520,7 @@ const en = {
     meta: {
       title: "Parking Systems Guide | Knowledge & Tips",
       description: "Guide to parking systems: buying advice, comparisons, costs and maintenance. Everything you need to know about parking platforms, car lifts and double stackers.",
-      ogTitle: "Parking Systems Guide | Modullo Parking Austria",
+      ogTitle: "Parking Systems Guide | Modulo Parking Austria",
       ogDescription: "Knowledge and tips about parking systems. Buying guides, comparisons and care tips.",
     },
   },

@@ -255,14 +255,6 @@ Das System verhindert falsch abgestellte Fahrzeuge und Kollisionen zuverlässig.
   },
 ];
 
-export function getProductBySlug(slug: string): Product | undefined {
-  return products.find((p) => p.slug === slug);
-}
-
-export function getProductsByCategory(category: string): Product[] {
-  return products.filter((p) => p.category === category);
-}
-
 export const categories = [
   "Alle",
   "Unabhängige Plattformen",
@@ -272,3 +264,83 @@ export const categories = [
   "Mehrstöckige Systeme",
   "Automatische Systeme",
 ];
+
+// --- i18n ---------------------------------------------------------------
+// German is the source. EN/CS text comes from JSON overlays keyed by slug.
+// `category` stays a stable German key (used for filter logic); only its
+// *display* label is localised via getCategoryLabels().
+import type { Locale } from "@/i18n/config";
+import productsEn from "./translations/products.en.json";
+import productsCs from "./translations/products.cs.json";
+
+type ProductOverlay = Partial<
+  Pick<Product, "tagline" | "description" | "longDescription" | "features">
+> & {
+  specs?: Partial<Product["specs"]>;
+  variants?: Partial<ProductVariant>[];
+};
+
+const productOverlays: Record<string, Record<string, ProductOverlay>> = {
+  en: productsEn as Record<string, ProductOverlay>,
+  cs: productsCs as Record<string, ProductOverlay>,
+};
+
+export function getProducts(locale: Locale): Product[] {
+  if (locale === "de") return products;
+  const overlay = productOverlays[locale] ?? {};
+  return products.map((p) => {
+    const t = overlay[p.slug];
+    if (!t) return p;
+    return {
+      ...p,
+      tagline: t.tagline ?? p.tagline,
+      description: t.description ?? p.description,
+      longDescription: t.longDescription ?? p.longDescription,
+      features: t.features ?? p.features,
+      specs: { ...p.specs, ...(t.specs ?? {}) },
+      variants: p.variants?.map((v, i) => ({ ...v, ...(t.variants?.[i] ?? {}) })),
+    };
+  });
+}
+
+export function getProductBySlug(slug: string, locale: Locale): Product | undefined {
+  return getProducts(locale).find((p) => p.slug === slug);
+}
+
+export function getProductsByCategory(category: string, locale: Locale = "de"): Product[] {
+  return getProducts(locale).filter((p) => p.category === category);
+}
+
+const categoryLabels: Record<Locale, Record<string, string>> = {
+  de: {
+    Alle: "Alle",
+    "Unabhängige Plattformen": "Unabhängige Plattformen",
+    "Für niedrige Decken": "Für niedrige Decken",
+    "Eigenständige Plattform": "Eigenständige Plattform",
+    "Abhängige Plattformen": "Abhängige Plattformen",
+    "Mehrstöckige Systeme": "Mehrstöckige Systeme",
+    "Automatische Systeme": "Automatische Systeme",
+  },
+  en: {
+    Alle: "All",
+    "Unabhängige Plattformen": "Independent Platforms",
+    "Für niedrige Decken": "For Low Ceilings",
+    "Eigenständige Plattform": "Standalone Platform",
+    "Abhängige Plattformen": "Dependent Platforms",
+    "Mehrstöckige Systeme": "Multi-Level Systems",
+    "Automatische Systeme": "Automatic Systems",
+  },
+  cs: {
+    Alle: "Vše",
+    "Unabhängige Plattformen": "Nezávislé platformy",
+    "Für niedrige Decken": "Pro nízké stropy",
+    "Eigenständige Plattform": "Samostatná platforma",
+    "Abhängige Plattformen": "Závislé platformy",
+    "Mehrstöckige Systeme": "Vícepodlažní systémy",
+    "Automatische Systeme": "Automatické systémy",
+  },
+};
+
+export function getCategoryLabels(locale: Locale): Record<string, string> {
+  return categoryLabels[locale] ?? categoryLabels.de;
+}

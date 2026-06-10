@@ -12,7 +12,7 @@ export interface Reference {
   year?: number;
   featured: boolean;
   sourceUrl?: string;
-  /** true = project realized by manufacturer MODULO/PROMStahl, not by Modullo Parking Austria */
+  /** true = project realized by manufacturer MODULO/PROMStahl, not by Modulo Parking Austria */
   isManufacturerReference: boolean;
 }
 
@@ -169,3 +169,32 @@ export const referenceCategories = [
   { value: "hotel", label: "Hotels" },
   { value: "public", label: "Öffentlich" },
 ];
+
+// --- i18n ---------------------------------------------------------------
+import type { Locale } from "@/i18n/config";
+import referencesEn from "./translations/references.en.json";
+import referencesCs from "./translations/references.cs.json";
+
+type ReferenceOverlay = {
+  description?: string;
+  location?: { country?: string };
+};
+
+const referenceOverlays: Record<string, Record<string, ReferenceOverlay>> = {
+  en: referencesEn as Record<string, ReferenceOverlay>,
+  cs: referencesCs as Record<string, ReferenceOverlay>,
+};
+
+export function getReferences(locale: Locale): Reference[] {
+  if (locale === "de") return references;
+  const overlay = referenceOverlays[locale] ?? {};
+  return references.map((r) => {
+    const t = overlay[r.id];
+    if (!t) return r;
+    return {
+      ...r,
+      description: t.description ?? r.description,
+      location: { ...r.location, ...(t.location ?? {}) },
+    };
+  });
+}

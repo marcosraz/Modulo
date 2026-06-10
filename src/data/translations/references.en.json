@@ -1,0 +1,50 @@
+{
+  "ref-001": {
+    "description": "Large residential development in the Wilanów district with 204 parking spaces. The independent PARKER-C100 platforms give every resident flexible access to their vehicle.",
+    "location": {
+      "country": "Poland"
+    }
+  },
+  "ref-002": {
+    "description": "A bank's corporate headquarters with 16 parking spaces on a limited footprint. The PARKER-S100 systems were chosen specifically for the low ceiling height of the underground garage.",
+    "location": {
+      "country": "Poland"
+    }
+  },
+  "ref-003": {
+    "description": "Luxury hotel on Poland's Baltic Sea coast. The underground PARKER-O100 systems disappear completely below the surface, preserving the hotel's aesthetic appearance.",
+    "location": {
+      "country": "Poland"
+    }
+  },
+  "ref-004": {
+    "description": "Modern apartment building with 68 parking spaces. The PARKER-C100 platforms double the parking capacity in the underground garage.",
+    "location": {
+      "country": "Poland"
+    }
+  },
+  "ref-005": {
+    "description": "A combination of 8 PARKER-C100 Basic and 5 PARKER-S120 Basic platforms. The flexible solution meets the varied requirements of the residents.",
+    "location": {
+      "country": "Poland"
+    }
+  },
+  "ref-006": {
+    "description": "Automated parking system with 17 PALLET-T10 sliding platforms. The system prevents misparked vehicles and enables efficient use of space.",
+    "location": {
+      "country": "Poland"
+    }
+  },
+  "ref-007": {
+    "description": "Parking facility in the popular Baltic Sea spa town. The MODULO systems provide reliable parking for holidaymakers and residents alike.",
+    "location": {
+      "country": "Poland"
+    }
+  },
+  "ref-008": {
+    "description": "Holiday resort on the island of Wolin. The space-saving parking systems maximize the number of parking spaces for the property's guests.",
+    "location": {
+      "country": "Poland"
+    }
+  }
+}

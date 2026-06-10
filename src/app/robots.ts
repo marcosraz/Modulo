@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
     },
     sitemap: [
       "https://moduloparking.at/sitemap.xml",
-      "https://moduloparking.cz/sitemap.xml",
+      "https://modulparking.cz/sitemap.xml",
     ],
   };
 }

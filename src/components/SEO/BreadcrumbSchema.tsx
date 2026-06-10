@@ -15,7 +15,7 @@ export default function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: `https://modullo-parking.at${item.href}`,
+      item: `https://moduloparking.at${item.href}`,
     })),
   };
 

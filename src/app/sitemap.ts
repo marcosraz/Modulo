@@ -48,6 +48,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/ueber-uns", priority: 0.7, changeFrequency: "monthly" },
     { path: "/ratgeber", priority: 0.8, changeFrequency: "weekly" },
     { path: "/referenzen", priority: 0.7, changeFrequency: "monthly" },
+    { path: "/impressum", priority: 0.3, changeFrequency: "monthly" },
+    { path: "/datenschutz", priority: 0.3, changeFrequency: "monthly" },
   ];
 
   for (const page of staticPaths) {

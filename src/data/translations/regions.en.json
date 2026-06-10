@@ -1,0 +1,349 @@
+{
+  "wien": {
+    "shortName": "Vienna",
+    "heroText": "Double your parking capacity in Vienna - even with limited space and strict building regulations.",
+    "description": "As Austria's capital and largest city, Vienna faces unique parking challenges. High land prices, listed heritage buildings and strict building codes call for innovative solutions to optimise parking space.",
+    "challenges": [
+      "Extremely high land prices make every square metre valuable",
+      "Heritage protection complicates structural extensions",
+      "Strict parking-space regulations for new builds",
+      "Limited ceiling heights in period buildings",
+      "Shortage of parking in inner-city districts"
+    ],
+    "solutions": [
+      "Double the number of parking spaces without expanding the footprint",
+      "PARKER-S series designed specifically for low ceiling heights",
+      "Underground PARKER-O systems for heritage-protected areas",
+      "Meeting parking-space requirements in the smallest of spaces",
+      "Multi-level LS-Systems for maximum capacity"
+    ],
+    "faqs": [
+      {
+        "question": "Which parking system is suitable for Vienna's period buildings?",
+        "answer": "For Vienna's period buildings, which typically have low ceiling heights, we recommend the PARKER-S series. These systems can be used from a ceiling height of just 295cm and use inclined platforms for minimal pit depth."
+      },
+      {
+        "question": "How do I comply with Vienna's parking-space regulations?",
+        "answer": "With MODULO parking systems, you can provide the required number of parking spaces on half the area. For new builds, this significantly reduces the underground garage space needed."
+      },
+      {
+        "question": "Are there funding options for parking systems in Vienna?",
+        "answer": "Funding may be available for parking systems that support e-mobility. We are happy to advise you on current funding opportunities."
+      }
+    ],
+    "metaTitle": "Parking Systems Vienna | Parking Platforms & Car Lifts for the Capital",
+    "metaDescription": "MODULO parking systems for Vienna: parking platforms, car lifts and double parkers for underground garages, apartment buildings and commercial use. Consulting & installation in Vienna and the surrounding area.",
+    "keywords": [
+      "parking systems Vienna",
+      "parking platforms Vienna",
+      "car lift Vienna",
+      "double parker Vienna",
+      "underground garage Vienna",
+      "parking space Vienna"
+    ]
+  },
+  "niederoesterreich": {
+    "shortName": "Lower Austria",
+    "heroText": "Space-saving parking solutions for Lower Austria - from St. Pölten to the outskirts of Vienna.",
+    "description": "As Austria's largest province, Lower Austria combines urban centres such as St. Pölten with rural regions. Demand for space-saving parking solutions for single-family homes and residential developments is rising particularly in the areas surrounding Vienna.",
+    "challenges": [
+      "Growing residential areas around Vienna",
+      "Rising number of vehicles per household",
+      "Limited plot sizes in new construction projects",
+      "Retrofitting parking needs in existing buildings",
+      "Lack of space in historic town centres"
+    ],
+    "solutions": [
+      "PARKER-C for private double garages",
+      "STACKER-P10 as a compact solution for small plots",
+      "PARKER-O underground systems for front gardens",
+      "Multi-level systems for residential developments",
+      "Flexible solutions for existing buildings"
+    ],
+    "faqs": [
+      {
+        "question": "Which system for my single-family home in Lower Austria?",
+        "answer": "For single-family homes, we recommend the PARKER-C100 Basic as a cost-effective solution, or the PARKER-O100 for underground installation that leaves your garden untouched."
+      },
+      {
+        "question": "Can parking systems be retrofitted?",
+        "answer": "Yes, many of our systems are suitable for retrofitting. The STACKER-P10 needs only 2.5m of width and can often be installed without major structural changes."
+      }
+    ],
+    "metaTitle": "Parking Systems Lower Austria | Parking Platforms for Lower Austria",
+    "metaDescription": "MODULO parking systems for Lower Austria: car lifts and double parkers for single-family homes, residential developments and commercial use in St. Pölten, Baden, Mödling and throughout Lower Austria.",
+    "keywords": [
+      "parking systems Lower Austria",
+      "parking platforms Lower Austria",
+      "car lift St. Pölten",
+      "double parker Vienna outskirts",
+      "parking platform Mödling"
+    ]
+  },
+  "oberoesterreich": {
+    "shortName": "Upper Austria",
+    "heroText": "Efficient parking solutions for Upper Austria's industry and private households.",
+    "description": "As an industrial province with hubs such as Linz, Wels and Steyr, Upper Austria has a strong demand for efficient parking solutions for commercial and industrial use. Private households also benefit from space-saving systems.",
+    "challenges": [
+      "High parking demand in industrial zones",
+      "Employee parking at growing companies",
+      "Limited space in urban centres",
+      "Apartment buildings with too few parking spaces",
+      "Historic town centres with a lack of space"
+    ],
+    "solutions": [
+      "Scalable LS-Systems for commercial operations",
+      "PALLET-Systems for automated large-scale car parks",
+      "PARKER-C for apartment buildings",
+      "Compact STACKER for tight conditions",
+      "Tailored solutions for industrial customers"
+    ],
+    "faqs": [
+      {
+        "question": "Which system for commercial businesses in Upper Austria?",
+        "answer": "For commercial businesses, depending on requirements, we recommend the LS-Systems with up to 3 levels or the fully automated PALLET-System for maximum efficiency with minimal staff input."
+      },
+      {
+        "question": "Do you offer service throughout Upper Austria?",
+        "answer": "Yes, we offer consulting, installation and service throughout Upper Austria - from Linz to the Mühlviertel, from the Innviertel to the Salzkammergut."
+      }
+    ],
+    "metaTitle": "Parking Systems Upper Austria | Parking Platforms Linz & Upper Austria",
+    "metaDescription": "MODULO parking systems for Upper Austria: industrial and private parking solutions in Linz, Wels, Steyr and throughout Upper Austria. Car lifts, double parkers and automated systems.",
+    "keywords": [
+      "parking systems Upper Austria",
+      "parking platforms Linz",
+      "car lift Wels",
+      "double parker Steyr",
+      "commercial parking systems Upper Austria"
+    ]
+  },
+  "salzburg": {
+    "shortName": "Salzburg",
+    "heroText": "Discreet parking solutions for Salzburg - from the historic old town to modern residential projects.",
+    "description": "The festival city of Salzburg combines historic heritage with modern living. Limited space in the old town and strict building regulations call for well-thought-out parking solutions that blend in harmoniously.",
+    "challenges": [
+      "UNESCO World Heritage old town with strict requirements",
+      "High tourism with seasonal parking pressure",
+      "Limited expansion options for hotels",
+      "Steep hillside locations complicate underground garage construction",
+      "Premium properties with high demands"
+    ],
+    "solutions": [
+      "Underground PARKER-O for heritage-protected areas",
+      "Automated PALLET-Systems for hotels",
+      "Compact STACKER for hillside locations",
+      "Multi-level LS-Systems for new residential projects",
+      "Premium configurations for upscale requirements"
+    ],
+    "faqs": [
+      {
+        "question": "What solutions are available for hotels in Salzburg?",
+        "answer": "For hotels, we recommend the PALLET-System with fully automated operation. Guests drop off their vehicle and the system takes over automatically - perfect for concierge service."
+      },
+      {
+        "question": "Are parking systems possible in Salzburg's old town?",
+        "answer": "Yes, with the underground PARKER-O100 you can create parking spaces even in the sensitive old town area. The surface remains untouched and blends in harmoniously."
+      }
+    ],
+    "metaTitle": "Parking Systems Salzburg | Parking Platforms for City & Country",
+    "metaDescription": "MODULO parking systems for Salzburg: discreet parking platforms for the festival city, car lifts for residential projects and automated systems for hotels.",
+    "keywords": [
+      "parking systems Salzburg",
+      "parking platforms Salzburg city",
+      "car lift Salzburg",
+      "hotel parking system",
+      "underground garage Salzburg"
+    ]
+  },
+  "tirol": {
+    "shortName": "Tyrol",
+    "heroText": "Robust parking solutions for Tyrol's demanding alpine conditions.",
+    "description": "In the Tyrolean Alps, building land is especially valuable. Steep slopes, snow loads and the demands of tourism place particular requirements on parking systems. MODULO offers robust solutions for alpine conditions.",
+    "challenges": [
+      "Limited building land in valley locations",
+      "Steep hillside locations complicate garage construction",
+      "High snow loads and alpine weather",
+      "Seasonal parking pressure from tourism",
+      "Premium chalets with limited plot size"
+    ],
+    "solutions": [
+      "Fully galvanised construction for snow and moisture",
+      "PARKER-S for hillside locations with height restrictions",
+      "STACKER-V10 as the lightest variant for rooftop garages",
+      "Underground systems for chalets",
+      "Robust systems for commercial ski-park facilities"
+    ],
+    "faqs": [
+      {
+        "question": "Are MODULO systems suitable for alpine winters?",
+        "answer": "Yes, all MODULO systems are fully galvanised and therefore optimally protected against corrosion from snow, road salt and moisture. The robust steel construction withstands alpine conditions."
+      },
+      {
+        "question": "Which system for chalets in Tyrol?",
+        "answer": "For chalets, depending on the situation, we recommend the PARKER-O100 (underground) for discreet integration or the STACKER-V10 for existing garages with limited height."
+      }
+    ],
+    "metaTitle": "Parking Systems Tyrol | Parking Platforms Innsbruck & the Alpine Region",
+    "metaDescription": "MODULO parking systems for Tyrol: robust parking platforms for alpine conditions in Innsbruck, Kitzbühel, Kufstein and the Tyrolean ski resorts.",
+    "keywords": [
+      "parking systems Tyrol",
+      "parking platforms Innsbruck",
+      "car lift Kitzbühel",
+      "ski resort parking",
+      "alpine parking systems"
+    ]
+  },
+  "steiermark": {
+    "shortName": "Styria",
+    "heroText": "Flexible parking solutions for Styria - from Graz to Upper Styria.",
+    "description": "Styria combines the provincial capital of Graz with rural regions and industrial sites. The diversity of requirements - from urban underground garages to commercial parking solutions - calls for flexible systems.",
+    "challenges": [
+      "Urban densification pressure in Graz",
+      "Industrial sites with employee parking needs",
+      "Growing residential areas on the city outskirts",
+      "Historic Graz old town",
+      "Diverse requirements depending on the region"
+    ],
+    "solutions": [
+      "LS-Systems for urban apartment buildings",
+      "PALLET-Systems for industrial operations",
+      "PARKER-C for residential developments on the city outskirts",
+      "Discreet solutions for the old town",
+      "Scalable systems for different sizes"
+    ],
+    "faqs": [
+      {
+        "question": "Which systems for new construction projects in Graz?",
+        "answer": "For new construction projects in Graz, we recommend early involvement in the planning. With LS-Systems, you can achieve maximum parking spaces on a minimal footprint."
+      },
+      {
+        "question": "Do you offer service for industrial businesses?",
+        "answer": "Yes, we look after numerous industrial customers in Styria. From needs analysis through installation to 24/7 service - everything from a single source."
+      }
+    ],
+    "metaTitle": "Parking Systems Styria | Parking Platforms Graz & Surroundings",
+    "metaDescription": "MODULO parking systems for Styria: parking platforms for Graz, Leoben and Styrian industry. Car lifts, double parkers and commercial solutions.",
+    "keywords": [
+      "parking systems Styria",
+      "parking platforms Graz",
+      "car lift Leoben",
+      "commercial parking systems Styria",
+      "double parker Graz"
+    ]
+  },
+  "kaernten": {
+    "shortName": "Carinthia",
+    "heroText": "Parking solutions for Carinthia's lakes and cities - discreet and space-saving.",
+    "description": "Carinthia's lakes and mountains make the province a tourist hotspot. Hotels, holiday apartments and residential developments in these sought-after locations benefit from space-saving parking solutions.",
+    "challenges": [
+      "Premium lakeside locations with limited building land",
+      "Seasonal tourism with parking peaks",
+      "Hotels with too few guest parking spaces",
+      "Growing residential construction in Klagenfurt",
+      "Lack of space in tourist town centres"
+    ],
+    "solutions": [
+      "Underground systems for lakeside plots",
+      "Automated PALLET-Systems for hotels",
+      "Compact STACKER for small plots",
+      "Multi-level systems for urban projects",
+      "Seasonal capacity expansion"
+    ],
+    "faqs": [
+      {
+        "question": "What solutions for hotels at Lake Wörthersee?",
+        "answer": "For lakeside hotels we offer underground PARKER-O systems that do not impair the valuable lake view, as well as automated PALLET-Systems for convenient valet parking."
+      },
+      {
+        "question": "Can parking systems be expanded seasonally?",
+        "answer": "Yes, with modular systems you can adjust capacity flexibly. Additional parking-space levels can be activated for the high season."
+      }
+    ],
+    "metaTitle": "Parking Systems Carinthia | Parking Platforms Klagenfurt & the Lake Region",
+    "metaDescription": "MODULO parking systems for Carinthia: parking platforms for hotels at Lake Wörthersee, residential developments in Klagenfurt and tourist facilities throughout Carinthia.",
+    "keywords": [
+      "parking systems Carinthia",
+      "parking platforms Klagenfurt",
+      "car lift Wörthersee",
+      "hotel parking Carinthia",
+      "double parker Villach"
+    ]
+  },
+  "burgenland": {
+    "shortName": "Burgenland",
+    "heroText": "Modern parking solutions for the growing Burgenland - from Eisenstadt to Lake Neusiedl.",
+    "description": "Burgenland combines winegrowing, tourism and growing residential areas close to Vienna. Demand for modern parking solutions is rising particularly in northern Burgenland due to its proximity to the federal capital.",
+    "challenges": [
+      "Strong population growth in northern Burgenland",
+      "Commuter traffic to Vienna",
+      "Tourism at Lake Neusiedl",
+      "Wineries with guest parking needs",
+      "New residential developments requiring parking spaces"
+    ],
+    "solutions": [
+      "PARKER-C for single-family homes and double garages",
+      "Compact systems for wineries",
+      "Multi-level solutions for residential projects",
+      "Flexible systems for seasonal tourism",
+      "Retrofit solutions for existing buildings"
+    ],
+    "faqs": [
+      {
+        "question": "Which system for wineries in Burgenland?",
+        "answer": "For wineries with guest traffic, we recommend the PARKER-C100 or a compact STACKER system. This lets you double the parking spaces for wine tastings without using additional space."
+      },
+      {
+        "question": "Do you also offer service in southern Burgenland?",
+        "answer": "Yes, we cover the entire Burgenland from Neusiedl to Jennersdorf. Travel for consulting and service is possible throughout the province."
+      }
+    ],
+    "metaTitle": "Parking Systems Burgenland | Parking Platforms Eisenstadt & Surroundings",
+    "metaDescription": "MODULO parking systems for Burgenland: parking platforms for wineries, residential developments in Eisenstadt and the growing housing market near Vienna.",
+    "keywords": [
+      "parking systems Burgenland",
+      "parking platforms Eisenstadt",
+      "car lift northern Burgenland",
+      "winery parking",
+      "double parker Neusiedl"
+    ]
+  },
+  "vorarlberg": {
+    "shortName": "Vorarlberg",
+    "heroText": "Space-saving parking solutions for Vorarlberg's limited valley areas.",
+    "description": "As Austria's westernmost province, Vorarlberg combines alpine topography with economic strength. Limited valley areas, high land prices and snow loads call for intelligent parking solutions.",
+    "challenges": [
+      "Extremely limited valley areas",
+      "High land prices in the Rhine Valley",
+      "Alpine weather with high snow loads",
+      "Economically strong region with parking pressure",
+      "Location near the border with commuter traffic"
+    ],
+    "solutions": [
+      "Fully galvanised systems for alpine conditions",
+      "Multi-level LS-Systems for maximum utilisation",
+      "PARKER-S for hillside locations and narrow valleys",
+      "Commercial solutions for industrial operations",
+      "Robust construction for snow loads"
+    ],
+    "faqs": [
+      {
+        "question": "Are the systems suitable for Vorarlberg winters?",
+        "answer": "Yes, all MODULO systems are fully galvanised and designed for alpine snow loads. The hydraulic systems also operate reliably at low temperatures."
+      },
+      {
+        "question": "What solutions for commercial businesses in the Rhine Valley?",
+        "answer": "For the economically strong businesses in the Rhine Valley, we offer scalable LS-Systems and automated PALLET solutions for efficient employee and visitor parking."
+      }
+    ],
+    "metaTitle": "Parking Systems Vorarlberg | Parking Platforms Bregenz & the Rhine Valley",
+    "metaDescription": "MODULO parking systems for Vorarlberg: robust parking platforms for the Rhine Valley, Bregenz, Dornbirn and the Vorarlberg alpine region.",
+    "keywords": [
+      "parking systems Vorarlberg",
+      "parking platforms Bregenz",
+      "car lift Dornbirn",
+      "Rhine Valley parking system",
+      "alpine parking platforms"
+    ]
+  }
+}

@@ -25,7 +25,7 @@ export const localePrefixes: Record<Locale, string> = {
 // clean URLs); English is served under /en on the Austrian domain.
 export function localeUrl(path: string, locale: Locale): string {
   const p = path === "/" ? "" : path;
-  if (locale === "cs") return `https://moduloparking.cz${p}`;
+  if (locale === "cs") return `https://modulparking.cz${p}`;
   return `https://moduloparking.at${localePrefixes[locale]}${p}`;
 }
 

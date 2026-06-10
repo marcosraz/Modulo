@@ -7,6 +7,7 @@ import TargetGroups from "@/components/TargetGroups";
 import Downloads from "@/components/Downloads";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
+import Reveal from "@/components/Reveal";
 import { FAQSchema } from "@/components/SEO";
 import { getDictionary } from "@/i18n/getDictionary";
 import { type Locale, hreflangAlternates } from "@/i18n/config";
@@ -53,13 +54,13 @@ export default async function Home({
     <>
       <FAQSchema faqs={homepageFAQs} />
       <Header locale={locale} dict={dict} />
-      <main>
+      <main id="main">
         <Hero locale={locale} dict={dict} />
-        <ProductsOverview locale={locale} dict={dict} />
-        <Benefits locale={locale} dict={dict} />
-        <TargetGroups locale={locale} dict={dict} />
-        <Downloads locale={locale} dict={dict} />
-        <CTA locale={locale} dict={dict} />
+        <Reveal><ProductsOverview locale={locale} dict={dict} /></Reveal>
+        <Reveal><Benefits locale={locale} dict={dict} /></Reveal>
+        <Reveal><TargetGroups locale={locale} dict={dict} /></Reveal>
+        <Reveal><Downloads locale={locale} dict={dict} /></Reveal>
+        <Reveal><CTA locale={locale} dict={dict} /></Reveal>
       </main>
       <Footer locale={locale} dict={dict} />
     </>

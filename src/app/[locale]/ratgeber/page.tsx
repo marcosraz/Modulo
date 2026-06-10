@@ -2,7 +2,8 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { articles, articleCategories } from "@/data/articles";
+import { articleCategories, getArticles, getArticleCategoryLabels } from "@/data/articles";
+import ArticleList from "@/components/filters/ArticleList";
 import { BreadcrumbSchema } from "@/components/SEO";
 import { getDictionary } from "@/i18n/getDictionary";
 import { type Locale, hreflangAlternates } from "@/i18n/config";
@@ -56,14 +57,11 @@ export default async function RatgeberPage({
     { name: dict.guidesPage.label, href: localePath("/ratgeber", locale) },
   ];
 
-  const featuredArticles = articles.filter((a) => a.featured);
-  const otherArticles = articles.filter((a) => !a.featured);
-
   return (
     <>
       <BreadcrumbSchema items={breadcrumbs} />
       <Header locale={locale} dict={dict} />
-      <main className="pt-20">
+      <main id="main" className="pt-20">
         {/* Hero Section */}
         <section className="py-24 bg-[var(--background)] relative overflow-hidden">
           <div className="absolute inset-0 grid-pattern" />
@@ -83,128 +81,14 @@ export default async function RatgeberPage({
           </div>
         </section>
 
-        {/* Categories */}
-        <section className="py-8 bg-[var(--background-secondary)] border-b border-[var(--border)]">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="flex flex-wrap gap-2 justify-center">
-              {articleCategories.map((category, index) => (
-                <button
-                  key={category}
-                  className={`px-4 py-2 text-sm font-medium transition-colors ${
-                    index === 0
-                      ? "bg-[var(--modulo-accent)] text-white"
-                      : "border border-[var(--border)] text-[var(--foreground-muted)] hover:border-[var(--modulo-accent)] hover:text-[var(--modulo-accent)]"
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Featured Articles */}
-        {featuredArticles.length > 0 && (
-          <section className="py-16 bg-[var(--background-secondary)]">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <h2 className="text-2xl font-bold text-[var(--foreground)] mb-8">
-                {dict.guidesPage.featuredArticles}
-              </h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {featuredArticles.map((article) => (
-                  <Link
-                    key={article.slug}
-                    href={localePath(`/ratgeber/${article.slug}`, locale)}
-                    className="card group block"
-                  >
-                    <div className="p-6">
-                      <div className="flex items-center gap-3 mb-4">
-                        <span className="px-3 py-1 text-xs font-medium bg-[var(--modulo-accent)]/10 text-[var(--modulo-accent)]">
-                          {article.category}
-                        </span>
-                        <span className="text-xs text-[var(--foreground-muted)]">
-                          {article.readingTime} {dict.guidesPage.readingTime}
-                        </span>
-                      </div>
-                      <h3 className="text-xl font-semibold text-[var(--foreground)] group-hover:text-[var(--modulo-accent)] transition-colors">
-                        {article.title}
-                      </h3>
-                      <p className="mt-3 text-sm text-[var(--foreground-muted)] line-clamp-3">
-                        {article.excerpt}
-                      </p>
-                      <div className="mt-4 text-sm text-[var(--modulo-accent)] flex items-center gap-2">
-                        {dict.guidesPage.readArticle}
-                        <svg
-                          className="w-4 h-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* All Articles */}
-        <section className="py-16 bg-[var(--background)]">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-[var(--foreground)] mb-8">
-              {dict.guidesPage.allArticles}
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {otherArticles.map((article) => (
-                <Link
-                  key={article.slug}
-                  href={localePath(`/ratgeber/${article.slug}`, locale)}
-                  className="flex gap-6 p-6 bg-[var(--background-secondary)] border border-[var(--border)] hover:border-[var(--modulo-accent)] transition-colors group"
-                >
-                  <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-[var(--background)] border border-[var(--border)] text-[var(--modulo-accent)]">
-                    <svg
-                      className="w-8 h-8"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                      />
-                    </svg>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-xs font-medium text-[var(--modulo-accent)]">
-                        {article.category}
-                      </span>
-                      <span className="text-xs text-[var(--foreground-muted)]">
-                        {article.readingTime} {dict.guidesPage.readingTime}
-                      </span>
-                    </div>
-                    <h3 className="font-semibold text-[var(--foreground)] group-hover:text-[var(--modulo-accent)] transition-colors line-clamp-2">
-                      {article.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-[var(--foreground-muted)] line-clamp-2">
-                      {article.excerpt}
-                    </p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* Categories + Articles (client-side filtering, SSR-rendered) */}
+        <ArticleList
+          articles={getArticles(locale as Locale)}
+          categories={articleCategories}
+          categoryLabels={getArticleCategoryLabels(locale as Locale)}
+          locale={locale}
+          dict={dict}
+        />
 
         {/* CTA Section */}
         <section className="py-16 bg-[var(--background-secondary)]">

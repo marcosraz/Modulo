@@ -12,6 +12,9 @@ const cs = {
       menu: "Menu",
       theme: "Motiv",
       austria: "AUSTRIA",
+      skipToContent: "Přejít na obsah",
+      selectLanguage: "Vybrat jazyk",
+      language: "Jazyk",
     },
     footer: {
       description:
@@ -24,8 +27,11 @@ const cs = {
       email: "E-mail",
       location: "Sídlo",
       locationValue: "Rakousko",
-      copyright: "Modullo Parking Austria. Všechna práva vyhrazena.",
+      copyright: "Modulo Parking Austria. Všechna práva vyhrazena.",
       partnerOf: "Partner společnosti",
+      imprint: "Tiráž",
+      privacy: "Ochrana osobních údajů",
+      legalTitle: "Právní informace",
     },
     cta: {
       badge: "Bezplatná konzultace",
@@ -52,9 +58,9 @@ const cs = {
       contactUs: "Kontaktujte nás",
     },
     meta: {
-      siteName: "Modullo Parking Austria",
+      siteName: "Modulo Parking Austria",
       siteTitle:
-        "Modullo Parking Austria | Automatické parkovací systémy a parkovací výtahy",
+        "Modulo Parking Austria | Automatické parkovací systémy a parkovací výtahy",
       siteDescription:
         "Oficiální distribuční partner MODULO v Rakousku. Parkovací platformy, parkovací výtahy, zdvojovače stání a stohovací systémy pro podzemní garáže, bytové domy a komerční objekty. Poradenství a montáž po celém Rakousku.",
     },
@@ -74,6 +80,7 @@ const cs = {
       stat3Label: "podpora",
       ctaPrimary: "Objevte produkty",
       ctaSecondary: "Vyžádat konzultaci",
+      badgeSpec: "4 vozidla · 2 úrovně",
     },
     products: {
       label: "Portfolio produktů",
@@ -420,9 +427,17 @@ const cs = {
       messagePlaceholder:
         "Popište svůj projekt nebo svůj dotaz...",
       submit: "Odeslat zprávu",
+      sending: "Odesílání …",
       successMessage:
         "Děkujeme za vaši zprávu! Ozveme se vám co nejdříve.",
+      errorMessage:
+        "Odeslání se nezdařilo. Zkuste to prosím znovu nebo nás kontaktujte telefonicky.",
       required: "*",
+      validation: {
+        name: "Zadejte prosím své jméno.",
+        email: "Zadejte prosím platnou e-mailovou adresu.",
+        message: "Popište prosím svůj dotaz (alespoň 10 znaků).",
+      },
     },
     info: {
       title: "Kontaktní údaje",
@@ -505,7 +520,7 @@ const cs = {
     meta: {
       title: "Průvodce parkovacími systémy | Znalosti a tipy",
       description: "Průvodce parkovacími systémy: nákupní poradenství, srovnání, náklady a údržba. Vše, co potřebujete vědět o parkovacích platformách, parkovacích výtazích a zdvojovačích stání.",
-      ogTitle: "Průvodce parkovacími systémy | Modullo Parking Austria",
+      ogTitle: "Průvodce parkovacími systémy | Modulo Parking Austria",
       ogDescription: "Znalosti a tipy o parkovacích systémech. Nákupní poradenství, srovnání a tipy na péči.",
     },
   },

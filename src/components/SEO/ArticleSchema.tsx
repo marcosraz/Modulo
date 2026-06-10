@@ -13,32 +13,32 @@ export default function ArticleSchema({
   slug,
   publishedAt,
   updatedAt,
-  author = "Modullo Parking Austria",
+  author = "Modulo Parking Austria",
 }: ArticleSchemaProps) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: title,
     description: description,
-    image: "https://modullo-parking.at/images/logos/MODULO.svg",
+    image: "https://moduloparking.at/images/logos/MODULO.svg",
     author: {
       "@type": "Organization",
       name: author,
-      url: "https://modullo-parking.at",
+      url: "https://moduloparking.at",
     },
     publisher: {
       "@type": "Organization",
-      name: "Modullo Parking Austria",
+      name: "Modulo Parking Austria",
       logo: {
         "@type": "ImageObject",
-        url: "https://modullo-parking.at/images/logos/MODULO.svg",
+        url: "https://moduloparking.at/images/logos/MODULO.svg",
       },
     },
     datePublished: publishedAt,
     dateModified: updatedAt || publishedAt,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://modullo-parking.at/ratgeber/${slug}`,
+      "@id": `https://moduloparking.at/ratgeber/${slug}`,
     },
   };
 

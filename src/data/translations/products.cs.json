@@ -1,0 +1,201 @@
+{
+  "parker-c": {
+    "tagline": "Kompaktní řešení až pro 4 vozidla",
+    "description": "Umožňuje současné parkování až čtyř vozidel s nezávislým přístupem ke každému z nich.",
+    "longDescription": "Parkovací plošina MODULO PARKER-C umožňuje současné parkování až čtyř vozidel, přičemž vjezd a výjezd každého vozidla probíhá nezávisle na ostatních.\n\nToto řešení zdvojnásobuje počet dostupných parkovacích míst bez stavebních úprav a hodí se jak pro soukromé garáže, tak pro větší investiční projekty.\n\nKaždá jednotka je vybavena samostatným ovládacím panelem, který je proti neoprávněnému použití chráněn speciálním klíčem nebo čipy/tokeny. Každý ovládací panel je navíc opatřen tlačítkem nouzového zastavení.",
+    "features": [
+      "Nezávislý přístup ke každému parkovacímu místu",
+      "Stabilní nosná konstrukce s hydraulickým systémem",
+      "Samostatné ovládací panely pro každou jednotku",
+      "Ochrana klíčem, čipy nebo tokeny",
+      "Tlačítko nouzového zastavení na každém ovládacím panelu",
+      "Zdvojnásobení parkovací kapacity bez přístavby"
+    ],
+    "specs": {
+      "vehicles": "2-6",
+      "levels": "2-3 úrovně",
+      "capacity": "2,0-2,6t"
+    },
+    "variants": [
+      {
+        "name": "PARKER-C100",
+        "description": "Nejuniverzálnější varianta"
+      },
+      {
+        "name": "PARKER-C100 Basic",
+        "description": "Cenově dostupné základní řešení"
+      },
+      {
+        "name": "PARKER-C105",
+        "description": "Prémiová plošina s protiskluzovým povrchem"
+      },
+      {
+        "name": "PARKER-C120 Basic",
+        "description": "Systém se 3 úrovněmi"
+      }
+    ]
+  },
+  "parker-s": {
+    "tagline": "Úspora místa při nízkých stropech",
+    "description": "Systém se sklopenými plošinami pro garáže s omezenou výškou stropu nebo omezenou hloubkou jámy.",
+    "longDescription": "Systém PARKER-S je určen speciálně pro projekty s omezenou výškou stropu nebo omezenou hloubkou jámy. Dolní plošina má mírný sklon, díky čemuž lze v garážích zdvojnásobit parkovací prostor.\n\nMODULO PARKER-S je určen pro podzemní garáže a garáže. Je však navržen především pro investice, kde existují omezení týkající se výšky stropu nebo hloubky jámy.",
+    "features": [
+      "Optimalizováno pro nízké výšky stropu",
+      "Sklopené plošiny pro minimální hloubku jámy",
+      "Zdvojnásobení parkovacích míst",
+      "Hydraulický systém s nejvyšší bezpečností",
+      "Flexibilní možnosti využití",
+      "Ruční nebo automatické ovládání"
+    ],
+    "specs": {
+      "vehicles": "2-4",
+      "levels": "2 úrovně",
+      "capacity": "2,0-2,6t"
+    },
+    "variants": [
+      {
+        "name": "PARKER-S100"
+      },
+      {
+        "name": "PARKER-S100 Basic"
+      },
+      {
+        "name": "PARKER-S105"
+      },
+      {
+        "name": "PARKER-S120"
+      },
+      {
+        "name": "PARKER-S120 Basic"
+      }
+    ]
+  },
+  "parker-o": {
+    "tagline": "Podpovrchový systém pro soukromé uživatele",
+    "description": "Samostatná plošina pro soukromá parkovací místa. Konstrukce zcela mizí pod zemí.",
+    "longDescription": "MODULO PARKER-O100 je nezávislá parkovací plošina navržená speciálně pro soukromé uživatele. Konstrukce je vedena zcela pod zemí, díky čemuž lze povrch řešit zcela bez přerušení.\n\nPlošinu lze integrovat jako součást příjezdové cesty nebo vjezdu na dvůr. Ideální pro domácnosti se dvěma vozidly, které chtějí svou plochu využít co nejlépe.",
+    "features": [
+      "Zcela podzemní konstrukce",
+      "Souvislé řešení povrchu",
+      "Diskrétní rozšíření parkovacího prostoru",
+      "Navrženo pro 2 vozidla",
+      "Integrace do stávajícího prostředí",
+      "Ideální pro soukromá parkovací místa"
+    ],
+    "specs": {
+      "vehicles": "2",
+      "levels": "2 úrovně",
+      "capacity": "2,0t"
+    }
+  },
+  "stacker-p": {
+    "tagline": "Kompaktní a cenově výhodné",
+    "description": "Úsporný parkovací systém pro malé firmy, hotely a bytové domy. Vyžaduje šířku pouhých 2,5 m.",
+    "longDescription": "MODULO STACKER-P10 je určen pro objekty s nízkou potřebou parkovacích míst, jako jsou malé komerční provozy, menší bytové domy a hotely.\n\nSystém zaujme uživatelsky přívětivým ovládáním a nekomplikovanou instalací. Se šířkou pouhých 2,5 metru se vejde na standardní parkovací místo. Plošina zcela uzavírá dolní parkovací místo a chrání zaparkované vozidlo.",
+    "features": [
+      "Vyžaduje šířku pouhých 2,5 m",
+      "Úplná ochrana dolního vozidla",
+      "Snadná a nekomplikovaná instalace",
+      "Uživatelsky přívětivé ovládání",
+      "Variabilní nastavení výšky",
+      "Cenově dostupné řešení"
+    ],
+    "specs": {
+      "vehicles": "2",
+      "levels": "2 úrovně",
+      "capacity": "2,0t"
+    },
+    "variants": [
+      {
+        "name": "STACKER-P10",
+        "description": "Standardní verze"
+      },
+      {
+        "name": "STACKER-P10 Basic",
+        "description": "Cenově dostupná základní verze"
+      }
+    ]
+  },
+  "stacker-v": {
+    "tagline": "Nejlehčí varianta",
+    "description": "Inovativní parkovací systém pro garáže s omezenou výškou stropu. Nejlehčí ze všech parkovacích plošin MODULO.",
+    "longDescription": "MODULO STACKER-V10 je inovativní parkovací systém pro garáže s omezenou výškou stropu. Horní plošina je zalomená a sklápí se, aby byl prostor využit co nejlépe.\n\nJedná se o nejlehčí ze všech parkovacích plošin MODULO, která spojuje flexibilitu, bezpečnost a maximální využití prostoru. Ideální pro bytové domy a veřejné objekty.",
+    "features": [
+      "Nejlehčí parkovací plošina MODULO",
+      "Optimalizováno pro nízké výšky stropu",
+      "Zalomená horní plošina",
+      "Vyžaduje šířku pouhých 2,5 m",
+      "Vysoká flexibilita a bezpečnost",
+      "Snadná instalace"
+    ],
+    "specs": {
+      "vehicles": "2",
+      "levels": "2 úrovně",
+      "capacity": "2,0t"
+    }
+  },
+  "ls-system": {
+    "tagline": "Až 3 úrovně a automatizace",
+    "description": "Vícepodlažní systém až se třemi úrovněmi. Volitelně s posuvnými vraty a úplnou automatizací.",
+    "longDescription": "MODULO LS je systém nezávislých parkovacích plošin až se třemi úrovněmi: podzemní (-1), v úrovni terénu (0) a nadzemní (+1).\n\nSystém umožňuje volitelné systémy posuvných vrat a úplnou automatizaci, díky čemuž odpadá nutnost vystupovat při vyžádání vozidla. Plošiny na úrovni 0 se pohybují vodorovně, zatímco plošiny na úrovních -1 a +1 se pohybují svisle.",
+    "features": [
+      "Až 3 úrovně (-1, 0, +1)",
+      "Nezávislá parkovací místa na každé úrovni",
+      "Volitelné systémy posuvných vrat",
+      "Možnost úplné automatizace",
+      "Ovládání dálkovým ovladačem",
+      "Flexibilní konfigurace"
+    ],
+    "specs": {
+      "vehicles": "6+",
+      "levels": "2-3 úrovně",
+      "capacity": "2,0t"
+    },
+    "variants": [
+      {
+        "name": "LS1000",
+        "description": "2 úrovně (0, +1)"
+      },
+      {
+        "name": "LS1100",
+        "description": "2 úrovně (-1, 0)"
+      },
+      {
+        "name": "LS1110",
+        "description": "3 úrovně (-1, 0, +1)"
+      },
+      {
+        "name": "LS1200",
+        "description": "Rozšířená verze"
+      }
+    ]
+  },
+  "pallet": {
+    "tagline": "Automatické posuvné palety",
+    "description": "Automatizovaný parkovací systém s posuvnými paletami. Spolehlivě zabraňuje nesprávnému zaparkování a kolizím.",
+    "longDescription": "MODULO PALLET je automatizovaný parkovací systém založený na automatických posuvných paletách. Na rozdíl od ostatních plošin MODULO neumožňuje stohované, nýbrž plně automatické parkování ve vymezeném prostoru.\n\nSystém spolehlivě zabraňuje nesprávně odstaveným vozidlům a kolizím. Díky předem definovaným trasám palet výrazně zmenšuje manévrovací plochu a je ideální pro lokality s výškovými omezeními.",
+    "features": [
+      "Automatické posuvné palety",
+      "Zabraňuje nesprávnému zaparkování",
+      "Zmenšuje manévrovací plochu",
+      "Flexibilní konfigurace",
+      "Ideální při výškových omezeních",
+      "Plně automatický provoz"
+    ],
+    "specs": {
+      "vehicles": "variabilní",
+      "levels": "1 úroveň",
+      "capacity": "2,0t"
+    },
+    "variants": [
+      {
+        "name": "PALLET-T10",
+        "description": "Standardní verze"
+      },
+      {
+        "name": "PALLET-L10",
+        "description": "Rozšířená verze"
+      }
+    ]
+  }
+}

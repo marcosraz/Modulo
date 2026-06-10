@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
-/* ===== DARK MODE (Default) ===== */
+/* ============================================================
+   DARK MODE (Default)
+   ============================================================ */
 :root {
   /* Base Colors */
   --modulo-black: #0A0A0A;
-  --modulo-charcoal: #1A1A1A;
+  --modulo-charcoal: #16191D;
   --modulo-steel: #3D4550;
   --modulo-silver: #B0B8C4;
   --modulo-light: #FFFFFF;
@@ -15,28 +17,77 @@
   --modulo-accent-light: #3b82f6;
   --modulo-accent-dark: #1d4ed8;
 
+  /* Surface elevation scale (cool graphite) */
+  --surface-1: #121417;
+  --surface-2: #16191D;
+  --surface-3: #1C2026;
+  /* Faint top-light sheen layered over a surface for depth */
+  --surface-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0) 140px);
+  /* Backdrop behind product imagery so dark photos separate from the page */
+  --image-well: radial-gradient(120% 90% at 50% 30%, #1E232A 0%, #14171B 60%, #0E1115 100%);
+
   /* Semantic (Dark Mode) */
   --background: var(--modulo-black);
   --background-secondary: var(--modulo-charcoal);
   --foreground: var(--modulo-light);
   --foreground-muted: var(--modulo-silver);
-  --border: var(--modulo-steel);
+  --border: #262B31;
+  --border-strong: #3A424C;
+
+  /* Grid pattern line color (themable) */
+  --grid-line: rgba(37, 99, 235, 0.06);
+
+  /* Radius scale (tight, technical) */
+  --radius-sharp: 2px;
+  --radius-base: 4px;
+  --radius-lg: 6px;
+
+  /* Layered shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 0 1px rgba(37, 99, 235, 0.45), 0 14px 36px rgba(37, 99, 235, 0.20);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --dur-slow: 500ms;
+
+  /* Layout rhythm */
+  --section-pad: clamp(4rem, 8vw, 7rem);
 }
 
-/* ===== LIGHT MODE ===== */
+/* ============================================================
+   LIGHT MODE
+   ============================================================ */
 [data-theme="light"] {
   --modulo-black: #FFFFFF;
-  --modulo-charcoal: #F3F4F6;
+  --modulo-charcoal: #F4F6F8;
   --modulo-steel: #D1D5DB;
-  --modulo-silver: #6B7280;
+  --modulo-silver: #4B5563; /* AA: ~7:1 on white */
   --modulo-light: #111827;
   --modulo-white: #FFFFFF;
 
+  --surface-1: #FAFBFC;
+  --surface-2: #FFFFFF;
+  --surface-3: #FFFFFF;
+  --surface-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 140px);
+  --image-well: radial-gradient(120% 90% at 50% 30%, #FFFFFF 0%, #F1F3F6 70%, #E9EDF2 100%);
+
   --background: #FFFFFF;
-  --background-secondary: #F3F4F6;
+  --background-secondary: #F4F6F8;
   --foreground: #111827;
-  --foreground-muted: #6B7280;
-  --border: #D1D5DB;
+  --foreground-muted: #4B5563;
+  --border: #E5E7EB;
+  --border-strong: #D1D5DB;
+
+  --grid-line: rgba(17, 24, 39, 0.045);
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 6px 20px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 18px 44px rgba(15, 23, 42, 0.12);
+  --shadow-glow: 0 0 0 1px rgba(37, 99, 235, 0.35), 0 14px 32px rgba(37, 99, 235, 0.14);
 }
 
 @theme inline {
@@ -65,139 +116,323 @@ body {
   color: var(--foreground);
   font-family: var(--font-space-grotesk), system-ui, sans-serif;
   line-height: 1.6;
+}
+
+/* Theme transition only enabled after first paint to avoid FOUC flash */
+.theme-ready body,
+body.theme-ready {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Selection styling */
 ::selection {
   background: var(--modulo-accent);
-  color: white;
+  color: #fff;
+}
+
+/* ============================================================
+   ACCESSIBILITY: focus, reduced motion, skip link
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid var(--modulo-accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sharp);
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--modulo-accent);
+  outline-offset: 1px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  background: var(--modulo-accent);
+  color: #fff;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-base);
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-fade-up,
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .btn-primary:hover,
+  .card--interactive:hover {
+    transform: none !important;
+  }
 }
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
-
 ::-webkit-scrollbar-track {
   background: var(--background-secondary);
 }
-
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 4px;
+  background: var(--border-strong);
+  border-radius: 5px;
+  border: 2px solid var(--background-secondary);
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: var(--modulo-accent);
 }
 
-/* Grid background pattern */
+/* ============================================================
+   DECORATIVE BACKGROUNDS
+   ============================================================ */
 .grid-pattern {
   background-image:
-    linear-gradient(rgba(37, 99, 235, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
-  background-size: 60px 60px;
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 100% 80% at 50% 0%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 100% 80% at 50% 0%, #000 40%, transparent 100%);
 }
 
-/* Gradient overlays */
 .gradient-radial {
-  background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.10) 0%, transparent 70%);
 }
 
 .gradient-fade-down {
   background: linear-gradient(to bottom, transparent 0%, var(--background) 100%);
 }
 
-/* Text utilities */
+/* Image well: backdrop for product imagery, themed */
+.image-well {
+  background: var(--image-well);
+  position: relative;
+}
+.image-well::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+}
+[data-theme="light"] .image-well::after {
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.04);
+}
+
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
 .text-gradient {
-  background: linear-gradient(135deg, var(--modulo-accent) 0%, var(--modulo-accent-light) 100%);
+  background: linear-gradient(105deg, var(--modulo-accent) 0%, var(--modulo-accent-light) 55%, #60a5fa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Button base */
+/* Solid accent + technical underline for interior section headers */
+.accent-text {
+  color: var(--modulo-accent);
+}
+.accent-underline {
+  box-shadow: inset 0 -0.14em 0 rgba(37, 99, 235, 0.35);
+}
+
+.h-display {
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+}
+.h-section {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.018em;
+  font-weight: 700;
+}
+
+/* Technical label styling */
+.tech-label {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--modulo-accent);
+  font-weight: 500;
+}
+[data-theme="light"] .tech-label {
+  color: var(--modulo-accent-dark); /* darker for AA on light */
+}
+
+/* Number highlight */
+.stat-number {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-weight: 700;
+  font-size: clamp(2rem, 7vw, 3.5rem);
+  line-height: 1;
+  color: var(--modulo-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
 .btn-primary {
   background: var(--modulo-accent);
   color: #FFFFFF;
   font-weight: 600;
   padding: 0.875rem 2rem;
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  border-radius: var(--radius-base);
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out), background-color var(--dur-fast) ease;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-size: 0.875rem;
+  box-shadow: var(--shadow-sm);
 }
-
 .btn-primary:hover {
   background: var(--modulo-accent-light);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
+  box-shadow: 0 10px 28px rgba(37, 99, 235, 0.42);
+}
+.btn-primary:active {
+  transform: translateY(0);
 }
 
 .btn-outline {
   background: transparent;
   color: var(--foreground);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
   font-weight: 500;
   padding: 0.875rem 2rem;
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  border-radius: var(--radius-base);
+  transition: border-color var(--dur-fast) ease, color var(--dur-fast) ease, background-color var(--dur-fast) ease;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-size: 0.875rem;
 }
-
 .btn-outline:hover {
   border-color: var(--modulo-accent);
   color: var(--modulo-accent);
+  background: rgba(37, 99, 235, 0.06);
 }
 
-/* Card styling */
+/* ============================================================
+   CARDS
+   ============================================================ */
 .card {
-  background: var(--background-secondary);
+  background-color: var(--surface-3);
+  background-image: var(--surface-sheen);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out), border-color var(--dur-base) ease;
 }
 
+/* Default .card keeps a subtle interactive lift (back-compat) */
 .card:hover {
-  border-color: var(--modulo-accent);
+  border-color: var(--border-strong);
   transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
 }
 
-[data-theme="light"] .card:hover {
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
+/* Flat variant: no lift, used in dense grids (benefits, target groups) */
+.card--flat {
+  border-radius: var(--radius-base);
+}
+.card--flat:hover {
+  transform: none;
+  border-color: var(--modulo-accent);
+  box-shadow: var(--shadow-md);
 }
 
-/* Animated border */
+/* Interactive variant: lift + accent glow ring (products, downloads) */
+.card--interactive:hover {
+  border-color: rgba(37, 99, 235, 0.5);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+/* ============================================================
+   BADGES & CHIPS
+   ============================================================ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-sharp);
+  line-height: 1;
+}
+.badge--solid {
+  background: var(--modulo-accent);
+  color: #fff;
+}
+.badge--ghost {
+  background: rgba(37, 99, 235, 0.10);
+  border: 1px solid rgba(37, 99, 235, 0.32);
+  color: var(--modulo-accent);
+}
+[data-theme="light"] .badge--ghost {
+  color: var(--modulo-accent-dark);
+}
+
+/* Spec chips (mono, per-theme surface) */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-sharp);
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+}
+[data-theme="light"] .chip {
+  background: var(--background-secondary);
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
 @keyframes border-pulse {
   0%, 100% { border-color: var(--border); }
   50% { border-color: var(--modulo-accent); }
 }
-
 .border-animate {
   animation: border-pulse 3s ease-in-out infinite;
 }
 
-/* Staggered fade-in animations */
 @keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
 .animate-fade-up {
-  animation: fade-up 0.8s ease-out forwards;
+  animation: fade-up 0.8s var(--ease-out) forwards;
   opacity: 0;
 }
 
@@ -208,83 +443,184 @@ body {
 .delay-500 { animation-delay: 0.5s; }
 .delay-600 { animation-delay: 0.6s; }
 
+/* Scroll reveal (driven by Reveal client component adding .is-visible) */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
 /* Section divider */
 .section-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
 }
 
-/* Technical label styling */
-.tech-label {
-  font-family: var(--font-jetbrains-mono), monospace;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--modulo-accent);
-}
-
-/* Number highlight */
-.stat-number {
-  font-family: var(--font-jetbrains-mono), monospace;
-  font-weight: 700;
-  font-size: 3.5rem;
-  line-height: 1;
-  color: var(--modulo-accent);
-}
-
-/* Image container with technical corners */
+/* ============================================================
+   TECHNICAL IMAGE FRAME
+   ============================================================ */
 .tech-frame {
   position: relative;
 }
-
 .tech-frame::before,
 .tech-frame::after {
   content: '';
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border: 2px solid var(--modulo-accent);
+  z-index: 1;
 }
-
 .tech-frame::before {
-  top: -4px;
-  left: -4px;
+  top: -5px;
+  left: -5px;
   border-right: none;
   border-bottom: none;
 }
-
 .tech-frame::after {
-  bottom: -4px;
-  right: -4px;
+  bottom: -5px;
+  right: -5px;
   border-left: none;
   border-top: none;
 }
 
-/* Logo theming */
+/* ============================================================
+   LOGO + THEME TOGGLE
+   ============================================================ */
 .logo-themed {
   filter: brightness(0) invert(1);
 }
-
 [data-theme="light"] .logo-themed {
   filter: brightness(0);
 }
 
-/* Theme toggle button */
 .theme-toggle {
   width: 40px;
   height: 40px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--background-secondary);
+  border-radius: var(--radius-base);
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
   color: var(--foreground);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: border-color var(--dur-fast) ease, color var(--dur-fast) ease, background-color var(--dur-fast) ease;
 }
-
 .theme-toggle:hover {
   border-color: var(--modulo-accent);
   color: var(--modulo-accent);
+}
+
+/* Both icons are always rendered (identical SSR/client markup → no hydration
+   mismatch); CSS shows the correct one for the active theme. */
+.theme-icon-moon {
+  display: none;
+}
+[data-theme="light"] .theme-icon-sun {
+  display: none;
+}
+[data-theme="light"] .theme-icon-moon {
+  display: block;
+}
+
+/* ============================================================
+   ARTICLE PROSE (technical voice)
+   ============================================================ */
+.article-body {
+  max-width: 68ch;
+  color: var(--foreground-muted);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+.article-body h2 {
+  color: var(--foreground);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.article-body h3 {
+  color: var(--foreground);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+.article-body p {
+  margin-bottom: 1.25rem;
+}
+.article-body strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+.article-body a {
+  color: var(--modulo-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.article-body ul,
+.article-body ol {
+  margin: 1.25rem 0;
+  padding-left: 1.5rem;
+}
+.article-body ul { list-style: none; padding-left: 0; }
+.article-body ul li {
+  position: relative;
+  padding-left: 1.75rem;
+  margin-bottom: 0.625rem;
+}
+.article-body ul li::before {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  top: 0.65em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 2px solid var(--modulo-accent);
+  border-right: none;
+  border-bottom: none;
+  transform: rotate(45deg) translate(0.1rem, 0);
+}
+.article-body ol { list-style: decimal; }
+.article-body ol li { margin-bottom: 0.625rem; padding-left: 0.25rem; }
+.article-body blockquote {
+  border-left: 3px solid var(--modulo-accent);
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  margin: 1.5rem 0;
+  color: var(--foreground);
+  font-style: italic;
+}
+.article-body code {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.9em;
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sharp);
+  padding: 0.1rem 0.35rem;
+}
+.article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+.article-body th {
+  text-align: left;
+  background: var(--surface-3);
+  color: var(--foreground);
+  font-weight: 600;
+}
+.article-body th,
+.article-body td {
+  border: 1px solid var(--border);
+  padding: 0.625rem 0.875rem;
 }

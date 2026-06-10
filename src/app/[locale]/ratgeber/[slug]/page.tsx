@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { articles, getArticleBySlug } from "@/data/articles";
+import { articles, getArticleBySlug, getArticles } from "@/data/articles";
 import { BreadcrumbSchema, ArticleSchema } from "@/components/SEO";
 import { getDictionary } from "@/i18n/getDictionary";
 import { type Locale, locales, hreflangAlternates } from "@/i18n/config";
@@ -25,7 +25,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = getArticleBySlug(slug, locale as Locale);
 
   if (!article) {
     return { title: "Artikel nicht gefunden" };
@@ -61,7 +61,7 @@ export default async function ArticlePage({
 }) {
   const { locale, slug } = await params;
   const dict = await getDictionary(locale as Locale);
-  const article = getArticleBySlug(slug);
+  const article = getArticleBySlug(slug, locale as Locale);
 
   if (!article) {
     notFound();
@@ -73,7 +73,7 @@ export default async function ArticlePage({
     { name: article.title, href: localePath(`/ratgeber/${slug}`, locale) },
   ];
 
-  const relatedArticles = articles
+  const relatedArticles = getArticles(locale as Locale)
     .filter((a) => a.slug !== slug)
     .slice(0, 3);
 
@@ -91,7 +91,7 @@ export default async function ArticlePage({
         author={article.author}
       />
       <Header locale={locale} dict={dict} />
-      <main className="pt-20">
+      <main id="main" className="pt-20">
         {/* Article Header */}
         <section className="py-16 bg-[var(--background)] relative overflow-hidden">
           <div className="absolute inset-0 grid-pattern" />
@@ -166,14 +166,12 @@ export default async function ArticlePage({
         {/* Article Content */}
         <section className="py-16 bg-[var(--background-secondary)]">
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
-            <article className="prose prose-invert prose-lg max-w-none">
-              <div
-                className="article-content text-[var(--foreground-muted)]"
-                dangerouslySetInnerHTML={{
-                  __html: formatContent(article.content),
-                }}
-              />
-            </article>
+            <article
+              className="article-body"
+              dangerouslySetInnerHTML={{
+                __html: formatContent(article.content),
+              }}
+            />
           </div>
         </section>
 
@@ -266,17 +264,91 @@ export default async function ArticlePage({
   );
 }
 
+function escapeHtml(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function inline(s: string): string {
+  return escapeHtml(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+}
+
+/**
+ * Renders the lightweight markdown used in article content into well-formed,
+ * semantic HTML: balanced paragraphs, real <ul>/<li>, and proper
+ * <table><thead>/<tbody> with the separator row skipped. Styled by
+ * `.article-body` in globals.css.
+ */
 function formatContent(content: string): string {
-  // Simple markdown-like formatting
-  return content
-    .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold text-[var(--foreground)] mt-8 mb-4">$1</h2>')
-    .replace(/^### (.*$)/gim, '<h3 class="text-xl font-semibold text-[var(--foreground)] mt-6 mb-3">$1</h3>')
-    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-[var(--foreground)]">$1</strong>')
-    .replace(/^\- (.*$)/gim, '<li class="ml-4">$1</li>')
-    .replace(/\n\n/g, '</p><p class="mb-4">')
-    .replace(/\|(.+)\|/g, (match) => {
-      const cells = match.split('|').filter(Boolean);
-      const row = cells.map(cell => `<td class="border border-[var(--border)] px-4 py-2">${cell.trim()}</td>`).join('');
-      return `<tr>${row}</tr>`;
-    });
+  const lines = content.replace(/\r\n/g, "\n").split("\n");
+  const out: string[] = [];
+  let para: string[] = [];
+  const flush = () => {
+    if (para.length) {
+      out.push(`<p>${inline(para.join(" "))}</p>`);
+      para = [];
+    }
+  };
+
+  let i = 0;
+  while (i < lines.length) {
+    const t = lines[i].trim();
+
+    if (t === "") {
+      flush();
+      i++;
+      continue;
+    }
+    if (t.startsWith("### ")) {
+      flush();
+      out.push(`<h3>${inline(t.slice(4))}</h3>`);
+      i++;
+      continue;
+    }
+    if (t.startsWith("## ")) {
+      flush();
+      out.push(`<h2>${inline(t.slice(3))}</h2>`);
+      i++;
+      continue;
+    }
+    if (t.startsWith("- ")) {
+      flush();
+      const items: string[] = [];
+      while (i < lines.length && lines[i].trim().startsWith("- ")) {
+        items.push(`<li>${inline(lines[i].trim().slice(2))}</li>`);
+        i++;
+      }
+      out.push(`<ul>${items.join("")}</ul>`);
+      continue;
+    }
+    if (t.startsWith("|") && t.endsWith("|")) {
+      flush();
+      const rows: string[][] = [];
+      while (i < lines.length && lines[i].trim().startsWith("|")) {
+        rows.push(
+          lines[i]
+            .trim()
+            .replace(/^\|/, "")
+            .replace(/\|$/, "")
+            .split("|")
+            .map((c) => c.trim())
+        );
+        i++;
+      }
+      const bodyRows = rows.filter((r) => !r.every((c) => /^:?-+:?$/.test(c)));
+      if (bodyRows.length) {
+        const [head, ...body] = bodyRows;
+        const thead = `<thead><tr>${head.map((c) => `<th>${inline(c)}</th>`).join("")}</tr></thead>`;
+        const tbody = `<tbody>${body
+          .map((r) => `<tr>${r.map((c) => `<td>${inline(c)}</td>`).join("")}</tr>`)
+          .join("")}</tbody>`;
+        out.push(`<table>${thead}${tbody}</table>`);
+      }
+      continue;
+    }
+
+    para.push(t);
+    i++;
+  }
+  flush();
+  return out.join("");
 }

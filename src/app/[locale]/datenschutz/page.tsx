@@ -60,7 +60,10 @@ export default async function DatenschutzPage({
 
                 <h2>1. Správce</h2>
                 <p>
-                  sdil s.r.o., Franzova 969/63, 614 00 Brno, Česká republika
+                  Sdil Building Automotive s.r.o., Štefánikova 605/46b, Ponava,
+                  612 00 Brno, Česká republika
+                  <br />
+                  IČO: 09873236
                   <br />
                   E-mail: <a href="mailto:sdil@sdil.cz">sdil@sdil.cz</a>
                   <br />
@@ -134,9 +137,11 @@ export default async function DatenschutzPage({
 
                 <h2>1. Verantwortlicher</h2>
                 <p>
-                  Modulo Parking Austria
+                  Sdil Building Automotive s.r.o. (Marke: Modulo Parking Austria)
                   <br />
-                  [PLATZHALTER: Anschrift]
+                  Štefánikova 605/46b, Ponava, 612 00 Brno, Tschechische Republik
+                  <br />
+                  IČO: 09873236
                   <br />
                   E-Mail: <a href={`mailto:${dict.common.contactInfo.email}`}>{dict.common.contactInfo.email}</a>
                   <br />

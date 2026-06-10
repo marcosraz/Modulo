@@ -49,18 +49,33 @@ export default async function ImpressumPage({
         <section className="py-12 bg-[var(--background-secondary)]">
           <div className="max-w-3xl mx-auto px-6 lg:px-8">
             {isCz ? (
-              /* ---------- Czech entity (Czech market) ---------- */
+              /* ---------- Czech market ---------- */
               <div className="article-body">
-                {/* TODO (provozovatel doplní): IČO, DIČ, spisová značka v OR a jednatel */}
                 <h2>Provozovatel</h2>
                 <p>
-                  <strong>sdil s.r.o.</strong>
+                  <strong>Sdil Building Automotive s.r.o.</strong>
                   <br />
-                  Franzova 969/63
+                  Štefánikova 605/46b, Ponava
                   <br />
-                  614 00 Brno
+                  612 00 Brno
                   <br />
                   Česká republika
+                </p>
+
+                <h3>Identifikační údaje</h3>
+                <p>
+                  IČO: 09873236
+                  <br />
+                  DIČ: CZ09873236 (plátce DPH)
+                  <br />
+                  Základní kapitál: 100 000 Kč
+                  <br />
+                  Datová schránka: 9su4hja
+                  <br />
+                  Společnost zapsaná v obchodním rejstříku vedeném Krajským soudem
+                  v Brně, oddíl C, vložka 121388
+                  <br />
+                  Jednatel: Pavel Trkan
                 </p>
 
                 <h3>Kontakt</h3>
@@ -70,18 +85,6 @@ export default async function ImpressumPage({
                   E-mail: <a href="mailto:sdil@sdil.cz">sdil@sdil.cz</a>
                   <br />
                   Provozní doba: Po–Pá 9:00–17:00
-                </p>
-
-                <h3>Identifikační údaje</h3>
-                <p>
-                  IČO: [DOPLNIT]
-                  <br />
-                  DIČ: [DOPLNIT]
-                  <br />
-                  Společnost je zapsána v obchodním rejstříku vedeném Krajským
-                  soudem v Brně, spisová značka: [DOPLNIT]
-                  <br />
-                  Jednatel: [DOPLNIT]
                 </p>
 
                 <h3>Mimosoudní řešení spotřebitelských sporů</h3>
@@ -100,24 +103,40 @@ export default async function ImpressumPage({
 
                 <h3>Autorská práva</h3>
                 <p>
-                  Obsah těchto stránek podléhá autorskému právu. Označení „MODULO"
-                  a zobrazené produkty jsou majetkem výrobce (PROMStahl Sp. z o.o.)
-                  a jsou používány se souhlasem.
+                  „Modulo Parking" je obchodní značka provozovatele. Obsah těchto
+                  stránek podléhá autorskému právu. Označení „MODULO" a zobrazené
+                  produkty jsou majetkem výrobce (PROMStahl Sp. z o.o.) a jsou
+                  používány se souhlasem.
                 </p>
               </div>
             ) : (
-              /* ---------- Austrian entity (de/en market) ---------- */
+              /* ---------- Austrian market (same operating company) ---------- */
               <div className="article-body">
-                {/* TODO (Betreiber): [PLATZHALTER] mit den echten Firmendaten ersetzen (§ 5 ECG, § 25 MedienG) */}
-                <h2>Angaben gemäß § 5 ECG &amp; § 25 MedienG</h2>
+                <h2>Medieninhaber &amp; Betreiber (§ 5 ECG, § 25 MedienG)</h2>
                 <p>
-                  <strong>Modulo Parking Austria</strong>
+                  <strong>Sdil Building Automotive s.r.o.</strong>
                   <br />
-                  [PLATZHALTER: vollständiger Firmenwortlaut / Medieninhaber]
+                  Marke / Vertrieb: Modulo Parking Austria
                   <br />
-                  [PLATZHALTER: Straße und Hausnummer]
+                  Štefánikova 605/46b, Ponava
                   <br />
-                  [PLATZHALTER: PLZ Ort], Österreich
+                  612 00 Brno, Tschechische Republik
+                </p>
+
+                <h3>Unternehmensdaten</h3>
+                <p>
+                  Unternehmensgegenstand: Vertrieb von MODULO Parksystemen
+                  <br />
+                  IČO (Firmenbuchnummer): 09873236
+                  <br />
+                  UID-Nummer: CZ09873236
+                  <br />
+                  Stammkapital: 100 000 CZK
+                  <br />
+                  Eingetragen im Handelsregister des Landgerichts Brünn (Krajský
+                  soud v Brně), Abteilung C, Einlage 121388
+                  <br />
+                  Geschäftsführer: Pavel Trkan
                 </p>
 
                 <h3>Kontakt</h3>
@@ -126,22 +145,6 @@ export default async function ImpressumPage({
                   <br />
                   E-Mail: <a href={`mailto:${dict.common.contactInfo.email}`}>{dict.common.contactInfo.email}</a>
                 </p>
-
-                <h3>Unternehmensdaten</h3>
-                <p>
-                  Unternehmensgegenstand: Vertrieb von MODULO Parksystemen
-                  <br />
-                  UID-Nummer: [PLATZHALTER: ATU………]
-                  <br />
-                  Firmenbuchnummer: [PLATZHALTER: FN ……… ]
-                  <br />
-                  Firmenbuchgericht: [PLATZHALTER: zuständiges Landesgericht]
-                  <br />
-                  Gewerbebehörde: [PLATZHALTER: zuständige Bezirkshauptmannschaft / Magistrat]
-                </p>
-
-                <h3>Vertretungsbefugnis</h3>
-                <p>[PLATZHALTER: Geschäftsführer / vertretungsbefugte Person(en)]</p>
 
                 <h3>Online-Streitbeilegung</h3>
                 <p>

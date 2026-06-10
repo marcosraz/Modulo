@@ -78,7 +78,8 @@ export async function POST(request: NextRequest) {
 
   if (host && user && pass) {
     const port = Number(process.env.SMTP_PORT ?? 587);
-    const to = process.env.CONTACT_TO ?? user;
+    // Leads go to sdil@sdil.cz by default (both markets) — override via CONTACT_TO.
+    const to = process.env.CONTACT_TO ?? "sdil@sdil.cz";
     const from = process.env.CONTACT_FROM ?? user;
     try {
       const transporter = nodemailer.createTransport({

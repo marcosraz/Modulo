@@ -76,31 +76,33 @@ export default function Footer({ locale, dict }: { locale: string; dict: any }) 
             </ul>
           </div>
 
-          {/* Regions Column */}
-          <div>
-            <h4 className="text-sm font-semibold text-[var(--foreground)] uppercase tracking-wider mb-4">
-              {dict.common.footer.regionsTitle}
-            </h4>
-            <ul className="space-y-3">
-              {[
-                { label: "Wien", href: "/parksysteme/wien" },
-                { label: "Niederösterreich", href: "/parksysteme/niederoesterreich" },
-                { label: "Oberösterreich", href: "/parksysteme/oberoesterreich" },
-                { label: "Steiermark", href: "/parksysteme/steiermark" },
-                { label: "Salzburg", href: "/parksysteme/salzburg" },
-                { label: "Tirol", href: "/parksysteme/tirol" },
-              ].map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={localePath(item.href, locale)}
-                    className="text-sm text-[var(--foreground-muted)] hover:text-[var(--modulo-accent)] transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Regions Column (Austria-only; hidden on the Czech site) */}
+          {locale !== "cs" && (
+            <div>
+              <h4 className="text-sm font-semibold text-[var(--foreground)] uppercase tracking-wider mb-4">
+                {dict.common.footer.regionsTitle}
+              </h4>
+              <ul className="space-y-3">
+                {[
+                  { label: "Wien", href: "/parksysteme/wien" },
+                  { label: "Niederösterreich", href: "/parksysteme/niederoesterreich" },
+                  { label: "Oberösterreich", href: "/parksysteme/oberoesterreich" },
+                  { label: "Steiermark", href: "/parksysteme/steiermark" },
+                  { label: "Salzburg", href: "/parksysteme/salzburg" },
+                  { label: "Tirol", href: "/parksysteme/tirol" },
+                ].map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={localePath(item.href, locale)}
+                      className="text-sm text-[var(--foreground-muted)] hover:text-[var(--modulo-accent)] transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {/* Company Column */}
           <div>

@@ -38,13 +38,19 @@ export default function Header({ locale, dict }: { locale: string; dict: any }) 
   const pathname = usePathname();
   const router = useRouter();
 
+  // The /parksysteme regions are Austria-specific, so the regions dropdown is
+  // only shown on the Austrian (de/en) sites — the Czech site focuses on CZ/Brno.
   const navItems: NavItem[] = [
     { label: dict.common.nav.products, href: localePath("/produkte", locale) },
-    {
-      label: dict.common.nav.regions,
-      href: localePath("/parksysteme/wien", locale),
-      dropdown: regions.map((r) => ({ label: r.name, href: localePath(`/parksysteme/${r.slug}`, locale) })),
-    },
+    ...(locale === "cs"
+      ? []
+      : [
+          {
+            label: dict.common.nav.regions,
+            href: localePath("/parksysteme/wien", locale),
+            dropdown: regions.map((r) => ({ label: r.name, href: localePath(`/parksysteme/${r.slug}`, locale) })),
+          },
+        ]),
     { label: dict.common.nav.guides, href: localePath("/ratgeber", locale) },
     { label: dict.common.nav.references, href: localePath("/referenzen", locale) },
     { label: dict.common.nav.about, href: localePath("/ueber-uns", locale) },

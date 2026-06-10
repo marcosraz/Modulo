@@ -11,14 +11,14 @@ const cs = {
       toggleTheme: "Přepnout motiv",
       menu: "Menu",
       theme: "Motiv",
-      austria: "AUSTRIA",
+      austria: "ČESKO",
       skipToContent: "Přejít na obsah",
       selectLanguage: "Vybrat jazyk",
       language: "Jazyk",
     },
     footer: {
       description:
-        "Oficiální distribuce parkovacích platforem MODULO v Rakousku. Inovativní parkovací řešení pro maximální využití plochy.",
+        "Oficiální distributor parkovacích platforem MODULO. Sídlíme v Brně a působíme v Česku i Rakousku. Inovativní parkovací řešení pro maximální využití plochy.",
       productsTitle: "Produkty",
       regionsTitle: "Regiony",
       companyTitle: "Společnost",
@@ -26,8 +26,8 @@ const cs = {
       phone: "Telefon",
       email: "E-mail",
       location: "Sídlo",
-      locationValue: "Rakousko",
-      copyright: "Modulo Parking Austria. Všechna práva vyhrazena.",
+      locationValue: "Brno, Česko",
+      copyright: "Modulo Parking. Všechna práva vyhrazena.",
       partnerOf: "Partner společnosti",
       imprint: "Tiráž",
       privacy: "Ochrana osobních údajů",
@@ -58,16 +58,16 @@ const cs = {
       contactUs: "Kontaktujte nás",
     },
     meta: {
-      siteName: "Modulo Parking Austria",
+      siteName: "Modulo Parking",
       siteTitle:
-        "Modulo Parking Austria | Automatické parkovací systémy a parkovací výtahy",
+        "Modulo Parking | Automatické parkovací systémy a parkovací výtahy",
       siteDescription:
-        "Oficiální distribuční partner MODULO v Rakousku. Parkovací platformy, parkovací výtahy, zdvojovače stání a stohovací systémy pro podzemní garáže, bytové domy a komerční objekty. Poradenství a montáž po celém Rakousku.",
+        "Oficiální distributor MODULO se sídlem v Brně. Parkovací platformy, parkovací výtahy, zdvojovače stání a stohovací systémy pro podzemní garáže, bytové domy a komerční objekty. Poradenství a montáž po celém Česku.",
     },
   },
   home: {
     hero: {
-      label: "Oficiální distribuce Rakousko",
+      label: "Oficiální distribuce Česko",
       titleLine1: "Více parkovacích míst.",
       titleLine2: "Méně plochy.",
       description:
@@ -312,7 +312,7 @@ const cs = {
     title: "Úspěšně",
     titleHighlight: "realizováno",
     description:
-      "Objevte naše úspěšně realizované projekty parkovacích systémů po celém Rakousku – od soukromých bytových komplexů po veřejné parkovací objekty.",
+      "Objevte naše úspěšně realizované projekty parkovacích systémů ve střední Evropě – od soukromých bytových komplexů po veřejné parkovací objekty.",
     manufacturerNote: "Referenční projekty výrobce MODULO / PROMStahl",
     highlightProjects: "Vybrané projekty",
     moreProjects: "Další projekty",
@@ -339,7 +339,7 @@ const cs = {
     title: "Váš partner pro",
     titleHighlight: "inteligentní parkování",
     description:
-      "Jako oficiální distribuční partner MODULO v Rakousku přinášíme do vašeho projektu více než 100 let evropských průmyslových zkušeností.",
+      "Jako oficiální distributor MODULO se sídlem v Brně přinášíme do vašeho projektu více než 100 let evropských průmyslových zkušeností – v Česku i Rakousku.",
     manufacturer: {
       label: "Výrobce",
       title: "MODULO / PROMStahl",
@@ -356,7 +356,7 @@ const cs = {
       label: "Síť",
       title: "Celoevropská přítomnost",
       description:
-        "MODULO disponuje celoevropskou sítí distribučních partnerů a servisních center. V Rakousku jsme vaším místním kontaktním partnerem pro poradenství, plánování a servis.",
+        "MODULO disponuje celoevropskou sítí distribučních partnerů a servisních center. V Česku jsme vaším místním kontaktním partnerem pro poradenství, plánování a servis – se sídlem v Brně.",
       locations: [
         {
           country: "Polsko",
@@ -394,9 +394,9 @@ const cs = {
       ],
     },
     meta: {
-      title: "O nás – distribuční partner MODULO Rakousko",
+      title: "O nás – distributor MODULO v Česku (Brno)",
       description:
-        "Váš místní partner pro parkovací systémy MODULO v Rakousku. Součást celoevropské sítě s více než 100 lety průmyslových zkušeností. Poradenství, plánování a servis z jedné ruky.",
+        "Váš místní partner pro parkovací systémy MODULO v Česku, se sídlem v Brně. Součást celoevropské sítě s více než 100 lety průmyslových zkušeností. Poradenství, plánování a servis z jedné ruky.",
     },
   },
   contact: {
@@ -446,18 +446,18 @@ const cs = {
       emailLabel: "E-mail",
       emailResponse: "Odpovíme do 24 hodin",
       locationLabel: "Sídlo",
-      locationValue: "Rakousko",
-      locationService: "Celostátní servis",
+      locationValue: "Brno, Česko",
+      locationService: "Servis po celém Česku",
     },
     network: {
       label: "Součást sítě",
       description:
-        "Jako oficiální distribuční partner MODULO v Rakousku jsme součástí celoevropské sítě se servisními centry v Polsku, Německu a Česku.",
+        "Jako oficiální distributor MODULO se sídlem v Brně jsme součástí celoevropské sítě se servisními centry v Polsku, Německu a Rakousku.",
     },
     meta: {
       title: "Kontakt | Poradenství a vyžádání nabídky",
       description:
-        "Kontaktujte nás pro nezávazné poradenství k parkovacím systémům MODULO. Telefon, e-mail nebo kontaktní formulář. Celostátní servis v Rakousku.",
+        "Kontaktujte nás pro nezávazné poradenství k parkovacím systémům MODULO. Telefon, e-mail nebo kontaktní formulář. Servis po celém Česku, sídlo v Brně.",
     },
   },
   productsPage: {

@@ -23,15 +23,14 @@ function getLocaleFromPath(pathname: string): Locale | undefined {
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Skip public files, API routes, and Next.js internals
+  // Skip public files, API routes, Next.js internals and any file with an
+  // extension (favicon.ico, icon.svg, apple-icon.png, sitemap.xml, ...)
   if (
     pathname.startsWith("/api") ||
     pathname.startsWith("/_next") ||
     pathname.startsWith("/images") ||
     pathname.startsWith("/docs") ||
-    pathname === "/favicon.ico" ||
-    pathname === "/sitemap.xml" ||
-    pathname === "/robots.txt"
+    /\.[^/]+$/.test(pathname)
   ) {
     return;
   }

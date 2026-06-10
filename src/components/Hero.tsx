@@ -3,7 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Hero() {
+function localePath(path: string, locale: string): string {
+  if (locale === "de") return path;
+  return `/${locale}${path}`;
+}
+
+export default function Hero({ locale, dict }: { locale: string; dict: any }) {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background layers */}
@@ -22,55 +27,53 @@ export default function Hero() {
           <div>
             {/* Tech label */}
             <div className="animate-fade-up">
-              <span className="tech-label">Offizieller Vertrieb Österreich</span>
+              <span className="tech-label">{dict.home.hero.label}</span>
             </div>
 
             {/* Main heading */}
             <h1 className="mt-6 text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] animate-fade-up delay-100">
-              Mehr Parkplätze.
+              {dict.home.hero.titleLine1}
               <br />
-              <span className="text-gradient">Weniger Fläche.</span>
+              <span className="text-gradient">{dict.home.hero.titleLine2}</span>
             </h1>
 
             {/* Description */}
             <p className="mt-8 text-lg md:text-xl text-[var(--foreground-muted)] max-w-xl animate-fade-up delay-200">
-              MODULO Parkplattformen verdoppeln bis versechsfachen Ihre
-              Stellplatzkapazität. Made in Europe mit über 100 Jahren
-              Industrieerfahrung.
+              {dict.home.hero.description}
             </p>
 
             {/* Stats */}
             <div className="mt-10 grid grid-cols-3 gap-8 animate-fade-up delay-300">
               <div>
-                <div className="stat-number">6x</div>
+                <div className="stat-number">{dict.home.hero.stat1Value}</div>
                 <div className="text-sm text-[var(--foreground-muted)] mt-1">
-                  mehr Stellplätze
+                  {dict.home.hero.stat1Label}
                 </div>
               </div>
               <div>
-                <div className="stat-number">10+</div>
+                <div className="stat-number">{dict.home.hero.stat2Value}</div>
                 <div className="text-sm text-[var(--foreground-muted)] mt-1">
-                  Systemvarianten
+                  {dict.home.hero.stat2Label}
                 </div>
               </div>
               <div>
-                <div className="stat-number">24/7</div>
+                <div className="stat-number">{dict.home.hero.stat3Value}</div>
                 <div className="text-sm text-[var(--foreground-muted)] mt-1">
-                  Support
+                  {dict.home.hero.stat3Label}
                 </div>
               </div>
             </div>
 
             {/* CTA Buttons */}
             <div className="mt-12 flex flex-col sm:flex-row gap-4 animate-fade-up delay-400">
-              <Link href="/produkte" className="btn-primary inline-flex items-center justify-center gap-2">
-                Produkte entdecken
+              <Link href={localePath("/produkte", locale)} className="btn-primary inline-flex items-center justify-center gap-2">
+                {dict.home.hero.ctaPrimary}
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Link>
-              <Link href="/kontakt" className="btn-outline inline-flex items-center justify-center gap-2">
-                Beratung anfordern
+              <Link href={localePath("/kontakt", locale)} className="btn-outline inline-flex items-center justify-center gap-2">
+                {dict.home.hero.ctaSecondary}
               </Link>
             </div>
           </div>

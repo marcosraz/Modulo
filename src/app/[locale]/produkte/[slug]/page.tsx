@@ -6,26 +6,37 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { products, getProductBySlug } from "@/data/products";
 import { ProductSchema, BreadcrumbSchema } from "@/components/SEO";
+import { getDictionary } from "@/i18n/getDictionary";
+import { type Locale, locales, hreflangAlternates } from "@/i18n/config";
+
+function localePath(path: string, locale: string): string {
+  if (locale === "de") return path;
+  return `/${locale}${path}`;
+}
 
 export function generateStaticParams() {
-  return products.map((product) => ({
-    slug: product.slug,
-  }));
+  return locales.flatMap((locale) =>
+    products.map((product) => ({ locale, slug: product.slug }))
+  );
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const product = getProductBySlug(slug);
 
   if (!product) {
+    const dict = await getDictionary(locale as Locale);
     return {
-      title: "Produkt nicht gefunden",
+      title: dict.productDetailPage.notFound,
     };
   }
+
+  const baseUrl = locale === "cs" ? "https://modulparking.cz" : "https://moduloparking.at";
+  const lp = locale === "de" || locale === "cs" ? "" : `/${locale}`;
 
   return {
     title: `${product.name} - ${product.tagline}`,
@@ -40,12 +51,13 @@ export async function generateMetadata({
       "Österreich",
     ],
     alternates: {
-      canonical: `https://modullo-parking.at/produkte/${slug}`,
+      canonical: `${baseUrl}${lp}/produkte/${slug}`,
+      languages: hreflangAlternates(`/produkte/${slug}`),
     },
     openGraph: {
       title: `${product.name} | MODULO Parksysteme`,
       description: product.description,
-      url: `https://modullo-parking.at/produkte/${slug}`,
+      url: `${baseUrl}${lp}/produkte/${slug}`,
       images: [
         {
           url: product.images[0],
@@ -61,9 +73,10 @@ export async function generateMetadata({
 export default async function ProductPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  const dict = await getDictionary(locale as Locale);
   const product = getProductBySlug(slug);
 
   if (!product) {
@@ -71,16 +84,16 @@ export default async function ProductPage({
   }
 
   const breadcrumbs = [
-    { name: "Home", href: "/" },
-    { name: "Produkte", href: "/produkte" },
-    { name: product.name, href: `/produkte/${slug}` },
+    { name: "Home", href: localePath("/", locale) },
+    { name: dict.productDetailPage.breadcrumbProducts, href: localePath("/produkte", locale) },
+    { name: product.name, href: localePath(`/produkte/${slug}`, locale) },
   ];
 
   return (
     <>
       <ProductSchema product={product} />
       <BreadcrumbSchema items={breadcrumbs} />
-      <Header />
+      <Header locale={locale} dict={dict} />
       <main className="pt-20">
         {/* Hero Section */}
         <section className="py-16 bg-[var(--background)] relative overflow-hidden">
@@ -92,17 +105,17 @@ export default async function ProductPage({
             <nav className="mb-8 text-sm" aria-label="Breadcrumb">
               <ol className="flex items-center gap-2 text-[var(--foreground-muted)]">
                 <li>
-                  <Link href="/" className="hover:text-[var(--modulo-accent)]">
+                  <Link href={localePath("/", locale)} className="hover:text-[var(--modulo-accent)]">
                     Home
                   </Link>
                 </li>
                 <li>/</li>
                 <li>
                   <Link
-                    href="/produkte"
+                    href={localePath("/produkte", locale)}
                     className="hover:text-[var(--modulo-accent)]"
                   >
-                    Produkte
+                    {dict.productDetailPage.breadcrumbProducts}
                   </Link>
                 </li>
                 <li>/</li>
@@ -163,7 +176,7 @@ export default async function ProductPage({
                       {product.specs.vehicles}
                     </div>
                     <div className="text-sm text-[var(--foreground-muted)]">
-                      Fahrzeuge
+                      {dict.common.products.vehicles}
                     </div>
                   </div>
                   <div className="p-4 bg-[var(--background-secondary)] rounded-lg border border-[var(--border)] text-center">
@@ -171,7 +184,7 @@ export default async function ProductPage({
                       {product.specs.levels}
                     </div>
                     <div className="text-sm text-[var(--foreground-muted)]">
-                      Ebenen
+                      {dict.common.products.levels}
                     </div>
                   </div>
                   <div className="p-4 bg-[var(--background-secondary)] rounded-lg border border-[var(--border)] text-center">
@@ -179,7 +192,7 @@ export default async function ProductPage({
                       {product.specs.capacity}
                     </div>
                     <div className="text-sm text-[var(--foreground-muted)]">
-                      Tragkraft
+                      {dict.common.products.loadCapacity}
                     </div>
                   </div>
                 </div>
@@ -187,10 +200,10 @@ export default async function ProductPage({
                 {/* CTA */}
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
                   <Link
-                    href="/kontakt"
+                    href={localePath("/kontakt", locale)}
                     className="btn-primary inline-flex items-center justify-center gap-2"
                   >
-                    Angebot anfordern
+                    {dict.productDetailPage.requestQuote}
                     <svg
                       className="w-4 h-4"
                       fill="none"
@@ -222,7 +235,7 @@ export default async function ProductPage({
                         d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                       />
                     </svg>
-                    Beratung anrufen
+                    {dict.productDetailPage.callConsultation}
                   </a>
                 </div>
               </div>
@@ -237,7 +250,7 @@ export default async function ProductPage({
               {/* Long Description */}
               <div>
                 <h2 className="text-2xl font-bold text-[var(--foreground)] mb-6">
-                  Beschreibung
+                  {dict.productDetailPage.description}
                 </h2>
                 <div className="prose prose-invert max-w-none">
                   {product.longDescription.split("\n\n").map((paragraph, idx) => (
@@ -251,7 +264,7 @@ export default async function ProductPage({
               {/* Features */}
               <div>
                 <h2 className="text-2xl font-bold text-[var(--foreground)] mb-6">
-                  Vorteile & Features
+                  {dict.productDetailPage.featuresTitle}
                 </h2>
                 <ul className="space-y-4">
                   {product.features.map((feature, idx) => (
@@ -283,7 +296,7 @@ export default async function ProductPage({
           <section className="py-16 bg-[var(--background)]">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <h2 className="text-2xl font-bold text-[var(--foreground)] mb-8">
-                Verfügbare Varianten
+                {dict.productDetailPage.availableVariants}
               </h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {product.variants.map((variant, idx) => (
@@ -303,7 +316,7 @@ export default async function ProductPage({
                       {variant.capacity && (
                         <div className="flex justify-between">
                           <span className="text-[var(--foreground-muted)]">
-                            Kapazität:
+                            {dict.productDetailPage.capacity}
                           </span>
                           <span className="text-[var(--foreground)] font-mono">
                             {variant.capacity}
@@ -313,7 +326,7 @@ export default async function ProductPage({
                       {variant.loadCapacity && (
                         <div className="flex justify-between">
                           <span className="text-[var(--foreground-muted)]">
-                            Tragkraft:
+                            {dict.productDetailPage.loadCapacity}
                           </span>
                           <span className="text-[var(--foreground)] font-mono">
                             {variant.loadCapacity}
@@ -323,7 +336,7 @@ export default async function ProductPage({
                       {variant.pitDepth && (
                         <div className="flex justify-between">
                           <span className="text-[var(--foreground-muted)]">
-                            Grubentiefe:
+                            {dict.productDetailPage.pitDepth}
                           </span>
                           <span className="text-[var(--foreground)] font-mono">
                             {variant.pitDepth}
@@ -333,7 +346,7 @@ export default async function ProductPage({
                       {variant.ceilingHeight && (
                         <div className="flex justify-between">
                           <span className="text-[var(--foreground-muted)]">
-                            Deckenhöhe:
+                            {dict.productDetailPage.ceilingHeight}
                           </span>
                           <span className="text-[var(--foreground)] font-mono">
                             {variant.ceilingHeight}
@@ -343,7 +356,7 @@ export default async function ProductPage({
                       {variant.deckType && (
                         <div className="flex justify-between">
                           <span className="text-[var(--foreground-muted)]">
-                            Deck-Typ:
+                            {dict.productDetailPage.deckType}
                           </span>
                           <span className="text-[var(--foreground)] font-mono text-xs">
                             {variant.deckType}
@@ -363,7 +376,7 @@ export default async function ProductPage({
           <section className="py-16 bg-[var(--background-secondary)]">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <h2 className="text-2xl font-bold text-[var(--foreground)] mb-8">
-                Downloads
+                {dict.productDetailPage.downloads}
               </h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {product.pdfs.map((pdf, idx) => (
@@ -408,17 +421,16 @@ export default async function ProductPage({
         <section className="py-16 bg-[var(--background)]">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
             <h2 className="text-2xl font-bold text-[var(--foreground)] mb-4">
-              Andere Produkte entdecken
+              {dict.productDetailPage.discoverOther}
             </h2>
             <p className="text-[var(--foreground-muted)] mb-8 max-w-xl mx-auto">
-              Finden Sie die perfekte Parklösung für Ihre Anforderungen in
-              unserem vollständigen Produktportfolio.
+              {dict.productDetailPage.discoverOtherDescription}
             </p>
             <Link
-              href="/produkte"
+              href={localePath("/produkte", locale)}
               className="btn-outline inline-flex items-center gap-2"
             >
-              Alle Produkte ansehen
+              {dict.productDetailPage.viewAllProducts}
               <svg
                 className="w-4 h-4"
                 fill="none"
@@ -436,7 +448,7 @@ export default async function ProductPage({
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer locale={locale} dict={dict} />
     </>
   );
 }

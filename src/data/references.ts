@@ -12,6 +12,8 @@ export interface Reference {
   year?: number;
   featured: boolean;
   sourceUrl?: string;
+  /** true = project realized by manufacturer MODULO/PROMStahl, not by Modullo Parking Austria */
+  isManufacturerReference: boolean;
 }
 
 export const references: Reference[] = [
@@ -28,6 +30,7 @@ export const references: Reference[] = [
     category: "residential",
     parkingSpaces: 204,
     featured: true,
+    isManufacturerReference: true,
     sourceUrl: "https://moduloparking.com/realizacje/warszawa-wilanow",
   },
   {
@@ -43,6 +46,7 @@ export const references: Reference[] = [
     category: "commercial",
     parkingSpaces: 16,
     featured: true,
+    isManufacturerReference: true,
     sourceUrl: "https://moduloparking.com/realizacje/siedziba-banku-krakow",
   },
   {
@@ -58,6 +62,7 @@ export const references: Reference[] = [
     category: "hotel",
     parkingSpaces: 12,
     featured: true,
+    isManufacturerReference: true,
     sourceUrl: "https://moduloparking.com/realizacje/hotel-focus-sopot",
   },
   {
@@ -73,6 +78,7 @@ export const references: Reference[] = [
     category: "residential",
     parkingSpaces: 68,
     featured: true,
+    isManufacturerReference: true,
     sourceUrl: "https://moduloparking.com/realizacje/budynek-wielorodzinny-gdansk",
   },
   {
@@ -89,6 +95,7 @@ export const references: Reference[] = [
     parkingSpaces: 26,
     year: 2025,
     featured: false,
+    isManufacturerReference: true,
     sourceUrl: "https://moduloparking.com/realizacje/poznan-1",
   },
   {
@@ -104,6 +111,7 @@ export const references: Reference[] = [
     category: "residential",
     parkingSpaces: 34,
     featured: false,
+    isManufacturerReference: true,
     sourceUrl: "https://moduloparking.com/realizacje/budynek-wielorodzinny-bydgoszcz-3",
   },
   {
@@ -119,6 +127,7 @@ export const references: Reference[] = [
     category: "residential",
     parkingSpaces: 24,
     featured: false,
+    isManufacturerReference: true,
     sourceUrl: "https://moduloparking.com/realizacje/kolobrzeg",
   },
   {
@@ -134,6 +143,7 @@ export const references: Reference[] = [
     category: "residential",
     parkingSpaces: 20,
     featured: false,
+    isManufacturerReference: true,
     sourceUrl: "https://moduloparking.com/realizacje/miedzyzdroje",
   },
 ];

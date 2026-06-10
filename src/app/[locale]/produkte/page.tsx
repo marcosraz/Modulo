@@ -5,40 +5,64 @@ import Image from "next/image";
 import Link from "next/link";
 import { products, categories } from "@/data/products";
 import { BreadcrumbSchema } from "@/components/SEO";
+import { getDictionary } from "@/i18n/getDictionary";
+import { type Locale, hreflangAlternates } from "@/i18n/config";
 
-export const metadata: Metadata = {
-  title: "Parksysteme & Parkplattformen",
-  description:
-    "Entdecken Sie das MODULO Produktportfolio: Parklifte, Doppelparker, Stapelparker und mehrstöckige Parksysteme. Über 7 verschiedene Systemserien für jeden Anwendungsfall. Jetzt Produkte vergleichen.",
-  keywords: [
-    "Parkplattformen kaufen",
-    "Parklift Preise",
-    "Doppelparker",
-    "Stapelparker",
-    "MODULO Parker",
-    "Parksystem Vergleich",
-  ],
-  alternates: {
-    canonical: "https://modullo-parking.at/produkte",
-  },
-  openGraph: {
-    title: "MODULO Parksysteme & Parkplattformen | Produktübersicht",
-    description:
-      "Über 7 verschiedene Parksystem-Serien für Garagen, Tiefgaragen und Parkhäuser. Parklifte, Doppelparker und automatische Systeme.",
-    url: "https://modullo-parking.at/produkte",
-  },
-};
+function localePath(path: string, locale: string): string {
+  if (locale === "de") return path;
+  return `/${locale}${path}`;
+}
 
-const breadcrumbs = [
-  { name: "Home", href: "/" },
-  { name: "Produkte", href: "/produkte" },
-];
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = await getDictionary(locale as Locale);
+  const baseUrl = locale === "cs" ? "https://modulparking.cz" : "https://moduloparking.at";
+  const lp = locale === "de" || locale === "cs" ? "" : `/${locale}`;
 
-export default function ProduktePage() {
+  return {
+    title: dict.productsPage.meta.title,
+    description: dict.productsPage.meta.description,
+    keywords: [
+      "Parkplattformen kaufen",
+      "Parklift Preise",
+      "Doppelparker",
+      "Stapelparker",
+      "MODULO Parker",
+      "Parksystem Vergleich",
+    ],
+    alternates: {
+      canonical: `${baseUrl}${lp}/produkte`,
+      languages: hreflangAlternates(`/produkte`),
+    },
+    openGraph: {
+      title: dict.productsPage.meta.title,
+      description: dict.productsPage.meta.description,
+      url: `${baseUrl}${lp}/produkte`,
+    },
+  };
+}
+
+export default async function ProduktePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const dict = await getDictionary(locale as Locale);
+
+  const breadcrumbs = [
+    { name: "Home", href: localePath("/", locale) },
+    { name: dict.common.nav.products, href: localePath("/produkte", locale) },
+  ];
+
   return (
     <>
       <BreadcrumbSchema items={breadcrumbs} />
-      <Header />
+      <Header locale={locale} dict={dict} />
       <main className="pt-20">
         {/* Hero Section */}
         <section className="py-24 bg-[var(--background)] relative overflow-hidden">
@@ -47,24 +71,23 @@ export default function ProduktePage() {
 
           <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center">
-              <span className="tech-label">Produktportfolio</span>
+              <span className="tech-label">{dict.productsPage.label}</span>
               <h1 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold">
-                {products.length}+ Systeme für jeden{" "}
-                <span className="text-gradient">Anwendungsfall</span>
+                {products.length}+ {dict.productsPage.titleSuffix}{" "}
+                <span className="text-gradient">{dict.productsPage.titleHighlight}</span>
               </h1>
               <p className="mt-6 text-lg text-[var(--foreground-muted)] max-w-2xl mx-auto">
-                Von der privaten Doppelgarage bis zum mehrstöckigen Parkhaus –
-                MODULO bietet die passende Lösung für Ihre Anforderungen.
+                {dict.productsPage.description}
               </p>
             </div>
 
             {/* Quick Stats */}
             <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
               {[
-                { value: `${products.length}+`, label: "Systeme" },
-                { value: "6x", label: "mehr Kapazität" },
-                { value: "100%", label: "verzinkt" },
-                { value: "24/7", label: "Support" },
+                { value: `${products.length}+`, label: dict.productsPage.systems },
+                { value: "6x", label: dict.productsPage.moreCapacity },
+                { value: "100%", label: dict.productsPage.galvanized },
+                { value: "24/7", label: dict.productsPage.support },
               ].map((stat, index) => (
                 <div key={index} className="text-center">
                   <div className="text-3xl font-mono font-bold text-[var(--modulo-accent)]">
@@ -103,7 +126,7 @@ export default function ProduktePage() {
               {products.map((product) => (
                 <Link
                   key={product.slug}
-                  href={`/produkte/${product.slug}`}
+                  href={localePath(`/produkte/${product.slug}`, locale)}
                   className="card group block"
                 >
                   {/* Image */}
@@ -116,7 +139,7 @@ export default function ProduktePage() {
                     />
                     {product.featured && (
                       <div className="absolute top-4 right-4 bg-[var(--modulo-accent)] text-white px-3 py-1 text-xs font-semibold uppercase">
-                        Beliebt
+                        {dict.common.products.popular}
                       </div>
                     )}
                     <div className="absolute top-4 left-4 text-xs font-mono text-[var(--modulo-accent)]">
@@ -141,7 +164,7 @@ export default function ProduktePage() {
                           {product.specs.vehicles}
                         </div>
                         <div className="text-[var(--foreground-muted)]">
-                          Fahrzeuge
+                          {dict.common.products.vehicles}
                         </div>
                       </div>
                       <div className="p-2 bg-[var(--background)] text-center">
@@ -149,7 +172,7 @@ export default function ProduktePage() {
                           {product.specs.levels}
                         </div>
                         <div className="text-[var(--foreground-muted)]">
-                          Ebenen
+                          {dict.common.products.levels}
                         </div>
                       </div>
                       <div className="p-2 bg-[var(--background)] text-center">
@@ -157,14 +180,14 @@ export default function ProduktePage() {
                           {product.specs.capacity}
                         </div>
                         <div className="text-[var(--foreground-muted)]">
-                          Tragkraft
+                          {dict.common.products.loadCapacity}
                         </div>
                       </div>
                     </div>
 
                     {/* Action */}
                     <div className="mt-6 btn-outline w-full inline-flex items-center justify-center gap-2 text-sm">
-                      Details ansehen
+                      {dict.common.products.viewDetails}
                       <svg
                         className="w-4 h-4"
                         fill="none"
@@ -189,13 +212,12 @@ export default function ProduktePage() {
         {/* Downloads Section */}
         <section className="py-24 bg-[var(--background)]">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-            <span className="tech-label">Downloads</span>
+            <span className="tech-label">{dict.productsPage.downloads.label}</span>
             <h2 className="mt-4 text-3xl md:text-4xl font-bold text-[var(--foreground)]">
-              Technische Datenblätter
+              {dict.productsPage.downloads.title}
             </h2>
             <p className="mt-4 text-[var(--foreground-muted)] max-w-xl mx-auto">
-              Laden Sie detaillierte Produktinformationen und technische
-              Spezifikationen herunter.
+              {dict.productsPage.downloads.description}
             </p>
 
             <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
@@ -221,10 +243,10 @@ export default function ProduktePage() {
                 </svg>
                 <div className="text-left">
                   <div className="font-semibold text-[var(--modulo-accent)]">
-                    MODULO Katalog
+                    {dict.productsPage.downloads.catalog}
                   </div>
                   <div className="text-xs text-[var(--foreground-muted)]">
-                    Komplettes Produktportfolio
+                    {dict.productsPage.downloads.catalogSub}
                   </div>
                 </div>
               </a>
@@ -264,10 +286,10 @@ export default function ProduktePage() {
             </div>
 
             <Link
-              href="/kontakt"
+              href={localePath("/kontakt", locale)}
               className="mt-8 btn-primary inline-flex items-center gap-2"
             >
-              Alle Datenblätter anfordern
+              {dict.productsPage.downloads.requestAll}
               <svg
                 className="w-4 h-4"
                 fill="none"
@@ -285,7 +307,7 @@ export default function ProduktePage() {
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer locale={locale} dict={dict} />
     </>
   );
 }

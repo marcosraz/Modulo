@@ -4,41 +4,65 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { articles, articleCategories } from "@/data/articles";
 import { BreadcrumbSchema } from "@/components/SEO";
+import { getDictionary } from "@/i18n/getDictionary";
+import { type Locale, hreflangAlternates } from "@/i18n/config";
 
-export const metadata: Metadata = {
-  title: "Ratgeber Parksysteme | Wissen & Tipps",
-  description:
-    "Ratgeber rund um Parksysteme: Kaufberatung, Vergleiche, Kosten und Wartung. Alles was Sie über Parkplattformen, Parklifte und Doppelparker wissen müssen.",
-  keywords: [
-    "Parksystem Ratgeber",
-    "Parkplattform Kaufberatung",
-    "Parklift Vergleich",
-    "Doppelparker Tipps",
-  ],
-  alternates: {
-    canonical: "https://modullo-parking.at/ratgeber",
-  },
-  openGraph: {
-    title: "Ratgeber Parksysteme | Modullo Parking Austria",
-    description:
-      "Wissen und Tipps rund um Parksysteme. Kaufberatung, Vergleiche und Pflegetipps.",
-    url: "https://modullo-parking.at/ratgeber",
-  },
-};
+function localePath(path: string, locale: string): string {
+  if (locale === "de") return path;
+  return `/${locale}${path}`;
+}
 
-const breadcrumbs = [
-  { name: "Home", href: "/" },
-  { name: "Ratgeber", href: "/ratgeber" },
-];
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = await getDictionary(locale as Locale);
+  const baseUrl = locale === "cs" ? "https://modulparking.cz" : "https://moduloparking.at";
+  const localePrefix = locale === "de" || locale === "cs" ? "" : `/${locale}`;
 
-export default function RatgeberPage() {
+  return {
+    title: dict.guidesPage.meta.title,
+    description: dict.guidesPage.meta.description,
+    keywords: [
+      "Parksystem Ratgeber",
+      "Parkplattform Kaufberatung",
+      "Parklift Vergleich",
+      "Doppelparker Tipps",
+    ],
+    alternates: {
+      canonical: `${baseUrl}${localePrefix}/ratgeber`,
+      languages: hreflangAlternates(`/ratgeber`),
+    },
+    openGraph: {
+      title: dict.guidesPage.meta.ogTitle,
+      description: dict.guidesPage.meta.ogDescription,
+      url: `${baseUrl}${localePrefix}/ratgeber`,
+    },
+  };
+}
+
+export default async function RatgeberPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const dict = await getDictionary(locale as Locale);
+
+  const breadcrumbs = [
+    { name: "Home", href: localePath("/", locale) },
+    { name: dict.guidesPage.label, href: localePath("/ratgeber", locale) },
+  ];
+
   const featuredArticles = articles.filter((a) => a.featured);
   const otherArticles = articles.filter((a) => !a.featured);
 
   return (
     <>
       <BreadcrumbSchema items={breadcrumbs} />
-      <Header />
+      <Header locale={locale} dict={dict} />
       <main className="pt-20">
         {/* Hero Section */}
         <section className="py-24 bg-[var(--background)] relative overflow-hidden">
@@ -47,14 +71,13 @@ export default function RatgeberPage() {
 
           <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center">
-              <span className="tech-label">Ratgeber</span>
+              <span className="tech-label">{dict.guidesPage.label}</span>
               <h1 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold">
-                Wissen rund um{" "}
-                <span className="text-gradient">Parksysteme</span>
+                {dict.guidesPage.title}{" "}
+                <span className="text-gradient">{dict.guidesPage.titleHighlight}</span>
               </h1>
               <p className="mt-6 text-lg text-[var(--foreground-muted)] max-w-2xl mx-auto">
-                Kaufberatung, Vergleiche und Tipps – alles was Sie über
-                Parkplattformen, Parklifte und Doppelparker wissen müssen.
+                {dict.guidesPage.description}
               </p>
             </div>
           </div>
@@ -85,13 +108,13 @@ export default function RatgeberPage() {
           <section className="py-16 bg-[var(--background-secondary)]">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <h2 className="text-2xl font-bold text-[var(--foreground)] mb-8">
-                Beliebte Artikel
+                {dict.guidesPage.featuredArticles}
               </h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {featuredArticles.map((article) => (
                   <Link
                     key={article.slug}
-                    href={`/ratgeber/${article.slug}`}
+                    href={localePath(`/ratgeber/${article.slug}`, locale)}
                     className="card group block"
                   >
                     <div className="p-6">
@@ -100,7 +123,7 @@ export default function RatgeberPage() {
                           {article.category}
                         </span>
                         <span className="text-xs text-[var(--foreground-muted)]">
-                          {article.readingTime} Min. Lesezeit
+                          {article.readingTime} {dict.guidesPage.readingTime}
                         </span>
                       </div>
                       <h3 className="text-xl font-semibold text-[var(--foreground)] group-hover:text-[var(--modulo-accent)] transition-colors">
@@ -110,7 +133,7 @@ export default function RatgeberPage() {
                         {article.excerpt}
                       </p>
                       <div className="mt-4 text-sm text-[var(--modulo-accent)] flex items-center gap-2">
-                        Artikel lesen
+                        {dict.guidesPage.readArticle}
                         <svg
                           className="w-4 h-4"
                           fill="none"
@@ -137,13 +160,13 @@ export default function RatgeberPage() {
         <section className="py-16 bg-[var(--background)]">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <h2 className="text-2xl font-bold text-[var(--foreground)] mb-8">
-              Alle Artikel
+              {dict.guidesPage.allArticles}
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               {otherArticles.map((article) => (
                 <Link
                   key={article.slug}
-                  href={`/ratgeber/${article.slug}`}
+                  href={localePath(`/ratgeber/${article.slug}`, locale)}
                   className="flex gap-6 p-6 bg-[var(--background-secondary)] border border-[var(--border)] hover:border-[var(--modulo-accent)] transition-colors group"
                 >
                   <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-[var(--background)] border border-[var(--border)] text-[var(--modulo-accent)]">
@@ -167,7 +190,7 @@ export default function RatgeberPage() {
                         {article.category}
                       </span>
                       <span className="text-xs text-[var(--foreground-muted)]">
-                        {article.readingTime} Min.
+                        {article.readingTime} {dict.guidesPage.readingTime}
                       </span>
                     </div>
                     <h3 className="font-semibold text-[var(--foreground)] group-hover:text-[var(--modulo-accent)] transition-colors line-clamp-2">
@@ -186,21 +209,19 @@ export default function RatgeberPage() {
         {/* CTA Section */}
         <section className="py-16 bg-[var(--background-secondary)]">
           <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <span className="tech-label">Fragen?</span>
+            <span className="tech-label">{dict.guidesPage.ctaLabel}</span>
             <h2 className="mt-4 text-3xl font-bold text-[var(--foreground)]">
-              Persönliche Beratung gewünscht?
+              {dict.guidesPage.ctaTitle}
             </h2>
             <p className="mt-4 text-[var(--foreground-muted)]">
-              Unsere Experten beraten Sie gerne zu allen Fragen rund um
-              Parksysteme. Kontaktieren Sie uns für ein unverbindliches
-              Gespräch.
+              {dict.guidesPage.ctaDescription}
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/kontakt"
+                href={localePath("/kontakt", locale)}
                 className="btn-primary inline-flex items-center justify-center gap-2"
               >
-                Beratung anfordern
+                {dict.home.hero.ctaSecondary}
                 <svg
                   className="w-4 h-4"
                   fill="none"
@@ -232,13 +253,13 @@ export default function RatgeberPage() {
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
-                Jetzt anrufen
+                {dict.guidesPage.callNow}
               </a>
             </div>
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer locale={locale} dict={dict} />
     </>
   );
 }

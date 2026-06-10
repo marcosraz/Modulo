@@ -7,36 +7,47 @@ import Footer from "@/components/Footer";
 import { regions, getRegionBySlug } from "@/data/regions";
 import { products } from "@/data/products";
 import { BreadcrumbSchema, FAQSchema } from "@/components/SEO";
+import { getDictionary } from "@/i18n/getDictionary";
+import { type Locale, locales, hreflangAlternates } from "@/i18n/config";
+
+function localePath(path: string, locale: string): string {
+  if (locale === "de") return path;
+  return `/${locale}${path}`;
+}
 
 export function generateStaticParams() {
-  return regions.map((region) => ({
-    region: region.slug,
-  }));
+  return locales.flatMap((locale) =>
+    regions.map((region) => ({ locale, region: region.slug }))
+  );
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ region: string }>;
+  params: Promise<{ locale: string; region: string }>;
 }): Promise<Metadata> {
-  const { region: regionSlug } = await params;
+  const { locale, region: regionSlug } = await params;
   const region = getRegionBySlug(regionSlug);
 
   if (!region) {
     return { title: "Region nicht gefunden" };
   }
 
+  const baseUrl = locale === "cs" ? "https://modulparking.cz" : "https://moduloparking.at";
+  const localePrefix = locale === "de" || locale === "cs" ? "" : `/${locale}`;
+
   return {
     title: region.metaTitle,
     description: region.metaDescription,
     keywords: region.keywords,
     alternates: {
-      canonical: `https://modullo-parking.at/parksysteme/${regionSlug}`,
+      canonical: `${baseUrl}${localePrefix}/parksysteme/${regionSlug}`,
+      languages: hreflangAlternates(`/parksysteme/${regionSlug}`),
     },
     openGraph: {
       title: region.metaTitle,
       description: region.metaDescription,
-      url: `https://modullo-parking.at/parksysteme/${regionSlug}`,
+      url: `${baseUrl}${localePrefix}/parksysteme/${regionSlug}`,
     },
   };
 }
@@ -44,9 +55,10 @@ export async function generateMetadata({
 export default async function RegionPage({
   params,
 }: {
-  params: Promise<{ region: string }>;
+  params: Promise<{ locale: string; region: string }>;
 }) {
-  const { region: regionSlug } = await params;
+  const { locale, region: regionSlug } = await params;
+  const dict = await getDictionary(locale as Locale);
   const region = getRegionBySlug(regionSlug);
 
   if (!region) {
@@ -54,9 +66,9 @@ export default async function RegionPage({
   }
 
   const breadcrumbs = [
-    { name: "Home", href: "/" },
-    { name: "Regionen", href: "/parksysteme/wien" },
-    { name: region.name, href: `/parksysteme/${regionSlug}` },
+    { name: "Home", href: localePath("/", locale) },
+    { name: dict.regionPage.parkingSystems, href: localePath("/parksysteme/wien", locale) },
+    { name: region.name, href: localePath(`/parksysteme/${regionSlug}`, locale) },
   ];
 
   const featuredProducts = products.filter((p) => p.featured).slice(0, 3);
@@ -65,7 +77,7 @@ export default async function RegionPage({
     <>
       <BreadcrumbSchema items={breadcrumbs} />
       <FAQSchema faqs={region.faqs} />
-      <Header />
+      <Header locale={locale} dict={dict} />
       <main className="pt-20">
         {/* Hero Section */}
         <section className="py-24 bg-[var(--background)] relative overflow-hidden">
@@ -75,10 +87,10 @@ export default async function RegionPage({
           <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-3xl">
               <span className="tech-label">
-                Parksysteme {region.shortName}
+                {dict.regionPage.parkingSystems} {region.shortName}
               </span>
               <h1 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--foreground)]">
-                Parksysteme für{" "}
+                {dict.regionPage.parkingSystemsFor}{" "}
                 <span className="text-gradient">{region.name}</span>
               </h1>
               <p className="mt-6 text-xl text-[var(--foreground-muted)]">
@@ -86,10 +98,10 @@ export default async function RegionPage({
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <Link
-                  href="/kontakt"
+                  href={localePath("/kontakt", locale)}
                   className="btn-primary inline-flex items-center justify-center gap-2"
                 >
-                  Beratung anfordern
+                  {dict.home.hero.ctaSecondary}
                   <svg
                     className="w-4 h-4"
                     fill="none"
@@ -133,9 +145,9 @@ export default async function RegionPage({
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12">
               <div>
-                <span className="tech-label">Die Situation</span>
+                <span className="tech-label">{dict.regionPage.situationLabel}</span>
                 <h2 className="mt-4 text-3xl font-bold text-[var(--foreground)]">
-                  Parkherausforderungen in {region.name}
+                  {dict.regionPage.challengesTitle} {region.name}
                 </h2>
                 <p className="mt-6 text-[var(--foreground-muted)]">
                   {region.description}
@@ -165,15 +177,12 @@ export default async function RegionPage({
               </div>
 
               <div>
-                <span className="tech-label">Unsere Lösungen</span>
+                <span className="tech-label">{dict.regionPage.solutionsLabel}</span>
                 <h2 className="mt-4 text-3xl font-bold text-[var(--foreground)]">
-                  MODULO für {region.shortName}
+                  {dict.regionPage.solutionsTitle} {region.shortName}
                 </h2>
                 <p className="mt-6 text-[var(--foreground-muted)]">
-                  Mit MODULO Parksystemen meistern Sie die spezifischen
-                  Herausforderungen in {region.name}. Unsere Lösungen sind
-                  flexibel, platzsparend und auf lokale Anforderungen
-                  abgestimmt.
+                  {dict.regionPage.solutionsDescription.replace("{region}", region.name)}
                 </p>
                 <ul className="mt-8 space-y-4">
                   {region.solutions.map((solution, idx) => (
@@ -206,9 +215,9 @@ export default async function RegionPage({
         <section className="py-16 bg-[var(--background)]">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-12">
-              <span className="tech-label">Empfohlene Produkte</span>
+              <span className="tech-label">{dict.regionPage.recommendedProducts}</span>
               <h2 className="mt-4 text-3xl font-bold text-[var(--foreground)]">
-                Beliebte Systeme für {region.name}
+                {dict.regionPage.popularSystems} {region.name}
               </h2>
             </div>
 
@@ -216,7 +225,7 @@ export default async function RegionPage({
               {featuredProducts.map((product) => (
                 <Link
                   key={product.slug}
-                  href={`/produkte/${product.slug}`}
+                  href={localePath(`/produkte/${product.slug}`, locale)}
                   className="card group block"
                 >
                   <div className="relative aspect-[4/3] bg-[var(--background-secondary)] overflow-hidden">
@@ -236,7 +245,7 @@ export default async function RegionPage({
                       {product.description}
                     </p>
                     <div className="mt-4 text-sm text-[var(--modulo-accent)] flex items-center gap-2">
-                      Mehr erfahren
+                      {dict.regionPage.learnMore}
                       <svg
                         className="w-4 h-4"
                         fill="none"
@@ -258,10 +267,10 @@ export default async function RegionPage({
 
             <div className="mt-8 text-center">
               <Link
-                href="/produkte"
+                href={localePath("/produkte", locale)}
                 className="btn-outline inline-flex items-center gap-2"
               >
-                Alle Produkte ansehen
+                {dict.common.products.viewAllProducts}
                 <svg
                   className="w-4 h-4"
                   fill="none"
@@ -284,9 +293,9 @@ export default async function RegionPage({
         <section className="py-16 bg-[var(--background-secondary)]">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-12">
-              <span className="tech-label">Servicegebiet</span>
+              <span className="tech-label">{dict.regionPage.serviceArea}</span>
               <h2 className="mt-4 text-3xl font-bold text-[var(--foreground)]">
-                Wir sind in ganz {region.name} für Sie da
+                {dict.regionPage.serviceTitle.replace("{region}", region.name)}
               </h2>
             </div>
 
@@ -302,8 +311,7 @@ export default async function RegionPage({
             </div>
 
             <p className="mt-8 text-center text-[var(--foreground-muted)]">
-              Beratung, Installation und Service in allen Bezirken von{" "}
-              {region.name}.
+              {dict.regionPage.serviceDescription.replace("{region}", region.name)}
             </p>
           </div>
         </section>
@@ -314,7 +322,7 @@ export default async function RegionPage({
             <div className="text-center mb-12">
               <span className="tech-label">FAQ</span>
               <h2 className="mt-4 text-3xl font-bold text-[var(--foreground)]">
-                Häufige Fragen zu Parksystemen in {region.name}
+                {dict.regionPage.faqTitle} {region.name}
               </h2>
             </div>
 
@@ -340,18 +348,17 @@ export default async function RegionPage({
         <section className="py-16 bg-[var(--modulo-accent)]">
           <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white">
-              Bereit für mehr Parkplätze in {region.name}?
+              {dict.regionPage.ctaTitle.replace("{region}", region.name)}
             </h2>
             <p className="mt-4 text-lg text-white/80">
-              Kontaktieren Sie uns für eine unverbindliche Beratung. Wir
-              analysieren Ihre Situation und finden die optimale Lösung.
+              {dict.regionPage.ctaDescription}
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/kontakt"
+                href={localePath("/kontakt", locale)}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[var(--modulo-accent)] font-semibold hover:bg-gray-100 transition-colors"
               >
-                Beratung anfordern
+                {dict.home.hero.ctaSecondary}
                 <svg
                   className="w-4 h-4"
                   fill="none"
@@ -383,7 +390,7 @@ export default async function RegionPage({
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
-                Jetzt anrufen
+                {dict.regionPage.callNow}
               </a>
             </div>
           </div>
@@ -393,9 +400,9 @@ export default async function RegionPage({
         <section className="py-16 bg-[var(--background-secondary)]">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-8">
-              <span className="tech-label">Weitere Regionen</span>
+              <span className="tech-label">{dict.regionPage.otherRegions}</span>
               <h2 className="mt-4 text-2xl font-bold text-[var(--foreground)]">
-                Parksysteme in ganz Österreich
+                {dict.regionPage.allRegions}
               </h2>
             </div>
 
@@ -405,7 +412,7 @@ export default async function RegionPage({
                 .map((r) => (
                   <Link
                     key={r.slug}
-                    href={`/parksysteme/${r.slug}`}
+                    href={localePath(`/parksysteme/${r.slug}`, locale)}
                     className="px-4 py-2 border border-[var(--border)] text-[var(--foreground-muted)] hover:border-[var(--modulo-accent)] hover:text-[var(--modulo-accent)] transition-colors"
                   >
                     {r.name}
@@ -415,7 +422,7 @@ export default async function RegionPage({
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer locale={locale} dict={dict} />
     </>
   );
 }

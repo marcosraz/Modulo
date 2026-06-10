@@ -3,8 +3,10 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "@/context/ThemeContext";
 import { regions } from "@/data/regions";
+import { locales, localeNames, type Locale } from "@/i18n/config";
 
 interface NavItem {
   label: string;
@@ -12,25 +14,40 @@ interface NavItem {
   dropdown?: { label: string; href: string }[];
 }
 
-const navItems: NavItem[] = [
-  { label: "Produkte", href: "/produkte" },
-  {
-    label: "Regionen",
-    href: "/parksysteme/wien",
-    dropdown: regions.map((r) => ({ label: r.name, href: `/parksysteme/${r.slug}` })),
-  },
-  { label: "Ratgeber", href: "/ratgeber" },
-  { label: "Referenzen", href: "/referenzen" },
-  { label: "Über uns", href: "/ueber-uns" },
-  { label: "Kontakt", href: "/kontakt" },
-];
+function localePath(path: string, locale: string): string {
+  if (locale === "de") return path;
+  return `/${locale}${path}`;
+}
 
-export default function Header() {
+const localeCodes: Record<Locale, string> = {
+  de: "DE",
+  en: "EN",
+  cs: "CS",
+};
+
+export default function Header({ locale, dict }: { locale: string; dict: any }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const langDropdownRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const navItems: NavItem[] = [
+    { label: dict.common.nav.products, href: localePath("/produkte", locale) },
+    {
+      label: dict.common.nav.regions,
+      href: localePath("/parksysteme/wien", locale),
+      dropdown: regions.map((r) => ({ label: r.name, href: localePath(`/parksysteme/${r.slug}`, locale) })),
+    },
+    { label: dict.common.nav.guides, href: localePath("/ratgeber", locale) },
+    { label: dict.common.nav.references, href: localePath("/referenzen", locale) },
+    { label: dict.common.nav.about, href: localePath("/ueber-uns", locale) },
+    { label: dict.common.nav.contact, href: localePath("/kontakt", locale) },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,10 +62,39 @@ export default function Header() {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setOpenDropdown(null);
       }
+      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target as Node)) {
+        setLangDropdownOpen(false);
+      }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  function switchLanguage(newLocale: Locale) {
+    // Strip any locale prefix from pathname to get the base path
+    let basePath = pathname;
+    const firstSegment = pathname.split("/")[1];
+    if (locales.includes(firstSegment as Locale)) {
+      basePath = pathname.slice(firstSegment.length + 1) || "/";
+    }
+    setLangDropdownOpen(false);
+    setMobileMenuOpen(false);
+
+    // On the Czech domain, Czech uses clean URLs and German lives on the
+    // Austrian domain (clean URLs there). English works via /en on both.
+    const czHosts = ["modulparking.cz", "www.modulparking.cz"];
+    const onCzDomain =
+      typeof window !== "undefined" && czHosts.includes(window.location.hostname);
+
+    if (onCzDomain && newLocale === "de") {
+      window.location.href = `https://moduloparking.at${basePath === "/" ? "" : basePath}`;
+      return;
+    }
+
+    const hostDefault: Locale = onCzDomain ? "cs" : "de";
+    const newPath = newLocale === hostDefault ? basePath : `/${newLocale}${basePath}`;
+    router.push(newPath);
+  }
 
   return (
     <header
@@ -61,7 +107,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
+          <Link href={localePath("/", locale)} className="flex items-center gap-3 group">
             <Image
               src="/images/logos/MODULO.svg"
               alt="Modulo"
@@ -70,7 +116,7 @@ export default function Header() {
               className="logo-themed transition-all duration-300"
             />
             <span className="hidden sm:block text-xs font-mono text-[var(--foreground-muted)] tracking-wider">
-              AUSTRIA
+              {dict.common.nav.austria}
             </span>
           </Link>
 
@@ -131,12 +177,12 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* CTA Button & Theme Toggle */}
+          {/* CTA Button, Theme Toggle & Language Switcher */}
           <div className="hidden lg:flex items-center gap-4">
             <button
               onClick={toggleTheme}
               className="theme-toggle"
-              aria-label="Theme wechseln"
+              aria-label={dict.common.nav.toggleTheme}
             >
               {theme === "dark" ? (
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -148,11 +194,47 @@ export default function Header() {
                 </svg>
               )}
             </button>
+
+            {/* Language Switcher - Desktop */}
+            <div className="relative" ref={langDropdownRef}>
+              <button
+                onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+                className="flex items-center gap-1 px-2 py-1.5 text-sm font-mono font-medium text-[var(--foreground)] hover:text-[var(--modulo-accent)] transition-colors border border-[var(--border)] rounded"
+              >
+                {localeCodes[locale as Locale]}
+                <svg
+                  className={`w-3 h-3 transition-transform ${langDropdownOpen ? "rotate-180" : ""}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {langDropdownOpen && (
+                <div className="absolute top-full right-0 mt-2 w-40 bg-[var(--background)] border border-[var(--border)] shadow-lg">
+                  {locales.map((loc) => (
+                    <button
+                      key={loc}
+                      onClick={() => switchLanguage(loc)}
+                      className={`block w-full text-left px-4 py-3 text-sm transition-colors ${
+                        loc === locale
+                          ? "text-[var(--modulo-accent)] bg-[var(--background-secondary)]"
+                          : "text-[var(--foreground)] hover:bg-[var(--background-secondary)] hover:text-[var(--modulo-accent)]"
+                      }`}
+                    >
+                      {localeCodes[loc]} - {localeNames[loc]}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <Link
-              href="/kontakt"
+              href={localePath("/kontakt", locale)}
               className="btn-primary inline-flex items-center gap-2"
             >
-              Angebot anfordern
+              {dict.common.nav.requestQuote}
               <svg
                 className="w-4 h-4"
                 fill="none"
@@ -173,7 +255,7 @@ export default function Header() {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="lg:hidden p-2 text-[var(--foreground)]"
-            aria-label="Menü"
+            aria-label={dict.common.nav.menu}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {mobileMenuOpen ? (
@@ -251,7 +333,7 @@ export default function Header() {
               <button
                 onClick={toggleTheme}
                 className="theme-toggle"
-                aria-label="Theme wechseln"
+                aria-label={dict.common.nav.toggleTheme}
               >
                 {theme === "dark" ? (
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -264,12 +346,33 @@ export default function Header() {
                 )}
               </button>
             </div>
+
+            {/* Language Switcher - Mobile */}
+            <div className="flex items-center justify-between pt-4 border-t border-[var(--border)]">
+              <span className="text-sm text-[var(--foreground-muted)]">Language</span>
+              <div className="flex items-center gap-2">
+                {locales.map((loc) => (
+                  <button
+                    key={loc}
+                    onClick={() => switchLanguage(loc)}
+                    className={`px-2.5 py-1 text-sm font-mono font-medium rounded transition-colors ${
+                      loc === locale
+                        ? "bg-[var(--modulo-accent)] text-white"
+                        : "text-[var(--foreground)] border border-[var(--border)] hover:text-[var(--modulo-accent)]"
+                    }`}
+                  >
+                    {localeCodes[loc]}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <Link
-              href="/kontakt"
+              href={localePath("/kontakt", locale)}
               onClick={() => setMobileMenuOpen(false)}
               className="btn-primary inline-flex items-center justify-center gap-2 mt-4"
             >
-              Angebot anfordern
+              {dict.common.nav.requestQuote}
             </Link>
           </nav>
         </div>

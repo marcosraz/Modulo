@@ -7,6 +7,9 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/", "/admin/"],
     },
-    sitemap: "https://modullo-parking.at/sitemap.xml",
+    sitemap: [
+      "https://moduloparking.at/sitemap.xml",
+      "https://modulparking.cz/sitemap.xml",
+    ],
   };
 }

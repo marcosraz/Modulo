@@ -5,36 +5,47 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { articles, getArticleBySlug } from "@/data/articles";
 import { BreadcrumbSchema, ArticleSchema } from "@/components/SEO";
+import { getDictionary } from "@/i18n/getDictionary";
+import { type Locale, locales, hreflangAlternates } from "@/i18n/config";
+
+function localePath(path: string, locale: string): string {
+  if (locale === "de") return path;
+  return `/${locale}${path}`;
+}
 
 export function generateStaticParams() {
-  return articles.map((article) => ({
-    slug: article.slug,
-  }));
+  return locales.flatMap((locale) =>
+    articles.map((article) => ({ locale, slug: article.slug }))
+  );
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const article = getArticleBySlug(slug);
 
   if (!article) {
     return { title: "Artikel nicht gefunden" };
   }
 
+  const baseUrl = locale === "cs" ? "https://modulparking.cz" : "https://moduloparking.at";
+  const localePrefix = locale === "de" || locale === "cs" ? "" : `/${locale}`;
+
   return {
     title: article.metaTitle,
     description: article.metaDescription,
     keywords: article.tags,
     alternates: {
-      canonical: `https://modullo-parking.at/ratgeber/${slug}`,
+      canonical: `${baseUrl}${localePrefix}/ratgeber/${slug}`,
+      languages: hreflangAlternates(`/ratgeber/${slug}`),
     },
     openGraph: {
       title: article.metaTitle,
       description: article.metaDescription,
-      url: `https://modullo-parking.at/ratgeber/${slug}`,
+      url: `${baseUrl}${localePrefix}/ratgeber/${slug}`,
       type: "article",
       publishedTime: article.publishedAt,
       modifiedTime: article.updatedAt,
@@ -46,9 +57,10 @@ export async function generateMetadata({
 export default async function ArticlePage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  const dict = await getDictionary(locale as Locale);
   const article = getArticleBySlug(slug);
 
   if (!article) {
@@ -56,14 +68,16 @@ export default async function ArticlePage({
   }
 
   const breadcrumbs = [
-    { name: "Home", href: "/" },
-    { name: "Ratgeber", href: "/ratgeber" },
-    { name: article.title, href: `/ratgeber/${slug}` },
+    { name: "Home", href: localePath("/", locale) },
+    { name: dict.guideDetailPage.breadcrumbGuides, href: localePath("/ratgeber", locale) },
+    { name: article.title, href: localePath(`/ratgeber/${slug}`, locale) },
   ];
 
   const relatedArticles = articles
     .filter((a) => a.slug !== slug)
     .slice(0, 3);
+
+  const localeString = locale === "de" ? "de-AT" : locale === "cs" ? "cs-CZ" : "en-GB";
 
   return (
     <>
@@ -76,7 +90,7 @@ export default async function ArticlePage({
         updatedAt={article.updatedAt}
         author={article.author}
       />
-      <Header />
+      <Header locale={locale} dict={dict} />
       <main className="pt-20">
         {/* Article Header */}
         <section className="py-16 bg-[var(--background)] relative overflow-hidden">
@@ -88,17 +102,17 @@ export default async function ArticlePage({
             <nav className="mb-8 text-sm" aria-label="Breadcrumb">
               <ol className="flex items-center gap-2 text-[var(--foreground-muted)]">
                 <li>
-                  <Link href="/" className="hover:text-[var(--modulo-accent)]">
+                  <Link href={localePath("/", locale)} className="hover:text-[var(--modulo-accent)]">
                     Home
                   </Link>
                 </li>
                 <li>/</li>
                 <li>
                   <Link
-                    href="/ratgeber"
+                    href={localePath("/ratgeber", locale)}
                     className="hover:text-[var(--modulo-accent)]"
                   >
-                    Ratgeber
+                    {dict.guideDetailPage.breadcrumbGuides}
                   </Link>
                 </li>
                 <li>/</li>
@@ -114,10 +128,10 @@ export default async function ArticlePage({
                 {article.category}
               </span>
               <span className="text-sm text-[var(--foreground-muted)]">
-                {article.readingTime} Min. Lesezeit
+                {article.readingTime} {dict.guideDetailPage.readingTime}
               </span>
               <span className="text-sm text-[var(--foreground-muted)]">
-                {new Date(article.publishedAt).toLocaleDateString("de-AT", {
+                {new Date(article.publishedAt).toLocaleDateString(localeString, {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
@@ -185,18 +199,17 @@ export default async function ArticlePage({
                 </div>
                 <div className="flex-1 text-center md:text-left">
                   <h3 className="text-xl font-semibold text-[var(--foreground)]">
-                    Haben Sie Fragen?
+                    {dict.guideDetailPage.questionsTitle}
                   </h3>
                   <p className="mt-2 text-[var(--foreground-muted)]">
-                    Unsere Experten beraten Sie gerne persönlich zu Ihrem
-                    Projekt.
+                    {dict.guideDetailPage.questionsDescription}
                   </p>
                 </div>
                 <Link
-                  href="/kontakt"
+                  href={localePath("/kontakt", locale)}
                   className="btn-primary inline-flex items-center gap-2"
                 >
-                  Beratung anfordern
+                  {dict.home.hero.ctaSecondary}
                   <svg
                     className="w-4 h-4"
                     fill="none"
@@ -221,13 +234,13 @@ export default async function ArticlePage({
           <section className="py-16 bg-[var(--background-secondary)]">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <h2 className="text-2xl font-bold text-[var(--foreground)] mb-8">
-                Weitere Artikel
+                {dict.guideDetailPage.relatedArticles}
               </h2>
               <div className="grid md:grid-cols-3 gap-6">
                 {relatedArticles.map((relatedArticle) => (
                   <Link
                     key={relatedArticle.slug}
-                    href={`/ratgeber/${relatedArticle.slug}`}
+                    href={localePath(`/ratgeber/${relatedArticle.slug}`, locale)}
                     className="card group block"
                   >
                     <div className="p-6">
@@ -248,7 +261,7 @@ export default async function ArticlePage({
           </section>
         )}
       </main>
-      <Footer />
+      <Footer locale={locale} dict={dict} />
     </>
   );
 }

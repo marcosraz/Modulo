@@ -1,7 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Footer() {
+function localePath(path: string, locale: string): string {
+  if (locale === "de") return path;
+  return `/${locale}${path}`;
+}
+
+export default function Footer({ locale, dict }: { locale: string; dict: any }) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -18,8 +23,7 @@ export default function Footer() {
               className="mb-6 logo-themed"
             />
             <p className="text-sm text-[var(--foreground-muted)] mb-4">
-              Offizieller Vertrieb von MODULO Parkplattformen in Österreich.
-              Innovative Parklösungen für maximale Flächeneffizienz.
+              {dict.common.footer.description}
             </p>
             <div className="flex gap-4">
               <a
@@ -36,7 +40,7 @@ export default function Footer() {
               <a
                 href="tel:+436767263487"
                 className="w-10 h-10 flex items-center justify-center border border-[var(--border)] text-[var(--foreground)] hover:border-[var(--modulo-accent)] hover:text-[var(--modulo-accent)] transition-colors rounded-lg"
-                aria-label="Telefon"
+                aria-label={dict.common.footer.phone}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -48,7 +52,7 @@ export default function Footer() {
           {/* Products Column */}
           <div>
             <h4 className="text-sm font-semibold text-[var(--foreground)] uppercase tracking-wider mb-4">
-              Produkte
+              {dict.common.footer.productsTitle}
             </h4>
             <ul className="space-y-3">
               {[
@@ -57,11 +61,11 @@ export default function Footer() {
                 { label: "Stacker-P10", href: "/produkte/stacker-p" },
                 { label: "LS-System", href: "/produkte/ls-system" },
                 { label: "Pallet-System", href: "/produkte/pallet" },
-                { label: "Alle Produkte", href: "/produkte" },
+                { label: dict.common.products.viewAllProducts, href: "/produkte" },
               ].map((item) => (
                 <li key={item.label}>
                   <Link
-                    href={item.href}
+                    href={localePath(item.href, locale)}
                     className="text-sm text-[var(--foreground-muted)] hover:text-[var(--modulo-accent)] transition-colors"
                   >
                     {item.label}
@@ -74,7 +78,7 @@ export default function Footer() {
           {/* Regions Column */}
           <div>
             <h4 className="text-sm font-semibold text-[var(--foreground)] uppercase tracking-wider mb-4">
-              Regionen
+              {dict.common.footer.regionsTitle}
             </h4>
             <ul className="space-y-3">
               {[
@@ -87,7 +91,7 @@ export default function Footer() {
               ].map((item) => (
                 <li key={item.href}>
                   <Link
-                    href={item.href}
+                    href={localePath(item.href, locale)}
                     className="text-sm text-[var(--foreground-muted)] hover:text-[var(--modulo-accent)] transition-colors"
                   >
                     {item.label}
@@ -100,18 +104,18 @@ export default function Footer() {
           {/* Company Column */}
           <div>
             <h4 className="text-sm font-semibold text-[var(--foreground)] uppercase tracking-wider mb-4">
-              Unternehmen
+              {dict.common.footer.companyTitle}
             </h4>
             <ul className="space-y-3">
               {[
-                { label: "Über uns", href: "/ueber-uns" },
-                { label: "Referenzen", href: "/referenzen" },
-                { label: "Ratgeber", href: "/ratgeber" },
-                { label: "Kontakt", href: "/kontakt" },
+                { label: dict.common.nav.about, href: "/ueber-uns" },
+                { label: dict.common.nav.references, href: "/referenzen" },
+                { label: dict.common.nav.guides, href: "/ratgeber" },
+                { label: dict.common.nav.contact, href: "/kontakt" },
               ].map((item) => (
                 <li key={item.href}>
                   <Link
-                    href={item.href}
+                    href={localePath(item.href, locale)}
                     className="text-sm text-[var(--foreground-muted)] hover:text-[var(--modulo-accent)] transition-colors"
                   >
                     {item.label}
@@ -124,11 +128,11 @@ export default function Footer() {
           {/* Contact Column */}
           <div>
             <h4 className="text-sm font-semibold text-[var(--foreground)] uppercase tracking-wider mb-4">
-              Kontakt
+              {dict.common.footer.contactTitle}
             </h4>
             <ul className="space-y-4 text-sm">
               <li>
-                <span className="tech-label block mb-1">Telefon</span>
+                <span className="tech-label block mb-1">{dict.common.footer.phone}</span>
                 <a
                   href="tel:+436767263487"
                   className="text-[var(--foreground)] hover:text-[var(--modulo-accent)] transition-colors"
@@ -137,7 +141,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <span className="tech-label block mb-1">E-Mail</span>
+                <span className="tech-label block mb-1">{dict.common.footer.email}</span>
                 <a
                   href="mailto:info@modullo-parking.at"
                   className="text-[var(--foreground)] hover:text-[var(--modulo-accent)] transition-colors"
@@ -146,8 +150,8 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <span className="tech-label block mb-1">Standort</span>
-                <span className="text-[var(--foreground)]">Österreich</span>
+                <span className="tech-label block mb-1">{dict.common.footer.location}</span>
+                <span className="text-[var(--foreground)]">{dict.common.footer.locationValue}</span>
               </li>
             </ul>
           </div>
@@ -156,10 +160,10 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-[var(--border)] flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-[var(--foreground-muted)]">
-            &copy; {currentYear} Modullo Parking Austria. Alle Rechte vorbehalten.
+            &copy; {currentYear} {dict.common.footer.copyright}
           </p>
           <div className="flex items-center gap-6 text-xs text-[var(--foreground-muted)]">
-            <span className="font-mono">Partner von</span>
+            <span className="font-mono">{dict.common.footer.partnerOf}</span>
             <a
               href="https://moduloparking.com"
               target="_blank"

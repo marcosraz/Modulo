@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getMarketRegions } from "@/data/regions";
+import type { Locale } from "@/i18n/config";
 
 function localePath(path: string, locale: string): string {
   if (locale === "de") return path;
@@ -8,6 +10,7 @@ function localePath(path: string, locale: string): string {
 
 export default function Footer({ locale, dict }: { locale: string; dict: any }) {
   const currentYear = new Date().getFullYear();
+  const footerRegions = getMarketRegions(locale as Locale).slice(0, 6);
 
   return (
     <footer className="bg-[var(--background-secondary)] border-t border-[var(--border)]">
@@ -39,7 +42,7 @@ export default function Footer({ locale, dict }: { locale: string; dict: any }) 
                 </svg>
               </a>
               <a
-                href="tel:+436767263487"
+                href={dict.common.contactInfo.phoneHref}
                 className="w-10 h-10 flex items-center justify-center border border-[var(--border-strong)] text-[var(--foreground)] hover:border-[var(--modulo-accent)] hover:text-[var(--modulo-accent)] transition-colors rounded-[var(--radius-base)]"
                 aria-label={dict.common.footer.phone}
               >
@@ -76,33 +79,24 @@ export default function Footer({ locale, dict }: { locale: string; dict: any }) 
             </ul>
           </div>
 
-          {/* Regions Column (Austria-only; hidden on the Czech site) */}
-          {locale !== "cs" && (
-            <div>
-              <h4 className="text-sm font-semibold text-[var(--foreground)] uppercase tracking-wider mb-4">
-                {dict.common.footer.regionsTitle}
-              </h4>
-              <ul className="space-y-3">
-                {[
-                  { label: "Wien", href: "/parksysteme/wien" },
-                  { label: "Niederösterreich", href: "/parksysteme/niederoesterreich" },
-                  { label: "Oberösterreich", href: "/parksysteme/oberoesterreich" },
-                  { label: "Steiermark", href: "/parksysteme/steiermark" },
-                  { label: "Salzburg", href: "/parksysteme/salzburg" },
-                  { label: "Tirol", href: "/parksysteme/tirol" },
-                ].map((item) => (
-                  <li key={item.href}>
-                    <Link
-                      href={localePath(item.href, locale)}
-                      className="text-sm text-[var(--foreground-muted)] hover:text-[var(--modulo-accent)] transition-colors"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+          {/* Regions Column (market-aware: Austrian regions on AT, Czech cities on CZ) */}
+          <div>
+            <h4 className="text-sm font-semibold text-[var(--foreground)] uppercase tracking-wider mb-4">
+              {dict.common.footer.regionsTitle}
+            </h4>
+            <ul className="space-y-3">
+              {footerRegions.map((r) => (
+                <li key={r.slug}>
+                  <Link
+                    href={localePath(`/parksysteme/${r.slug}`, locale)}
+                    className="text-sm text-[var(--foreground-muted)] hover:text-[var(--modulo-accent)] transition-colors"
+                  >
+                    {r.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
           {/* Company Column */}
           <div>
@@ -137,19 +131,19 @@ export default function Footer({ locale, dict }: { locale: string; dict: any }) 
               <li>
                 <span className="tech-label block mb-1">{dict.common.footer.phone}</span>
                 <a
-                  href="tel:+436767263487"
+                  href={dict.common.contactInfo.phoneHref}
                   className="text-[var(--foreground)] hover:text-[var(--modulo-accent)] transition-colors"
                 >
-                  +43 676 726 34 87
+                  {dict.common.contactInfo.phone}
                 </a>
               </li>
               <li>
                 <span className="tech-label block mb-1">{dict.common.footer.email}</span>
                 <a
-                  href="mailto:info@moduloparking.at"
+                  href={`mailto:${dict.common.contactInfo.email}`}
                   className="text-[var(--foreground)] hover:text-[var(--modulo-accent)] transition-colors"
                 >
-                  info@moduloparking.at
+                  {dict.common.contactInfo.email}
                 </a>
               </li>
               <li>

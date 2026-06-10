@@ -30,6 +30,7 @@ export default async function ImpressumPage({
 }) {
   const { locale } = await params;
   const dict = await getDictionary(locale as Locale);
+  const isCz = locale === "cs";
 
   return (
     <>
@@ -47,80 +48,123 @@ export default async function ImpressumPage({
 
         <section className="py-12 bg-[var(--background-secondary)]">
           <div className="max-w-3xl mx-auto px-6 lg:px-8">
-            {/*
-              TODO (vom Betreiber auszufüllen): Bitte die [PLATZHALTER] durch die
-              echten Firmen-/Rechtsdaten ersetzen. Pflichtangaben nach § 5 ECG
-              und § 25 MedienG (Österreich).
-            */}
-            <div className="article-body">
-              <h2>Angaben gemäß § 5 ECG &amp; § 25 MedienG</h2>
-              <p>
-                <strong>Modulo Parking Austria</strong>
-                <br />
-                [PLATZHALTER: vollständiger Firmenwortlaut / Medieninhaber]
-                <br />
-                [PLATZHALTER: Straße und Hausnummer]
-                <br />
-                [PLATZHALTER: PLZ Ort], Österreich
-              </p>
+            {isCz ? (
+              /* ---------- Czech entity (Czech market) ---------- */
+              <div className="article-body">
+                {/* TODO (provozovatel doplní): IČO, DIČ, spisová značka v OR a jednatel */}
+                <h2>Provozovatel</h2>
+                <p>
+                  <strong>sdil s.r.o.</strong>
+                  <br />
+                  Franzova 969/63
+                  <br />
+                  614 00 Brno
+                  <br />
+                  Česká republika
+                </p>
 
-              <h3>Kontakt</h3>
-              <p>
-                Telefon:{" "}
-                <a href="tel:+436767263487">+43 676 726 34 87</a>
-                <br />
-                E-Mail:{" "}
-                <a href="mailto:info@moduloparking.at">info@moduloparking.at</a>
-              </p>
+                <h3>Kontakt</h3>
+                <p>
+                  Telefon: <a href="tel:+420770103103">+420 770 103 103</a>
+                  <br />
+                  E-mail: <a href="mailto:sdil@sdil.cz">sdil@sdil.cz</a>
+                  <br />
+                  Provozní doba: Po–Pá 9:00–17:00
+                </p>
 
-              <h3>Unternehmensdaten</h3>
-              <p>
-                Unternehmensgegenstand: Vertrieb von MODULO Parksystemen
-                <br />
-                UID-Nummer: [PLATZHALTER: ATU………]
-                <br />
-                Firmenbuchnummer: [PLATZHALTER: FN ……… ]
-                <br />
-                Firmenbuchgericht: [PLATZHALTER: zuständiges Landesgericht]
-                <br />
-                Gewerbebehörde: [PLATZHALTER: zuständige Bezirkshauptmannschaft / Magistrat]
-                <br />
-                Mitglied der WKO: [PLATZHALTER: ja/nein – Sparte]
-              </p>
+                <h3>Identifikační údaje</h3>
+                <p>
+                  IČO: [DOPLNIT]
+                  <br />
+                  DIČ: [DOPLNIT]
+                  <br />
+                  Společnost je zapsána v obchodním rejstříku vedeném Krajským
+                  soudem v Brně, spisová značka: [DOPLNIT]
+                  <br />
+                  Jednatel: [DOPLNIT]
+                </p>
 
-              <h3>Vertretungsbefugnis</h3>
-              <p>[PLATZHALTER: Geschäftsführer / vertretungsbefugte Person(en)]</p>
+                <h3>Mimosoudní řešení spotřebitelských sporů</h3>
+                <p>
+                  K mimosoudnímu řešení spotřebitelských sporů je příslušná Česká
+                  obchodní inspekce (
+                  <a href="https://www.coi.cz" target="_blank" rel="noopener noreferrer">
+                    www.coi.cz
+                  </a>
+                  ). Evropská platforma pro řešení sporů online:{" "}
+                  <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">
+                    ec.europa.eu/consumers/odr
+                  </a>
+                  .
+                </p>
 
-              <h3>Online-Streitbeilegung</h3>
-              <p>
-                Die Europäische Kommission stellt eine Plattform zur
-                Online-Streitbeilegung (OS) bereit:{" "}
-                <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">
-                  https://ec.europa.eu/consumers/odr/
-                </a>
-                . Unsere E-Mail-Adresse finden Sie oben. Wir sind nicht
-                verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren
-                vor einer Verbraucherschlichtungsstelle teilzunehmen.
-              </p>
+                <h3>Autorská práva</h3>
+                <p>
+                  Obsah těchto stránek podléhá autorskému právu. Označení „MODULO"
+                  a zobrazené produkty jsou majetkem výrobce (PROMStahl Sp. z o.o.)
+                  a jsou používány se souhlasem.
+                </p>
+              </div>
+            ) : (
+              /* ---------- Austrian entity (de/en market) ---------- */
+              <div className="article-body">
+                {/* TODO (Betreiber): [PLATZHALTER] mit den echten Firmendaten ersetzen (§ 5 ECG, § 25 MedienG) */}
+                <h2>Angaben gemäß § 5 ECG &amp; § 25 MedienG</h2>
+                <p>
+                  <strong>Modulo Parking Austria</strong>
+                  <br />
+                  [PLATZHALTER: vollständiger Firmenwortlaut / Medieninhaber]
+                  <br />
+                  [PLATZHALTER: Straße und Hausnummer]
+                  <br />
+                  [PLATZHALTER: PLZ Ort], Österreich
+                </p>
 
-              <h3>Haftung für Inhalte &amp; Links</h3>
-              <p>
-                Die Inhalte dieser Seiten wurden mit größtmöglicher Sorgfalt
-                erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der
-                Inhalte können wir jedoch keine Gewähr übernehmen. Unser Angebot
-                enthält Links zu externen Websites Dritter, auf deren Inhalte wir
-                keinen Einfluss haben; für diese fremden Inhalte ist stets der
-                jeweilige Anbieter verantwortlich.
-              </p>
+                <h3>Kontakt</h3>
+                <p>
+                  Telefon: <a href={dict.common.contactInfo.phoneHref}>{dict.common.contactInfo.phone}</a>
+                  <br />
+                  E-Mail: <a href={`mailto:${dict.common.contactInfo.email}`}>{dict.common.contactInfo.email}</a>
+                </p>
 
-              <h3>Urheberrecht</h3>
-              <p>
-                Die durch den Betreiber erstellten Inhalte und Werke auf diesen
-                Seiten unterliegen dem Urheberrecht. „MODULO" sowie die gezeigten
-                Produktbezeichnungen und Abbildungen sind Eigentum des Herstellers
-                (PROMStahl Sp. z o.o.) und werden mit Genehmigung verwendet.
-              </p>
-            </div>
+                <h3>Unternehmensdaten</h3>
+                <p>
+                  Unternehmensgegenstand: Vertrieb von MODULO Parksystemen
+                  <br />
+                  UID-Nummer: [PLATZHALTER: ATU………]
+                  <br />
+                  Firmenbuchnummer: [PLATZHALTER: FN ……… ]
+                  <br />
+                  Firmenbuchgericht: [PLATZHALTER: zuständiges Landesgericht]
+                  <br />
+                  Gewerbebehörde: [PLATZHALTER: zuständige Bezirkshauptmannschaft / Magistrat]
+                </p>
+
+                <h3>Vertretungsbefugnis</h3>
+                <p>[PLATZHALTER: Geschäftsführer / vertretungsbefugte Person(en)]</p>
+
+                <h3>Online-Streitbeilegung</h3>
+                <p>
+                  Die Europäische Kommission stellt eine Plattform zur
+                  Online-Streitbeilegung (OS) bereit:{" "}
+                  <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">
+                    https://ec.europa.eu/consumers/odr/
+                  </a>
+                  . Wir sind nicht verpflichtet und nicht bereit, an einem
+                  Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle
+                  teilzunehmen.
+                </p>
+
+                <h3>Haftung &amp; Urheberrecht</h3>
+                <p>
+                  Die Inhalte dieser Seiten wurden mit größtmöglicher Sorgfalt
+                  erstellt. Für externe Links ist stets der jeweilige Anbieter
+                  verantwortlich. „MODULO" sowie die gezeigten Produktbezeichnungen
+                  und Abbildungen sind Eigentum des Herstellers (PROMStahl Sp. z
+                  o.o.) und werden mit Genehmigung verwendet.
+                </p>
+              </div>
+            )}
           </div>
         </section>
       </main>

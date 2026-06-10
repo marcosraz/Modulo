@@ -47,7 +47,7 @@ export default function ContactForm({ locale, dict }: ContactFormProps) {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, locale }),
       });
       if (!res.ok) throw new Error("request failed");
       setStatus("success");
@@ -257,10 +257,10 @@ export default function ContactForm({ locale, dict }: ContactFormProps) {
                 <div>
                   <span className="tech-label">{dict.contact.info.phoneLabel}</span>
                   <a
-                    href="tel:+436767263487"
+                    href={dict.common.contactInfo.phoneHref}
                     className="block mt-1 text-xl font-semibold text-[var(--foreground)] hover:text-[var(--modulo-accent)] transition-colors"
                   >
-                    +43 676 726 34 87
+                    {dict.common.contactInfo.phone}
                   </a>
                   <p className="text-sm text-[var(--foreground-muted)] mt-1">
                     {dict.contact.info.phoneHours}
@@ -278,10 +278,10 @@ export default function ContactForm({ locale, dict }: ContactFormProps) {
                 <div>
                   <span className="tech-label">{dict.contact.info.emailLabel}</span>
                   <a
-                    href="mailto:info@moduloparking.at"
+                    href={`mailto:${dict.common.contactInfo.email}`}
                     className="block mt-1 text-xl font-semibold text-[var(--foreground)] hover:text-[var(--modulo-accent)] transition-colors break-all"
                   >
-                    info@moduloparking.at
+                    {dict.common.contactInfo.email}
                   </a>
                   <p className="text-sm text-[var(--foreground-muted)] mt-1">
                     {dict.contact.info.emailResponse}

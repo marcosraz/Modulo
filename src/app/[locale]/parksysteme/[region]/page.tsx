@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { regions, getRegionBySlug } from "@/data/regions";
+import { getRegionBySlug, getMarketRegions, getMarketRegionSlugs } from "@/data/regions";
 import { getProducts } from "@/data/products";
 import { BreadcrumbSchema, FAQSchema } from "@/components/SEO";
 import { getDictionary } from "@/i18n/getDictionary";
@@ -17,7 +17,7 @@ function localePath(path: string, locale: string): string {
 
 export function generateStaticParams() {
   return locales.flatMap((locale) =>
-    regions.map((region) => ({ locale, region: region.slug }))
+    getMarketRegionSlugs(locale).map((slug) => ({ locale, region: slug }))
   );
 }
 
@@ -36,13 +36,23 @@ export async function generateMetadata({
   const baseUrl = locale === "cs" ? "https://moduloparking.cz" : "https://moduloparking.at";
   const localePrefix = locale === "de" || locale === "cs" ? "" : `/${locale}`;
 
+  // Czech city pages are CZ-only (no de/en equivalent); Austrian regions exist
+  // in de+en. So only cross-link languages for the Austrian market.
+  const regionLanguages =
+    locale === "cs"
+      ? undefined
+      : {
+          "de-AT": `https://moduloparking.at/parksysteme/${regionSlug}`,
+          en: `https://moduloparking.at/en/parksysteme/${regionSlug}`,
+        };
+
   return {
     title: region.metaTitle,
     description: region.metaDescription,
     keywords: region.keywords,
     alternates: {
       canonical: `${baseUrl}${localePrefix}/parksysteme/${regionSlug}`,
-      languages: hreflangAlternates(`/parksysteme/${regionSlug}`),
+      ...(regionLanguages ? { languages: regionLanguages } : {}),
     },
     openGraph: {
       title: region.metaTitle,
@@ -108,13 +118,13 @@ export default async function RegionPage({
                     </svg>
                   </Link>
                   <a
-                    href="tel:+436767263487"
+                    href={dict.common.contactInfo.phoneHref}
                     className="btn-outline inline-flex items-center justify-center gap-2 w-full sm:w-auto"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    +43 676 726 34 87
+                    {dict.common.contactInfo.phone}
                   </a>
                 </div>
               </div>
@@ -380,7 +390,7 @@ export default async function RegionPage({
                 </svg>
               </Link>
               <a
-                href="tel:+436767263487"
+                href={dict.common.contactInfo.phoneHref}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white text-white font-semibold rounded-[var(--radius-base)] hover:bg-white/10 transition-colors w-full sm:w-auto"
               >
                 <svg
@@ -413,7 +423,7 @@ export default async function RegionPage({
             </div>
 
             <div className="flex flex-wrap justify-center gap-3">
-              {regions
+              {getMarketRegions(locale as Locale)
                 .filter((r) => r.slug !== regionSlug)
                 .map((r) => (
                   <Link

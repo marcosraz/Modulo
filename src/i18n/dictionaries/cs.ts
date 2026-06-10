@@ -64,6 +64,11 @@ const cs = {
       siteDescription:
         "Oficiální distributor MODULO se sídlem v Brně. Parkovací platformy, parkovací výtahy, zdvojovače stání a stohovací systémy pro podzemní garáže, bytové domy a komerční objekty. Poradenství a montáž po celém Česku.",
     },
+    contactInfo: {
+      phone: "+420 770 103 103",
+      phoneHref: "tel:+420770103103",
+      email: "sdil@sdil.cz",
+    },
   },
   home: {
     hero: {

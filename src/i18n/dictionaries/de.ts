@@ -64,6 +64,11 @@ const de = {
       siteDescription:
         "Offizieller MODULO Vertriebspartner in Österreich. Parkplattformen, Parklifte, Doppelparker und Stapelparker für Tiefgaragen, Mehrfamilienhäuser und Gewerbe. Beratung & Montage bundesweit.",
     },
+    contactInfo: {
+      phone: "+43 676 726 34 87",
+      phoneHref: "tel:+436767263487",
+      email: "info@moduloparking.at",
+    },
   },
   home: {
     hero: {

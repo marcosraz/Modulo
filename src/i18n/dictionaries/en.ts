@@ -64,6 +64,11 @@ const en = {
       siteDescription:
         "Official MODULO distribution partner in Austria. Parking platforms, car lifts, double stackers and multi-level parking systems for underground garages, residential buildings and commercial properties. Consultation & installation nationwide.",
     },
+    contactInfo: {
+      phone: "+43 676 726 34 87",
+      phoneHref: "tel:+436767263487",
+      email: "info@moduloparking.at",
+    },
   },
   home: {
     hero: {

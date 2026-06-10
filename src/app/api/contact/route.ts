@@ -12,6 +12,8 @@ interface ContactPayload {
   message?: string;
   // Honeypot field — real users never fill this.
   website?: string;
+  // Source locale (de/en = Austrian site, cs = Czech site).
+  locale?: string;
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -47,14 +49,17 @@ export async function POST(request: NextRequest) {
     receivedAt: new Date().toISOString(),
   };
 
+  const source = (data.locale ?? "").trim();
+  const siteLabel = source === "cs" ? "CZ-Seite (moduloparking.cz)" : source ? "AT-Seite (moduloparking.at)" : "—";
   const text =
     `Name: ${name}\n` +
     `E-Mail: ${email}\n` +
     `Telefon: ${lead.phone || "—"}\n` +
     `Unternehmen: ${lead.company || "—"}\n` +
-    `Betreff: ${lead.subject || "—"}\n\n` +
+    `Betreff: ${lead.subject || "—"}\n` +
+    `Quelle: ${siteLabel}\n\n` +
     `${message}\n`;
-  const mailSubject = `[Kontakt] ${lead.subject || "Neue Anfrage"} – ${name}`;
+  const mailSubject = `[Kontakt${source ? "/" + source : ""}] ${lead.subject || "Neue Anfrage"} – ${name}`;
 
   // Delivery strategy (in order of preference):
   //   1. SMTP (e.g. the Hetzner mailbox) when SMTP_HOST/SMTP_USER/SMTP_PASS are set.

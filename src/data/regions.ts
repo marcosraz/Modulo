@@ -519,6 +519,18 @@ export function getRegions(locale: Locale): Region[] {
   return regions.map((r) => ({ ...r, ...(overlay[r.slug] ?? {}) }));
 }
 
+// Market-aware regions: the Czech site (cs) shows native Czech city pages,
+// the Austrian site (de/en) shows the Austrian regions.
+import { regionsCz } from "./regions-cz";
+
+export function getMarketRegions(locale: Locale): Region[] {
+  return locale === "cs" ? regionsCz : getRegions(locale);
+}
+
+export function getMarketRegionSlugs(locale: Locale): string[] {
+  return getMarketRegions(locale).map((r) => r.slug);
+}
+
 export function getRegionBySlug(slug: string, locale: Locale = "de"): Region | undefined {
-  return getRegions(locale).find((r) => r.slug === slug);
+  return getMarketRegions(locale).find((r) => r.slug === slug);
 }

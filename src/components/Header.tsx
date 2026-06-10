@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "@/context/ThemeContext";
-import { regions } from "@/data/regions";
+import { getMarketRegions } from "@/data/regions";
 import { locales, localeNames, type Locale } from "@/i18n/config";
 
 interface NavItem {
@@ -38,19 +38,20 @@ export default function Header({ locale, dict }: { locale: string; dict: any }) 
   const pathname = usePathname();
   const router = useRouter();
 
-  // The /parksysteme regions are Austria-specific, so the regions dropdown is
-  // only shown on the Austrian (de/en) sites — the Czech site focuses on CZ/Brno.
+  // Market-aware regions: Austrian regions on the de/en site, Czech cities on
+  // the Czech site (the /parksysteme content differs per market).
+  const marketRegions = getMarketRegions(locale as Locale);
   const navItems: NavItem[] = [
     { label: dict.common.nav.products, href: localePath("/produkte", locale) },
-    ...(locale === "cs"
-      ? []
-      : [
+    ...(marketRegions.length > 0
+      ? [
           {
             label: dict.common.nav.regions,
-            href: localePath("/parksysteme/wien", locale),
-            dropdown: regions.map((r) => ({ label: r.name, href: localePath(`/parksysteme/${r.slug}`, locale) })),
+            href: localePath(`/parksysteme/${marketRegions[0].slug}`, locale),
+            dropdown: marketRegions.map((r) => ({ label: r.name, href: localePath(`/parksysteme/${r.slug}`, locale) })),
           },
-        ]),
+        ]
+      : []),
     { label: dict.common.nav.guides, href: localePath("/ratgeber", locale) },
     { label: dict.common.nav.references, href: localePath("/referenzen", locale) },
     { label: dict.common.nav.about, href: localePath("/ueber-uns", locale) },
@@ -61,7 +62,7 @@ export default function Header({ locale, dict }: { locale: string; dict: any }) 
   const regionsRoot = localePath("/parksysteme", locale);
   const homePath = localePath("/", locale);
   function isActive(href: string): boolean {
-    if (href === regionsRoot + "/wien") {
+    if (href.startsWith(regionsRoot + "/")) {
       return pathname.startsWith(regionsRoot);
     }
     if (href === homePath) {

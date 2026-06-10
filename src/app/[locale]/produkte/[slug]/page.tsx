@@ -221,7 +221,7 @@ export default async function ProductPage({
                     </svg>
                   </Link>
                   <a
-                    href="tel:+436767263487"
+                    href={dict.common.contactInfo.phoneHref}
                     className="btn-outline inline-flex items-center justify-center gap-2 w-full sm:w-auto"
                   >
                     <svg

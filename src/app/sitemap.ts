@@ -1,18 +1,7 @@
 import { MetadataRoute } from "next";
 import { products } from "@/data/products";
+import { getMarketRegionSlugs } from "@/data/regions";
 import { locales, localeUrl as i18nLocaleUrl, type Locale } from "@/i18n/config";
-
-const regions = [
-  "wien",
-  "niederoesterreich",
-  "oberoesterreich",
-  "salzburg",
-  "tirol",
-  "steiermark",
-  "kaernten",
-  "burgenland",
-  "vorarlberg",
-];
 
 const articleSlugs = [
   "welches-parksystem-passt",
@@ -81,17 +70,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   }
 
-  // Regional pages per locale
-  for (const region of regions) {
-    for (const locale of locales) {
+  // Regional pages (market-aware: Austrian regions on de/en, Czech cities on cs).
+  // Austrian regions exist in de+en (same slug, cross-linked); Czech cities are cs-only.
+  for (const locale of locales) {
+    for (const slug of getMarketRegionSlugs(locale)) {
       entries.push({
-        url: localeUrl(`/parksysteme/${region}`, locale),
+        url: localeUrl(`/parksysteme/${slug}`, locale),
         lastModified: now,
         changeFrequency: "monthly",
         priority: locale === "de" ? 0.8 : 0.7,
-        alternates: {
-          languages: alternates(`/parksysteme/${region}`),
-        },
+        ...(locale === "cs"
+          ? {}
+          : {
+              alternates: {
+                languages: {
+                  "de-AT": localeUrl(`/parksysteme/${slug}`, "de"),
+                  en: localeUrl(`/parksysteme/${slug}`, "en"),
+                },
+              },
+            }),
       });
     }
   }

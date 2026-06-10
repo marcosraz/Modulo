@@ -30,7 +30,7 @@ export default function FAQ({ locale, dict }: { locale: string; dict: any }) {
         </div>
 
         {/* Accordion */}
-        <div className="space-y-3">
+        <div className="stagger space-y-3">
           {faqs.map((faq: { question: string; answer: string }, index: number) => (
             <details key={index} className="faq-item card card--flat group">
               <summary className="flex items-center justify-between gap-4 cursor-pointer list-none p-5 sm:p-6">

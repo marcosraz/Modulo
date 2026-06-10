@@ -87,6 +87,15 @@ const en = {
       ctaSecondary: "Request Consultation",
       badgeSpec: "4 vehicles · 2 levels",
     },
+    ticker: [
+      "6× more parking spaces",
+      "Made in Europe",
+      "Dual hydraulic safety system",
+      "100% galvanized steel",
+      "24/7 service",
+      "10+ system variants",
+      "Over 100 years of industrial experience",
+    ],
     products: {
       label: "Product Portfolio",
       title: "10 Systems for Every",

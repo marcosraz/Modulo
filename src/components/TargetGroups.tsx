@@ -39,7 +39,7 @@ export default function TargetGroups({ locale, dict }: { locale: string; dict: a
         </div>
 
         {/* Target Groups Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="stagger grid md:grid-cols-2 gap-6">
           {groups.map((group: any, index: number) => (
             <div key={index} className="card card--flat group p-8">
               <div className="flex items-start gap-6">

@@ -36,7 +36,7 @@ export default function ProductsOverview({ locale, dict }: { locale: string; dic
         </div>
 
         {/* Products Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
+        <div className="stagger grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
           {items.map((product: any) => {
             const imageData = productImages[product.id] || productImages["parker-c"];
             return (

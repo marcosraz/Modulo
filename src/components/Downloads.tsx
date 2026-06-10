@@ -32,7 +32,7 @@ export default function Downloads({ locale, dict }: { locale: string; dict: any 
         </div>
 
         {/* Downloads Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="stagger grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {items.map((item: any, index: number) => {
             const fileData = downloadFiles[index] || downloadFiles[0];
             return (

@@ -30,7 +30,7 @@ export default function Process({ locale, dict }: { locale: string; dict: any })
           {/* Connecting line (desktop) */}
           <div className="hidden lg:block absolute top-7 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-[var(--modulo-accent)]/15 via-[var(--modulo-accent)]/50 to-[var(--modulo-accent)]/15" />
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+          <div className="stagger grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
             {steps.map((step: any, index: number) => (
               <div key={index} className="relative text-center lg:px-4 group">
                 {/* Step number */}

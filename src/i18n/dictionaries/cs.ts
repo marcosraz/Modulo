@@ -87,6 +87,15 @@ const cs = {
       ctaSecondary: "Vyžádat konzultaci",
       badgeSpec: "4 vozidla · 2 úrovně",
     },
+    ticker: [
+      "6× více parkovacích míst",
+      "Vyrobeno v Evropě",
+      "Dvojitý hydraulický bezpečnostní systém",
+      "100% pozinkovaná ocel",
+      "Servis 24/7",
+      "10+ variant systémů",
+      "Více než 100 let průmyslových zkušeností",
+    ],
     products: {
       label: "Portfolio produktů",
       title: "10 systémů pro každý",

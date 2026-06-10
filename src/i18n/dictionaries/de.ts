@@ -87,6 +87,15 @@ const de = {
       ctaSecondary: "Beratung anfordern",
       badgeSpec: "4 Fahrzeuge · 2 Ebenen",
     },
+    ticker: [
+      "6× mehr Stellplätze",
+      "Made in Europe",
+      "Doppeltes Hydraulik-Sicherheitssystem",
+      "100 % verzinkter Stahl",
+      "24/7 Service",
+      "10+ Systemvarianten",
+      "Über 100 Jahre Industrieerfahrung",
+    ],
     products: {
       label: "Produktportfolio",
       title: "10 Systeme für jeden",

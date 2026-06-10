@@ -52,7 +52,7 @@ export default function Benefits({ locale, dict }: { locale: string; dict: any }
         </div>
 
         {/* Benefits Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="stagger grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {items.map((benefit: any, index: number) => (
             <div key={index} className="card card--flat group p-8">
               {/* Icon */}

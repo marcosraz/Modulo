@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import CountUp from "@/components/CountUp";
+import TiltCard from "@/components/TiltCard";
 
 function localePath(path: string, locale: string): string {
   if (locale === "de") return path;
@@ -43,19 +45,19 @@ export default function Hero({ locale, dict }: { locale: string; dict: any }) {
             {/* Stats */}
             <div className="mt-10 grid grid-cols-3 gap-4 sm:gap-8 animate-fade-up delay-300">
               <div>
-                <div className="stat-number">{dict.home.hero.stat1Value}</div>
+                <CountUp className="stat-number block" value={dict.home.hero.stat1Value} />
                 <div className="text-xs sm:text-sm text-[var(--foreground-muted)] mt-1">
                   {dict.home.hero.stat1Label}
                 </div>
               </div>
               <div>
-                <div className="stat-number">{dict.home.hero.stat2Value}</div>
+                <CountUp className="stat-number block" value={dict.home.hero.stat2Value} />
                 <div className="text-xs sm:text-sm text-[var(--foreground-muted)] mt-1">
                   {dict.home.hero.stat2Label}
                 </div>
               </div>
               <div>
-                <div className="stat-number">{dict.home.hero.stat3Value}</div>
+                <CountUp className="stat-number block" value={dict.home.hero.stat3Value} />
                 <div className="text-xs sm:text-sm text-[var(--foreground-muted)] mt-1">
                   {dict.home.hero.stat3Label}
                 </div>
@@ -78,25 +80,27 @@ export default function Hero({ locale, dict }: { locale: string; dict: any }) {
 
           {/* Image/Visual */}
           <div className="relative animate-fade-up delay-500">
-            <div className="tech-frame">
-              <div className="relative aspect-[4/3] image-well rounded-[var(--radius-lg)] overflow-hidden border border-[var(--border)]">
-                <Image
-                  src="/images/products/parker-c100-basic.png"
-                  alt="MODULO Parker C100 Parkplattform"
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-contain p-4"
-                  priority
-                />
+            <TiltCard>
+              <div className="tech-frame">
+                <div className="relative aspect-[4/3] image-well rounded-[var(--radius-lg)] overflow-hidden border border-[var(--border)]">
+                  <Image
+                    src="/images/products/parker-c100-basic.png"
+                    alt="MODULO Parker C100 Parkplattform"
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-contain p-4"
+                    priority
+                  />
+                </div>
               </div>
-            </div>
 
-            {/* Floating badge */}
-            <div className="absolute bottom-2 left-2 lg:-bottom-4 lg:-left-4 bg-[var(--modulo-accent)] text-white px-4 py-2 lg:px-6 lg:py-3 text-sm font-semibold shadow-[var(--shadow-lg)] rounded-[var(--radius-sharp)]">
-              <span className="font-mono">PARKER-C100</span>
-              <br />
-              <span className="text-xs text-white/90">{dict.home.hero.badgeSpec}</span>
-            </div>
+              {/* Floating badge */}
+              <div className="absolute bottom-2 left-2 lg:-bottom-4 lg:-left-4 bg-[var(--modulo-accent)] text-white px-4 py-2 lg:px-6 lg:py-3 text-sm font-semibold shadow-[var(--shadow-lg)] rounded-[var(--radius-sharp)]">
+                <span className="font-mono">PARKER-C100</span>
+                <br />
+                <span className="text-xs text-white/90">{dict.home.hero.badgeSpec}</span>
+              </div>
+            </TiltCard>
 
             {/* Technical decoration (desktop only) */}
             <div className="hidden lg:block absolute -top-8 -right-8 w-32 h-32 border border-[var(--border)]/40 rounded-full" />

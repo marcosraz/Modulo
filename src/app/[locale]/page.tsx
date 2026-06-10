@@ -7,6 +7,7 @@ import TargetGroups from "@/components/TargetGroups";
 import Process from "@/components/Process";
 import Downloads from "@/components/Downloads";
 import FAQ from "@/components/FAQ";
+import Ticker from "@/components/Ticker";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
@@ -58,6 +59,7 @@ export default async function Home({
       <Header locale={locale} dict={dict} />
       <main id="main">
         <Hero locale={locale} dict={dict} />
+        <Ticker dict={dict} />
         <Reveal><ProductsOverview locale={locale} dict={dict} /></Reveal>
         <Reveal><Benefits locale={locale} dict={dict} /></Reveal>
         <Reveal><TargetGroups locale={locale} dict={dict} /></Reveal>

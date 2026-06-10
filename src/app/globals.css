@@ -176,12 +176,20 @@ textarea:focus-visible {
     scroll-behavior: auto;
   }
   .animate-fade-up,
-  .reveal {
+  .reveal,
+  .reveal .stagger > * {
     opacity: 1 !important;
     transform: none !important;
+    animation: none !important;
   }
   .btn-primary:hover,
   .card--interactive:hover {
+    transform: none !important;
+  }
+  .ticker-track {
+    animation: none !important;
+  }
+  .tilt-card {
     transform: none !important;
   }
 }
@@ -297,6 +305,8 @@ textarea:focus-visible {
    BUTTONS
    ============================================================ */
 .btn-primary {
+  position: relative;
+  overflow: hidden;
   background: var(--modulo-accent);
   color: #FFFFFF;
   font-weight: 600;
@@ -307,6 +317,26 @@ textarea:focus-visible {
   letter-spacing: 0.05em;
   font-size: 0.875rem;
   box-shadow: var(--shadow-sm);
+}
+
+/* Shine sweep on hover */
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 40%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-18deg);
+  pointer-events: none;
+}
+.btn-primary:hover::before {
+  animation: btn-shine 0.8s var(--ease-out);
+}
+@keyframes btn-shine {
+  from { left: -60%; }
+  to { left: 130%; }
 }
 .btn-primary:hover {
   background: var(--modulo-accent-light);
@@ -365,10 +395,39 @@ textarea:focus-visible {
 }
 
 /* Interactive variant: lift + accent glow ring (products, downloads) */
+.card--interactive {
+  position: relative;
+}
 .card--interactive:hover {
   border-color: rgba(37, 99, 235, 0.5);
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+/* Cursor-tracking glow: --mx/--my set by GlowPointer */
+.card--interactive::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-base) ease;
+  background: radial-gradient(
+    360px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(37, 99, 235, 0.13),
+    transparent 65%
+  );
+}
+.card--interactive:hover::before {
+  opacity: 1;
+}
+[data-theme="light"] .card--interactive::before {
+  background: radial-gradient(
+    360px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(37, 99, 235, 0.09),
+    transparent 65%
+  );
 }
 
 /* ============================================================
@@ -453,6 +512,62 @@ textarea:focus-visible {
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+}
+
+/* Staggered child reveal: grids marked .stagger inside a Reveal get their
+   children animated one after another (animation, not transition, so card
+   hover transitions stay snappy afterwards). */
+.reveal:not(.is-visible) .stagger > * {
+  opacity: 0;
+}
+.reveal.is-visible .stagger > * {
+  animation: fade-up 0.65s var(--ease-out) backwards;
+}
+.reveal.is-visible .stagger > *:nth-child(2) { animation-delay: 80ms; }
+.reveal.is-visible .stagger > *:nth-child(3) { animation-delay: 160ms; }
+.reveal.is-visible .stagger > *:nth-child(4) { animation-delay: 240ms; }
+.reveal.is-visible .stagger > *:nth-child(5) { animation-delay: 320ms; }
+.reveal.is-visible .stagger > *:nth-child(6) { animation-delay: 400ms; }
+.reveal.is-visible .stagger > *:nth-child(7) { animation-delay: 480ms; }
+.reveal.is-visible .stagger > *:nth-child(8) { animation-delay: 560ms; }
+
+/* Technical fact ticker (marquee) */
+.ticker {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 36s linear infinite;
+}
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-right: 3rem;
+  white-space: nowrap;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--foreground-muted);
+}
+.ticker-item::after {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  background: var(--modulo-accent);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+@keyframes ticker-scroll {
+  to { transform: translateX(-50%); }
 }
 
 /* FAQ accordion (native details/summary) */

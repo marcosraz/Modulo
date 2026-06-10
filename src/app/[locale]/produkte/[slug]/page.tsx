@@ -35,7 +35,7 @@ export async function generateMetadata({
     };
   }
 
-  const baseUrl = locale === "cs" ? "https://modulparking.cz" : "https://moduloparking.at";
+  const baseUrl = locale === "cs" ? "https://moduloparking.cz" : "https://moduloparking.at";
   const lp = locale === "de" || locale === "cs" ? "" : `/${locale}`;
 
   return {

@@ -113,7 +113,7 @@ export default function Header({ locale, dict }: { locale: string; dict: any }) 
 
     // On the Czech domain, Czech uses clean URLs and German lives on the
     // Austrian domain (clean URLs there). English works via /en on both.
-    const czHosts = ["modulparking.cz", "www.modulparking.cz"];
+    const czHosts = ["moduloparking.cz", "www.moduloparking.cz"];
     const onCzDomain =
       typeof window !== "undefined" && czHosts.includes(window.location.hostname);
 

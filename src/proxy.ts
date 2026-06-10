@@ -3,8 +3,8 @@ import { locales, defaultLocale, type Locale } from "./i18n/config";
 
 // Domains that default to a non-German locale
 const domainLocales: Record<string, Locale> = {
-  "modulparking.cz": "cs",
-  "www.modulparking.cz": "cs",
+  "moduloparking.cz": "cs",
+  "www.moduloparking.cz": "cs",
 };
 
 function getLocaleForHost(host: string): Locale {
@@ -44,7 +44,7 @@ export function proxy(request: NextRequest) {
 
   // No locale prefix → internally rewrite to the host's default locale.
   // moduloparking.at → /de/... (clean URLs for German users),
-  // modulparking.cz → /cs/... (clean URLs for Czech users)
+  // moduloparking.cz → /cs/... (clean URLs for Czech users)
   const host = request.headers.get("host") ?? "";
   const hostLocale = getLocaleForHost(host);
   const url = request.nextUrl.clone();

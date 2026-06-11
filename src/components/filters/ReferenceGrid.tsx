@@ -50,15 +50,68 @@ function getCategoryIcon(category: string) {
 
 export default function ReferenceGrid({ references, categoryButtons, categoryLabels, dict }: Props) {
   const [active, setActive] = useState(categoryButtons[0]?.value ?? "all");
-  const filtered = active === "all" ? references : references.filter((r) => r.category === active);
+  const [activeCountry, setActiveCountry] = useState<string>("all");
+
+  // Country switcher options derived from the data (localized display name
+  // comes from location.country; the stable key is countryCode).
+  const countries: { code: string; label: string }[] = [];
+  for (const r of references) {
+    if (!countries.some((c) => c.code === r.countryCode)) {
+      countries.push({ code: r.countryCode, label: r.location.country });
+    }
+  }
+
+  const filtered = references
+    .filter((r) => active === "all" || r.category === active)
+    .filter((r) => activeCountry === "all" || r.countryCode === activeCountry);
   const featured = filtered.filter((r) => r.featured);
   const others = filtered.filter((r) => !r.featured);
 
   return (
     <>
-      {/* Category Filter */}
+      {/* Filters: country switcher + category */}
       <section className="py-8 bg-[var(--background-secondary)] border-b border-[var(--border)]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 space-y-4">
+          {/* Country switcher (only when more than one country exists) */}
+          {countries.length > 1 && (
+            <div className="flex flex-wrap items-center gap-2 justify-center" role="group" aria-label="Land">
+              <svg className="w-4 h-4 text-[var(--modulo-accent)] mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <button
+                type="button"
+                onClick={() => setActiveCountry("all")}
+                aria-pressed={activeCountry === "all"}
+                className={`px-4 py-1.5 text-sm font-mono font-medium rounded-[var(--radius-base)] border transition-colors ${
+                  activeCountry === "all"
+                    ? "bg-[var(--modulo-accent)] border-[var(--modulo-accent)] text-white"
+                    : "border-[var(--border-strong)] text-[var(--foreground-muted)] hover:border-[var(--modulo-accent)] hover:text-[var(--modulo-accent)]"
+                }`}
+              >
+                {dict.references.categories.allCountries}
+              </button>
+              {countries.map((c) => {
+                const isActive = activeCountry === c.code;
+                return (
+                  <button
+                    key={c.code}
+                    type="button"
+                    onClick={() => setActiveCountry(c.code)}
+                    aria-pressed={isActive}
+                    className={`px-4 py-1.5 text-sm font-mono font-medium rounded-[var(--radius-base)] border transition-colors ${
+                      isActive
+                        ? "bg-[var(--modulo-accent)] border-[var(--modulo-accent)] text-white"
+                        : "border-[var(--border-strong)] text-[var(--foreground-muted)] hover:border-[var(--modulo-accent)] hover:text-[var(--modulo-accent)]"
+                    }`}
+                  >
+                    {c.label}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Category filter */}
           <div className="flex flex-wrap gap-2 justify-center" role="group" aria-label={dict.references.label}>
             {categoryButtons.map((category) => {
               const isActive = active === category.value;
@@ -81,6 +134,13 @@ export default function ReferenceGrid({ references, categoryButtons, categoryLab
           </div>
         </div>
       </section>
+
+      {/* Empty state */}
+      {filtered.length === 0 && (
+        <section className="py-16 bg-[var(--background-secondary)]">
+          <p className="text-center text-[var(--foreground-muted)]">—</p>
+        </section>
+      )}
 
       {/* Featured Projects */}
       {featured.length > 0 && (

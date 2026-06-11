@@ -51,12 +51,14 @@
     "description": "Podzemní garáž brněnského rezidenčního projektu realizovaná naším týmem: nakloněné platformy PARKER-S zdvojnásobují počet stání navzdory omezené výšce stropu – čistě integrované do novostavby.",
     "location": {
       "country": "Česko"
-    }
+    },
+    "name": "Bytový dům Brno Poděbradova"
   },
   "ref-brno-tiefgarage": {
     "description": "Naše vlastní instalace v brněnské podzemní garáži: dvouúrovňové parkovací platformy s pozinkovanými pojezdy a žlutým bezpečnostním zábradlím – montáž i servis zajišťuje náš tým.",
     "location": {
       "country": "Česko"
-    }
+    },
+    "name": "Podzemní garáž Brno"
   }
 }

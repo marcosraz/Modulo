@@ -51,12 +51,14 @@
     "description": "Underground garage of a Brno residential project realised by our team: inclined PARKER-S platforms double the parking spaces despite limited ceiling height – cleanly integrated into the new building.",
     "location": {
       "country": "Czech Republic"
-    }
+    },
+    "name": "Brno Poděbradova Residential Project"
   },
   "ref-brno-tiefgarage": {
     "description": "Our own installation in a Brno underground garage: two-level parking platforms with galvanized decks and yellow safety railings – installed and serviced by our team.",
     "location": {
       "country": "Czech Republic"
-    }
+    },
+    "name": "Brno Underground Garage"
   }
 }

@@ -382,8 +382,8 @@ const en = {
     title: "Successfully",
     titleHighlight: "Realized",
     description:
-      "Discover our successfully completed parking system projects across Austria \u2013 from private residential complexes to public parking facilities.",
-    manufacturerNote: "Reference projects by manufacturer MODULO / PROMStahl",
+      "Discover our successfully completed parking system projects across Central Europe \u2013 from private residential complexes to public parking facilities.",
+    manufacturerNote: "Our own Brno projects plus reference projects by the manufacturer MODULO / PROMStahl",
     highlightProjects: "Highlight Projects",
     moreProjects: "More Projects",
     ctaTitle: "Your Project Next?",
@@ -393,6 +393,7 @@ const en = {
     ctaSecondary: "View Products",
     categories: {
       all: "All Projects",
+      allCountries: "All Countries",
       residential: "Residential",
       commercial: "Commercial",
       hotel: "Hotels",

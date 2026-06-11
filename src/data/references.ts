@@ -5,6 +5,8 @@ export interface Reference {
     city: string;
     country: string;
   };
+  /** Stable country code for filtering/sorting (display name comes from location.country, localized) */
+  countryCode: "CZ" | "PL";
   products: string[];
   description: string;
   category: "residential" | "commercial" | "hotel" | "public";
@@ -28,6 +30,7 @@ export const references: Reference[] = [
       city: "Brno",
       country: "Tschechien",
     },
+    countryCode: "CZ",
     products: ["PARKER-S"],
     description:
       "Von uns realisierte Tiefgarage eines Brünner Wohnprojekts: geneigte PARKER-S Plattformen verdoppeln die Stellplätze trotz begrenzter Deckenhöhe – sauber integriert in den Neubau.",
@@ -45,6 +48,7 @@ export const references: Reference[] = [
       city: "Brno",
       country: "Tschechien",
     },
+    countryCode: "CZ",
     products: ["PARKER-C"],
     description:
       "Eigene Installation in einer Brünner Tiefgarage: zweistöckige Parkplattformen mit verzinkten Fahrflächen und gelben Sicherheitsgeländern – montiert und gewartet von unserem Team.",
@@ -64,6 +68,7 @@ export const references: Reference[] = [
       city: "Warschau",
       country: "Polen",
     },
+    countryCode: "PL",
     products: ["PARKER-C100"],
     description:
       "Großes Wohnbauprojekt im Stadtteil Wilanów mit 204 Stellplätzen. Die unabhängigen PARKER-C100 Plattformen ermöglichen jedem Bewohner flexiblen Zugang zu seinem Fahrzeug.",
@@ -81,6 +86,7 @@ export const references: Reference[] = [
       city: "Krakau",
       country: "Polen",
     },
+    countryCode: "PL",
     products: ["PARKER-S100"],
     description:
       "Firmensitz einer Bank mit 16 Stellplätzen auf begrenztem Raum. Die PARKER-S100 Systeme wurden speziell für die niedrige Deckenhöhe der Tiefgarage ausgewählt.",
@@ -98,6 +104,7 @@ export const references: Reference[] = [
       city: "Sopot",
       country: "Polen",
     },
+    countryCode: "PL",
     products: ["PARKER-O100"],
     description:
       "Luxushotel an der polnischen Ostseeküste. Die unterirdischen PARKER-O100 Systeme verschwinden komplett unter der Oberfläche und bewahren das ästhetische Erscheinungsbild des Hotels.",
@@ -115,6 +122,7 @@ export const references: Reference[] = [
       city: "Danzig",
       country: "Polen",
     },
+    countryCode: "PL",
     products: ["PARKER-C100"],
     description:
       "Modernes Mehrfamilienhaus mit 68 Stellplätzen. Die PARKER-C100 Plattformen verdoppeln die Parkkapazität in der Tiefgarage.",
@@ -132,6 +140,7 @@ export const references: Reference[] = [
       city: "Posen",
       country: "Polen",
     },
+    countryCode: "PL",
     products: ["PARKER-C100 Basic", "PARKER-S120 Basic"],
     description:
       "Kombination aus 8 PARKER-C100 Basic und 5 PARKER-S120 Basic Plattformen. Die flexible Lösung bedient unterschiedliche Anforderungen der Bewohner.",
@@ -150,6 +159,7 @@ export const references: Reference[] = [
       city: "Bydgoszcz",
       country: "Polen",
     },
+    countryCode: "PL",
     products: ["PALLET-T10"],
     description:
       "Automatisches Parksystem mit 17 PALLET-T10 Schiebeplattformen. Das System verhindert Fehlparkierungen und ermöglicht effiziente Raumnutzung.",
@@ -166,6 +176,7 @@ export const references: Reference[] = [
       city: "Kolberg",
       country: "Polen",
     },
+    countryCode: "PL",
     products: ["PARKER-C100"],
     description:
       "Parkanlage in der beliebten Ostsee-Kurstadt. Die MODULO Systeme bieten Urlaubern und Bewohnern zuverlässige Parkmöglichkeiten.",
@@ -182,6 +193,7 @@ export const references: Reference[] = [
       city: "Misdroy",
       country: "Polen",
     },
+    countryCode: "PL",
     products: ["PARKER-C100"],
     description:
       "Ferienresort auf der Insel Wollin. Die platzsparenden Parksysteme maximieren den Stellplatz für die Gäste der Anlage.",
@@ -221,6 +233,7 @@ import referencesEn from "./translations/references.en.json";
 import referencesCs from "./translations/references.cs.json";
 
 type ReferenceOverlay = {
+  name?: string;
   description?: string;
   location?: { country?: string };
 };
@@ -231,15 +244,29 @@ const referenceOverlays: Record<string, Record<string, ReferenceOverlay>> = {
 };
 
 export function getReferences(locale: Locale): Reference[] {
-  if (locale === "de") return references;
   const overlay = referenceOverlays[locale] ?? {};
-  return references.map((r) => {
-    const t = overlay[r.id];
-    if (!t) return r;
-    return {
-      ...r,
-      description: t.description ?? r.description,
-      location: { ...r.location, ...(t.location ?? {}) },
-    };
-  });
+  const localized =
+    locale === "de"
+      ? [...references]
+      : references.map((r) => {
+          const t = overlay[r.id];
+          if (!t) return r;
+          return {
+            ...r,
+            name: t.name ?? r.name,
+            description: t.description ?? r.description,
+            location: { ...r.location, ...(t.location ?? {}) },
+          };
+        });
+
+  // On the Czech site, Czech projects come first (stable sort keeps the
+  // original order within each country group).
+  if (locale === "cs") {
+    localized.sort((a, b) => {
+      const pa = a.countryCode === "CZ" ? 0 : 1;
+      const pb = b.countryCode === "CZ" ? 0 : 1;
+      return pa - pb;
+    });
+  }
+  return localized;
 }

@@ -383,7 +383,7 @@ const cs = {
     titleHighlight: "realizováno",
     description:
       "Objevte naše úspěšně realizované projekty parkovacích systémů ve střední Evropě – od soukromých bytových komplexů po veřejné parkovací objekty.",
-    manufacturerNote: "Referenční projekty výrobce MODULO / PROMStahl",
+    manufacturerNote: "Naše vlastní projekty z Brna a referenční projekty výrobce MODULO / PROMStahl",
     highlightProjects: "Vybrané projekty",
     moreProjects: "Další projekty",
     ctaTitle: "Váš projekt jako další?",
@@ -393,6 +393,7 @@ const cs = {
     ctaSecondary: "Zobrazit produkty",
     categories: {
       all: "Všechny projekty",
+      allCountries: "Všechny země",
       residential: "Bytové komplexy",
       commercial: "Komerční",
       hotel: "Hotely",

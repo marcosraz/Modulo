@@ -382,8 +382,8 @@ const de = {
     title: "Erfolgreich",
     titleHighlight: "realisiert",
     description:
-      "Entdecken Sie unsere erfolgreich umgesetzten Parksystem-Projekte in ganz Österreich – von privaten Wohnanlagen bis zu öffentlichen Parkeinrichtungen.",
-    manufacturerNote: "Referenzprojekte des Herstellers MODULO / PROMStahl",
+      "Entdecken Sie unsere erfolgreich umgesetzten Parksystem-Projekte in Mitteleuropa – von privaten Wohnanlagen bis zu öffentlichen Parkeinrichtungen.",
+    manufacturerNote: "Eigene Projekte aus Brno sowie Referenzprojekte des Herstellers MODULO / PROMStahl",
     highlightProjects: "Highlight-Projekte",
     moreProjects: "Weitere Projekte",
     ctaTitle: "Ihr Projekt als nächstes?",
@@ -393,6 +393,7 @@ const de = {
     ctaSecondary: "Produkte ansehen",
     categories: {
       all: "Alle Projekte",
+      allCountries: "Alle Länder",
       residential: "Wohnanlagen",
       commercial: "Gewerbe",
       hotel: "Hotels",

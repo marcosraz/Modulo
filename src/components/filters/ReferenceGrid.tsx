@@ -140,14 +140,16 @@ export default function ReferenceGrid({ references, categoryButtons, categoryLab
                       ))}
                     </div>
                     <div className="mt-4 grid grid-cols-2 gap-4 pt-4 border-t border-[var(--border)]">
-                      <div>
-                        <div className="text-xl font-mono font-bold text-[var(--modulo-accent)] tabular-nums">
-                          {ref.parkingSpaces}
+                      {ref.parkingSpaces && (
+                        <div>
+                          <div className="text-xl font-mono font-bold text-[var(--modulo-accent)] tabular-nums">
+                            {ref.parkingSpaces}
+                          </div>
+                          <div className="text-xs text-[var(--foreground-muted)]">
+                            {dict.common.products.parkingSpaces}
+                          </div>
                         </div>
-                        <div className="text-xs text-[var(--foreground-muted)]">
-                          {dict.common.products.parkingSpaces}
-                        </div>
-                      </div>
+                      )}
                       {ref.year && (
                         <div>
                           <div className="text-xl font-mono font-bold text-[var(--modulo-accent)] tabular-nums">
@@ -200,7 +202,8 @@ export default function ReferenceGrid({ references, categoryButtons, categoryLab
                       )}
                     </div>
                     <p className="text-sm text-[var(--foreground-muted)]">
-                      {ref.location.city} · {ref.parkingSpaces} {dict.common.products.parkingSpaces}
+                      {ref.location.city}
+                      {ref.parkingSpaces ? ` · ${ref.parkingSpaces} ${dict.common.products.parkingSpaces}` : ""}
                     </p>
                     <div className="mt-2 flex flex-wrap gap-1">
                       {ref.products.map((product) => (

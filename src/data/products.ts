@@ -60,6 +60,8 @@ Jede Einheit verfügt über ein separates Bedienfeld, das durch einen speziellen
     images: ["/images/products/parker-c-header.webp", "/images/products/parker-c-1.webp", "/images/products/parker-c-2.webp", "/images/products/parker-c-3.webp"],
     pdfs: [
       { name: "Parker C100 Datenblatt (DE)", file: "/docs/parker-c100-de.pdf", size: "2.0 MB" },
+      { name: "Parker C100 Basic (CZ)", file: "/docs/modulo-parker-c100-basic-cz.pdf", size: "2.7 MB" },
+      { name: "Parker C120 Basic (CZ)", file: "/docs/parker-c120-basic-cz.pdf", size: "1.7 MB" },
     ],
     featured: true,
   },
@@ -96,6 +98,8 @@ MODULO PARKER-S ist dediziert für Tiefgaragen und Garagen. Es ist jedoch haupts
       { name: "Parker S100 Datenblatt (DE)", file: "/docs/parker-s100-de.pdf", size: "1.1 MB" },
       { name: "Parker S100 Basic (DE)", file: "/docs/parker-s100-basic-de.pdf", size: "1.2 MB" },
       { name: "Parker S120 Datenblatt (DE)", file: "/docs/parker-s120-de.pdf", size: "2.0 MB" },
+      { name: "Parker S120 Basic (CZ)", file: "/docs/modulo-parker-s120-basic-cz.pdf", size: "3.3 MB" },
+      { name: "Parker S120 Basic Anleitung (CZ)", file: "/docs/modulo-parker-s120-basic-instrukce-cz.pdf", size: "1.1 MB" },
     ],
     featured: false,
   },
@@ -123,6 +127,7 @@ Die Plattform kann als Teil einer Zufahrtsstraße oder Hofeinfahrt integriert we
     images: ["/images/products/parker-o-header.webp", "/images/products/parker-o-1.webp", "/images/products/parker-o-2.webp", "/images/products/parker-o-3.webp"],
     pdfs: [
       { name: "Parker O100 Datenblatt (DE)", file: "/docs/parker-o100-de.pdf", size: "932 KB" },
+      { name: "Parker O100 Datenblatt (CZ)", file: "/docs/modulo-parker-o100-cz.pdf", size: "2.1 MB" },
     ],
     featured: false,
   },
@@ -155,6 +160,7 @@ Das System besticht durch benutzerfreundliche Bedienung und unkomplizierte Insta
     pdfs: [
       { name: "Stacker P10 Datenblatt (DE)", file: "/docs/stacker-p10-de.pdf", size: "1.1 MB" },
       { name: "Stacker P10 Basic (DE)", file: "/docs/stacker-p10-basic-de.pdf", size: "8.6 MB" },
+      { name: "Stacker P10 Datenblatt (CZ)", file: "/docs/modulo-stacker-p10-cz.pdf", size: "1.8 MB" },
     ],
     featured: true,
   },
@@ -182,6 +188,7 @@ Es ist die leichteste aller MODULO-Parkplattformen und vereint Flexibilität, Si
     images: ["/images/products/stacker-v-header.webp", "/images/products/stacker-v-1.webp", "/images/products/stacker-v-2.webp", "/images/products/stacker-v-3.webp"],
     pdfs: [
       { name: "Stacker V10 Datenblatt (DE)", file: "/docs/stacker-v10-de.pdf", size: "1.2 MB" },
+      { name: "Stacker V10 Datenblatt (CZ)", file: "/docs/modulo-stacker-v10-cz.pdf", size: "2.2 MB" },
     ],
     featured: false,
   },
@@ -218,6 +225,9 @@ Das System ermöglicht optionale Schiebetorsysteme und vollständige Automatisie
       { name: "LS1100 Datenblatt (DE)", file: "/docs/ls1100-de.pdf", size: "2.9 MB" },
       { name: "LS1110 Datenblatt (DE)", file: "/docs/ls1110-de.pdf", size: "2.9 MB" },
       { name: "LS1200 Datenblatt (DE)", file: "/docs/ls1200-de.pdf", size: "1.3 MB" },
+      { name: "LS1000 Datenblatt (CZ)", file: "/docs/modulo-LS1000-cz.pdf", size: "1.3 MB" },
+      { name: "LS1100 Datenblatt (CZ)", file: "/docs/modulo-ls1100-cz.pdf", size: "1.4 MB" },
+      { name: "LS1200 Datenblatt (CZ)", file: "/docs/modulo-ls1200-cz.pdf", size: "2.2 MB" },
     ],
     featured: true,
   },
@@ -277,6 +287,7 @@ Das System verhindert falsch abgestellte Fahrzeuge und Kollisionen zuverlässig.
     pdfs: [
       { name: "Pallet T10 Datenblatt (DE)", file: "/docs/pallet-t10-de.pdf", size: "827 KB" },
       { name: "Pallet L10 Datenblatt (DE)", file: "/docs/pallet-l10-de.pdf", size: "822 KB" },
+      { name: "Pallet T10 Datenblatt (CZ)", file: "/docs/pallet-t10-cz.pdf", size: "1.3 MB" },
     ],
     featured: false,
   },

@@ -8,7 +8,7 @@ export interface Reference {
   products: string[];
   description: string;
   category: "residential" | "commercial" | "hotel" | "public";
-  parkingSpaces: number;
+  parkingSpaces?: number;
   year?: number;
   featured: boolean;
   sourceUrl?: string;
@@ -19,6 +19,43 @@ export interface Reference {
 }
 
 export const references: Reference[] = [
+  // ---- Eigene Referenzen (von uns realisiert, Brno) ----
+  {
+    id: "ref-brno-podebradova",
+    image: "/images/references/brno-podebradova-2.webp",
+    name: "Wohnprojekt Brno Poděbradova",
+    location: {
+      city: "Brno",
+      country: "Tschechien",
+    },
+    products: ["PARKER-S"],
+    description:
+      "Von uns realisierte Tiefgarage eines Brünner Wohnprojekts: geneigte PARKER-S Plattformen verdoppeln die Stellplätze trotz begrenzter Deckenhöhe – sauber integriert in den Neubau.",
+    category: "residential",
+    year: 2024,
+    featured: true,
+    isManufacturerReference: false,
+    sourceUrl: "https://sdil.cz/modulo/",
+  },
+  {
+    id: "ref-brno-tiefgarage",
+    image: "/images/references/brno-20241115_142928.jpg",
+    name: "Tiefgarage Brno",
+    location: {
+      city: "Brno",
+      country: "Tschechien",
+    },
+    products: ["PARKER-C"],
+    description:
+      "Eigene Installation in einer Brünner Tiefgarage: zweistöckige Parkplattformen mit verzinkten Fahrflächen und gelben Sicherheitsgeländern – montiert und gewartet von unserem Team.",
+    category: "residential",
+    year: 2024,
+    featured: true,
+    isManufacturerReference: false,
+    sourceUrl: "https://sdil.cz/modulo/",
+  },
+
+  // ---- Referenzen des Herstellers MODULO / PROMStahl ----
   {
     id: "ref-001",
     image: "/images/references/warszawa-wilanow.webp",

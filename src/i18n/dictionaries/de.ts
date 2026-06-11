@@ -577,6 +577,12 @@ const de = {
       "Finden Sie die perfekte Parklösung für Ihre Anforderungen in unserem vollständigen Produktportfolio.",
     viewAllProducts: "Alle Produkte ansehen",
     breadcrumbProducts: "Produkte",
+    gallery: {
+      close: "Schließen",
+      prev: "Vorheriges Bild",
+      next: "Nächstes Bild",
+      zoom: "Bild vergrößern",
+    },
   },
   guidesPage: {
     label: "Ratgeber",

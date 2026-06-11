@@ -577,6 +577,12 @@ const en = {
       "Find the perfect parking solution for your requirements in our complete product portfolio.",
     viewAllProducts: "View All Products",
     breadcrumbProducts: "Products",
+    gallery: {
+      close: "Close",
+      prev: "Previous image",
+      next: "Next image",
+      zoom: "Enlarge image",
+    },
   },
   guidesPage: {
     label: "Guides",

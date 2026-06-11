@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Header from "@/components/Header";
+import ProductGallery from "@/components/ProductGallery";
 import Footer from "@/components/Footer";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { products, getProductBySlug } from "@/data/products";
@@ -124,39 +124,12 @@ export default async function ProductPage({
             </nav>
 
             <div className="grid lg:grid-cols-2 gap-12 items-start">
-              {/* Image */}
-              <div className="relative">
-                <div className="tech-frame">
-                  <div className="relative aspect-[4/3] image-well rounded-[var(--radius-lg)] overflow-hidden border border-[var(--border)]">
-                    <Image
-                      src={product.images[0]}
-                      alt={`${product.name} – ${product.tagline}`}
-                      fill
-                      sizes="(min-width: 1024px) 50vw, 100vw"
-                      className="object-contain p-8"
-                      priority
-                    />
-                  </div>
-                </div>
-                {product.images.length > 1 && (
-                  <div className="mt-4 grid grid-cols-3 gap-2 sm:gap-4">
-                    {product.images.slice(1).map((img, idx) => (
-                      <div
-                        key={idx}
-                        className="relative aspect-[4/3] image-well rounded-[var(--radius-base)] overflow-hidden border border-[var(--border)]"
-                      >
-                        <Image
-                          src={img}
-                          alt={`${product.name} – ${dict.productDetailPage.description} ${idx + 2}`}
-                          fill
-                          sizes="(min-width: 1024px) 17vw, 33vw"
-                          className="object-contain p-2"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
+              {/* Image gallery (click to zoom, thumbnails switch) */}
+              <ProductGallery
+                images={product.images}
+                name={product.name}
+                labels={dict.productDetailPage.gallery}
+              />
 
               {/* Content */}
               <div>

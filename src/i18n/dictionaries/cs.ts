@@ -577,6 +577,12 @@ const cs = {
       "Najděte ideální parkovací řešení pro vaše požadavky v našem kompletním portfoliu produktů.",
     viewAllProducts: "Zobrazit všechny produkty",
     breadcrumbProducts: "Produkty",
+    gallery: {
+      close: "Zavřít",
+      prev: "Předchozí obrázek",
+      next: "Další obrázek",
+      zoom: "Zvětšit obrázek",
+    },
   },
   guidesPage: {
     label: "Poradce",

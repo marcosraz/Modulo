@@ -19,10 +19,11 @@ function localePath(path: string, locale: string): string {
   return `/${locale}${path}`;
 }
 
+// Display codes: CZ (country) instead of the ISO language code "cs"
 const localeCodes: Record<Locale, string> = {
   de: "DE",
   en: "EN",
-  cs: "CS",
+  cs: "CZ",
 };
 
 export default function Header({ locale, dict }: { locale: string; dict: any }) {
